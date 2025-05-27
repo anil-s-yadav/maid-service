@@ -2,10 +2,23 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Menu } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActiveRoute = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const getLinkClass = (path: string) => {
+    return `transition-colors ${
+      isActiveRoute(path) 
+        ? "text-purple-600 font-semibold border-b-2 border-purple-600 pb-1" 
+        : "text-gray-700 hover:text-purple-600"
+    }`;
+  };
 
   return (
     <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-40">
@@ -23,9 +36,11 @@ export const Header = () => {
             </div>
           </div>
           <div className="flex space-x-2">
-            <Button size="sm" className="bg-red-600 hover:bg-red-700">
-              मुझे नौकरी चाहिए
-            </Button>
+            <Link to="/maid-form">
+              <Button size="sm" className="bg-red-600 hover:bg-red-700">
+                मुझे नौकरी चाहिए
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -43,12 +58,12 @@ export const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-purple-600 transition-colors">Home</Link>
-            <Link to="/services" className="text-gray-700 hover:text-purple-600 transition-colors">Services</Link>
-            <Link to="/about" className="text-gray-700 hover:text-purple-600 transition-colors">About Us</Link>
-            <Link to="/price" className="text-gray-700 hover:text-purple-600 transition-colors">Our Price</Link>
-            <Link to="/why-choose-us" className="text-gray-700 hover:text-purple-600 transition-colors">Why Choose Us</Link>
-            <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors">Contact</Link>
+            <Link to="/" className={getLinkClass("/")}>Home</Link>
+            <Link to="/services" className={getLinkClass("/services")}>Services</Link>
+            <Link to="/about" className={getLinkClass("/about")}>About Us</Link>
+            <Link to="/price" className={getLinkClass("/price")}>Our Price</Link>
+            <Link to="/why-choose-us" className={getLinkClass("/why-choose-us")}>Why Choose Us</Link>
+            <Link to="/contact" className={getLinkClass("/contact")}>Contact</Link>
           </div>
 
           {/* Mobile menu button */}
@@ -66,12 +81,12 @@ export const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t pt-4">
             <div className="flex flex-col space-y-2">
-              <Link to="/" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Home</Link>
-              <Link to="/services" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Services</Link>
-              <Link to="/about" className="text-gray-700 hover:text-purple-600 transition-colors py-2">About Us</Link>
-              <Link to="/price" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Our Price</Link>
-              <Link to="/why-choose-us" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Why Choose Us</Link>
-              <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Contact</Link>
+              <Link to="/" className={`py-2 ${getLinkClass("/")}`}>Home</Link>
+              <Link to="/services" className={`py-2 ${getLinkClass("/services")}`}>Services</Link>
+              <Link to="/about" className={`py-2 ${getLinkClass("/about")}`}>About Us</Link>
+              <Link to="/price" className={`py-2 ${getLinkClass("/price")}`}>Our Price</Link>
+              <Link to="/why-choose-us" className={`py-2 ${getLinkClass("/why-choose-us")}`}>Why Choose Us</Link>
+              <Link to="/contact" className={`py-2 ${getLinkClass("/contact")}`}>Contact</Link>
             </div>
           </div>
         )}

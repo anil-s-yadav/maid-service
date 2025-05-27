@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import AboutUs from "./pages/AboutUs";
 import OurPrice from "./pages/OurPrice";
 import WhyChooseUs from "./pages/WhyChooseUs";
+import MaidForm from "./pages/MaidForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/price" element={<OurPrice />} />
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/maid-form" element={<MaidForm />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

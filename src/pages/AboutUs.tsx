@@ -2,6 +2,7 @@
 import { About } from "@/components/About";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const AboutUsPage = () => {
   return (
@@ -11,6 +12,7 @@ const AboutUsPage = () => {
         <About />
       </div>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };

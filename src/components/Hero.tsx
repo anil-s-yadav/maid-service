@@ -1,8 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Clock, Calendar, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   const [urgencyType, setUrgencyType] = useState("");
@@ -35,9 +37,11 @@ export const Hero = () => {
               </div>
             </div>
 
-            <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
-              Post Your Requirement
-            </Button>
+            <Link to="/maid-form">
+              <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
+                Post Your Requirement
+              </Button>
+            </Link>
           </div>
 
           {/* Right - Booking form */}
@@ -104,9 +108,11 @@ export const Hero = () => {
                   </div>
                 </div>
 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg">
-                  Next
-                </Button>
+                <Link to="/maid-form">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg">
+                    Next
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

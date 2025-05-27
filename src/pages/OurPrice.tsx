@@ -2,6 +2,7 @@
 import { OurPrice } from "@/components/OurPrice";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const OurPricePage = () => {
   return (
@@ -11,6 +12,7 @@ const OurPricePage = () => {
         <OurPrice />
       </div>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const WhyChooseUsPage = () => {
   return (
@@ -11,6 +12,7 @@ const WhyChooseUsPage = () => {
         <WhyChooseUs />
       </div>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
