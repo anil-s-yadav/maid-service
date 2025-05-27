@@ -1,10 +1,8 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Home, 
   ChefHat, 
   Baby, 
-  Massage, 
   Heart, 
   Users, 
   Car, 
@@ -20,7 +18,7 @@ const services = [
   { icon: Home, title: "Maid", description: "Professional house cleaning services" },
   { icon: ChefHat, title: "Cook", description: "Experienced cooking professionals" },
   { icon: Baby, title: "Baby Sitter", description: "Trusted childcare specialists" },
-  { icon: Massage, title: "Baby Massage", description: "Gentle baby care services" },
+  { icon: Heart, title: "Baby Massage", description: "Gentle baby care services" },
   { icon: Heart, title: "Patient Care", description: "Medical assistance at home" },
   { icon: Users, title: "Elder Care", description: "Compassionate senior care" },
   { icon: Car, title: "Driver", description: "Professional driving services" },
