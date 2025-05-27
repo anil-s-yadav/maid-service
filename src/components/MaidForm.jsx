@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,7 +20,7 @@ export const MaidForm = () => {
     requirements: ''
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -29,14 +28,14 @@ export const MaidForm = () => {
     }));
   };
 
-  const handleSelectChange = (name: string, value: string) => {
+  const handleSelectChange = (name, value) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Handle form submission here
@@ -55,7 +54,7 @@ export const MaidForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="name">Full Name *</Label>
+              <Label htmlFor="name">Full Name (पूरा नाम) *</Label>
               <Input
                 id="name"
                 name="name"
@@ -68,7 +67,7 @@ export const MaidForm = () => {
               />
             </div>
             <div>
-              <Label htmlFor="phone">Phone Number *</Label>
+              <Label htmlFor="phone">Phone Number (फ़ोन नंबर) *</Label>
               <Input
                 id="phone"
                 name="phone"
@@ -83,7 +82,7 @@ export const MaidForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="email">Email Address *</Label>
+            <Label htmlFor="email">Email Address (मेल पता)*</Label>
             <Input
               id="email"
               name="email"
@@ -97,7 +96,7 @@ export const MaidForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="address">Address *</Label>
+            <Label htmlFor="address">Address (पता)*</Label>
             <Textarea
               id="address"
               name="address"
@@ -112,7 +111,7 @@ export const MaidForm = () => {
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="serviceType">Service Type *</Label>
+              <Label htmlFor="serviceType">Service Type (सेवा प्रकार)*</Label>
               <Select value={formData.serviceType} onValueChange={(value) => handleSelectChange('serviceType', value)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select service type" />
@@ -129,7 +128,7 @@ export const MaidForm = () => {
               </Select>
             </div>
             <div>
-              <Label htmlFor="workingHours">Working Hours *</Label>
+              <Label htmlFor="workingHours">Working Hours / काम के घंटे</Label>
               <Select value={formData.workingHours} onValueChange={(value) => handleSelectChange('workingHours', value)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select working hours" />
@@ -147,7 +146,7 @@ export const MaidForm = () => {
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="salary">Expected Salary (₹/month)</Label>
+              <Label htmlFor="expectedSalary">Expected Salary / अपेक्षित वेतन</Label>
               <Input
                 id="salary"
                 name="salary"
@@ -159,7 +158,7 @@ export const MaidForm = () => {
               />
             </div>
             <div>
-              <Label htmlFor="urgency">Urgency *</Label>
+              <Label htmlFor="urgency">Urgency / अर्जेंसी / तत्काल आवश्यकता</Label>
               <Select value={formData.urgency} onValueChange={(value) => handleSelectChange('urgency', value)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="When do you need?" />
@@ -175,7 +174,7 @@ export const MaidForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="experience">Preferred Experience</Label>
+            <Label htmlFor="preferredExperience">Preferred Experience / पसंदीदा अनुभव</Label>
             <Select value={formData.experience} onValueChange={(value) => handleSelectChange('experience', value)}>
               <SelectTrigger className="mt-1">
                 <SelectValue placeholder="Select experience preference" />
@@ -190,7 +189,7 @@ export const MaidForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="requirements">Additional Requirements</Label>
+            <Label htmlFor="requirements">Additional Requirements (अतिरिक्त जरूरतें)</Label>
             <Textarea
               id="requirements"
               name="requirements"
