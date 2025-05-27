@@ -8,6 +8,8 @@ import { OurPrice } from "@/components/OurPrice";
 import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
@@ -21,6 +23,8 @@ const Index = () => {
       <OurPrice />
       <Testimonials />
       <Footer />
+      <ScrollToTop />
+      <FloatingWhatsApp />
     </div>
   );
 };
