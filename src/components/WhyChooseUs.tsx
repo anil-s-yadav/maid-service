@@ -65,12 +65,16 @@ export const WhyChooseUs = () => {
             </div>
           </div>
 
-          {/* Right - Illustration */}
+          {/* Right - Illustration with Image */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-3xl p-8 h-96 flex items-center justify-center">
-              <div className="text-center">
-                <div className="bg-white w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <CheckCircle className="h-16 w-16 text-purple-600" />
+            <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-3xl p-8 h-96 flex items-center justify-center overflow-hidden">
+              <div className="text-center relative z-10">
+                <div className="bg-white w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400&h=400&fit=crop" 
+                    alt="Trust and safety"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-purple-800 mb-4">
                   We're big on trust & safety
@@ -78,6 +82,13 @@ export const WhyChooseUs = () => {
                 <p className="text-gray-600">
                   All our professionals are verified and background checked
                 </p>
+              </div>
+              <div className="absolute inset-0 opacity-20">
+                <img 
+                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop" 
+                  alt="Background"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

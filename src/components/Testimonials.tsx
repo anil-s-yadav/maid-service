@@ -7,17 +7,20 @@ const testimonials = [
   {
     name: "Salim Shaikh",
     review: "Thank you bookyourmaid for helping me with a part time maid. She is very good at cooking and comes on time. Thank you for the helps",
-    rating: 5
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
   },
   {
     name: "Minal More", 
     review: "I never trusted the local maid agencies. Bookyourmaid arranged a full time nanny from Mumbai who is from Assam. The lady was very experienced and handled the kids of young age. The response time from BookYourMaid was very impressive. Thank you Bookyourmaid...",
-    rating: 5
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
   },
   {
     name: "Vishal Salve",
     review: "I have paid a lot of money to a lot of maid agencies but all of them have taken my money and ran away. I hired a 8 hour maid in Mumbai for Elder care and cooking and bookyourmaid took payment from me after I was satisfied. All the best.",
-    rating: 5
+    rating: 5,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
   }
 ];
 
@@ -70,9 +73,11 @@ export const Testimonials = () => {
                   </div>
                   
                   <div className="flex items-center justify-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full flex items-center justify-center text-white font-semibold">
-                      {testimonial.name.charAt(0)}
-                    </div>
+                    <img 
+                      src={testimonial.avatar} 
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-purple-200"
+                    />
                     <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
                   </div>
                 </CardContent>

@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,7 +23,11 @@ export const Hero = () => {
             
             <div className="flex items-center space-x-4 mb-8">
               <div className="bg-white p-4 rounded-lg">
-                <CheckCircle className="h-12 w-12 text-purple-600" />
+                <img 
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" 
+                  alt="Professional maid service"
+                  className="w-16 h-16 object-cover rounded-lg"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Documents And Background Verified</h3>
@@ -40,9 +43,16 @@ export const Hero = () => {
           {/* Right - Booking form */}
           <Card className="bg-white shadow-2xl">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-purple-600 mb-6">
-                What Do You Want Your Maid To Do?
-              </h2>
+              <div className="mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" 
+                  alt="Home cleaning service"
+                  className="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <h2 className="text-2xl font-bold text-purple-600">
+                  What Do You Want Your Maid To Do?
+                </h2>
+              </div>
 
               <div className="space-y-6">
                 <div>
