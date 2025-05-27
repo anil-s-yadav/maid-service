@@ -42,12 +42,12 @@ export const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+            <a href="/" className="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
             <a href="#services" className="text-gray-700 hover:text-purple-600 transition-colors">Services</a>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">About Us</a>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Our Price</a>
+            <a href="#about" className="text-gray-700 hover:text-purple-600 transition-colors">About Us</a>
+            <a href="#price" className="text-gray-700 hover:text-purple-600 transition-colors">Our Price</a>
             <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Why Choose Us</a>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+            <a href="/contact" className="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
           </div>
 
           {/* Mobile menu button */}
@@ -65,12 +65,12 @@ export const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t pt-4">
             <div className="flex flex-col space-y-2">
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Home</a>
+              <a href="/" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Home</a>
               <a href="#services" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Services</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors py-2">About Us</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Our Price</a>
+              <a href="#about" className="text-gray-700 hover:text-purple-600 transition-colors py-2">About Us</a>
+              <a href="#price" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Our Price</a>
               <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Why Choose Us</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Contact</a>
+              <a href="/contact" className="text-gray-700 hover:text-purple-600 transition-colors py-2">Contact</a>
             </div>
           </div>
         )}
