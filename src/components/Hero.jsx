@@ -1,204 +1,143 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Clock, Calendar, CheckCircle, Shield, Star, Users, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Shield, Star, Clock, Sparkles, MapPin, CheckCircle } from "lucide-react";
+import { BRAND, SERVICES } from "../utils/constants";
+import { useInView, animations } from "../hooks/useInView";
 
 export const Hero = () => {
-  const [urgencyType, setUrgencyType] = useState("");
+  const [service, setService] = useState("");
+  const [phone, setPhone] = useState("");
+  
+  const [titleRef, titleInView] = useInView();
+  const [formRef, formInView] = useInView({ threshold: 0.2 });
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 overflow-hidden">
-      {/* Background with overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 to-purple-900/95">
-        {/* Original background image removed or commented out */}
-        {/* <div className="absolute inset-0 opacity-20" style={{ \n          backgroundImage: "url('https://images.unsplash.com/photo-1560439514-ff6fd4aa9e75?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxlYW5pbmclMj小米homefDB8fDB8fHww')\", \n          backgroundSize: 'cover', \n          backgroundPosition: 'center',\n          filter: 'blur(2px)'\n        }}></div> */}
+    <section className="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden bg-brand-navy">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-teal/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content - Image and select benefits */}
-          <div className="text-white flex flex-col items-center lg:items-start">
-            {/* Maid Image */}
-            <img 
-              src="https://img.freepik.com/free-vector/cleaners-with-cleaning-products-housekeeping-service_18591-52068.jpg?semt=ais_hybrid&w=740" 
-              alt="Professional maid with cleaning supplies"
-              className="rounded-xl shadow-2xl mb-10 w-full max-w-sm lg:max-w-md"
-            />
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          {/* Left: Text Content */}
+          <div ref={titleRef} className={`transition-all duration-1000 ${titleInView ? animations.fadeUp.in : animations.fadeUp.out}`}>
+            
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+              <Sparkles className="w-4 h-4 text-brand-gold" />
+              <span className="text-sm font-medium text-white tracking-wide">Mumbai's #1 Trusted Maid Agency</span>
+            </div>
 
-            {/* Text and two benefits */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-center lg:text-left">
-              Find Your Perfect
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-blue-300 mt-2">
-                Domestic Professional
-              </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+              Hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-blue-400">Verified</span><br />
+              Domestic Help
             </h1>
             
-            <p className="text-lg text-blue-100 mb-8 max-w-lg leading-relaxed text-center lg:text-left">
-              Connect with verified, skilled, and reliable domestic help services. From expert housekeepers to dedicated caregivers, we provide professionals you can trust.
+            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-lg leading-relaxed">
+              Get reliable, background-checked maids, cooks, and babysitters in Mumbai. Fast placement, free replacements, and 100% peace of mind.
             </p>
 
-            <div className="space-y-6 mb-10 w-full max-w-lg">
-              <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                <div className="bg-teal-500/20 p-3 rounded-full">
-                  <Shield className="h-6 w-6 text-teal-300" />
+            <div className="grid sm:grid-cols-2 gap-6 mb-12">
+              <div className="flex items-start gap-4">
+                <div className="bg-brand-teal/20 p-3 rounded-2xl">
+                  <Shield className="w-6 h-6 text-brand-teal" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white">Background Verified</h3>
-                  <p className="text-blue-100">Rigorous screening for your safety</p>
+                  <h3 className="text-white font-semibold text-lg">Aadhaar Verified</h3>
+                  <p className="text-slate-400 text-sm mt-1">Strict background checks</p>
                 </div>
               </div>
-
-              <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                <div className="bg-teal-500/20 p-3 rounded-full">
-                  <Star className="h-6 w-6 text-teal-300" />
+              <div className="flex items-start gap-4">
+                <div className="bg-brand-gold/20 p-3 rounded-2xl">
+                  <Star className="w-6 h-6 text-brand-gold" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white">Professional Training</h3>
-                  <p className="text-blue-100">Skilled and experienced staff</p>
+                  <h3 className="text-white font-semibold text-lg">Trained Staff</h3>
+                  <p className="text-slate-400 text-sm mt-1">Professional & experienced</p>
                 </div>
               </div>
             </div>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 w-full max-w-lg">
-              <Link to="/maid-form" className="w-full sm:w-auto">
-                <Button className="w-full bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl group">
-                  Post Your Requirement
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link to="/contact" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full text-white border-white hover:bg-white hover:text-blue-800 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300">
-                  Contact Us
-                </Button>
-              </Link>
+          </div>
+
+          {/* Right: Booking Form (Glassmorphism) */}
+          <div ref={formRef} className={`relative lg:ml-auto w-full max-w-md transition-all duration-1000 delay-300 ${formInView ? animations.scaleUp.in : animations.scaleUp.out}`}>
+            <div className="absolute -inset-1 bg-gradient-to-r from-brand-teal to-blue-500 rounded-3xl blur opacity-30"></div>
+            
+            <div className="relative glass-dark rounded-3xl p-8">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-white mb-2">Book Your Help</h2>
+                <p className="text-slate-400 text-sm">Tell us what you need, we'll do the rest.</p>
+              </div>
+
+              <form className="space-y-5">
+                
+                {/* Service Selection */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">I am looking for a</label>
+                  <div className="relative">
+                    <select 
+                      value={service}
+                      onChange={(e) => setService(e.target.value)}
+                      className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl px-4 py-3.5 appearance-none focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors"
+                    >
+                      <option value="" disabled>Select a service...</option>
+                      {SERVICES.map(s => (
+                        <option key={s.id} value={s.id}>{s.name}</option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                      <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">Location in Mumbai</label>
+                  <div className="relative">
+                    <MapPin className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                    <input 
+                      type="text" 
+                      placeholder="e.g. Andheri West, Powai" 
+                      className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors placeholder:text-slate-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Phone Number */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">Your Phone Number</label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-3.5 text-slate-400 font-medium">+91</span>
+                    <input 
+                      type="tel" 
+                      maxLength="10"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
+                      placeholder="98765 43210" 
+                      className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl pl-14 pr-4 py-3.5 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors placeholder:text-slate-500"
+                    />
+                  </div>
+                </div>
+
+                <button 
+                  type="button" 
+                  className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(13,148,136,0.4)] transition-all hover:shadow-[0_0_25px_rgba(13,148,136,0.6)] mt-4 active:scale-[0.98]"
+                >
+                  Get Free Call Back
+                </button>
+              </form>
+
+              <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
+                <CheckCircle className="w-4 h-4 text-brand-teal" />
+                <span>No commitment required. 100% free consultation.</span>
+              </div>
             </div>
           </div>
 
-          {/* Right - Booking form */}
-          <Card className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl border-0">
-            <CardContent className="p-8 space-y-6">
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                  Book Your Service
-                </h2>
-                <p className="text-gray-600">
-                  Tell us about your needs to get started.
-                </p>
-              </div>
-
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Service Type
-                  </label>
-                  <Select>
-                    <SelectTrigger className="w-full bg-white border-gray-200 focus:border-purple-500 focus:ring-purple-500">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="maid">Maid Services</SelectItem>
-                      <SelectItem value="cook">Professional Cook</SelectItem>
-                      <SelectItem value="babysitter">Baby Care Specialist</SelectItem>
-                      <SelectItem value="elder-care">Elder Care Services</SelectItem>
-                      <SelectItem value="nursing">Nursing Care</SelectItem>
-                      <SelectItem value="driver">Professional Driver</SelectItem>
-                      <SelectItem value="security">Security Guard</SelectItem>
-                      <SelectItem value="housekeeping">Housekeeping</SelectItem>
-                      <SelectItem value="office">Office Support Staff</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-4">
-                  <label className="block text-gray-700 font-medium mb-2">
-                    When do you need the service?
-                  </label>
-                  
-                  <div 
-                    className={`flex items-center space-x-4 p-4 border rounded-xl cursor-pointer transition-all duration-200 ${
-                      urgencyType === 'urgent' 
-                        ? 'border-blue-500 bg-blue-50 shadow-md' 
-                        : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                    }`}
-                    onClick={() => setUrgencyType('urgent')}
-                  >
-                    <div className="bg-blue-100 p-3 rounded-full">
-                      <Clock className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <span className="font-medium block text-gray-800">Urgent Need</span>
-                      <span className="text-sm text-gray-600">Need service within 24-48 hours</span>
-                    </div>
-                    <div className="ml-auto">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        urgencyType === 'urgent' ? 'bg-blue-500 border-blue-500' : 'border-gray-300'
-                      }`}>
-                        {urgencyType === 'urgent' && <CheckCircle className="h-3 w-3 text-white" />}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className={`flex items-center space-x-4 p-4 border rounded-xl cursor-pointer transition-all duration-200 ${
-                      urgencyType === 'later' 
-                        ? 'border-purple-500 bg-purple-50 shadow-md' 
-                        : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                    }`}
-                    onClick={() => setUrgencyType('later')}
-                  >
-                    <div className="bg-purple-100 p-3 rounded-full">
-                      <Calendar className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <span className="font-medium block text-gray-800">Needed Later</span>
-                      <span className="text-sm text-gray-600">Planning for the upcoming week or month</span>
-                    </div>
-                    <div className="ml-auto">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        urgencyType === 'later' ? 'bg-purple-500 border-purple-500' : 'border-gray-300'
-                      }`}>
-                        {urgencyType === 'later' && <CheckCircle className="h-3 w-3 text-white" />}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className={`flex items-center space-x-4 p-4 border rounded-xl cursor-pointer transition-all duration-200 ${
-                      urgencyType === 'planning' 
-                        ? 'border-green-500 bg-green-50 shadow-md' 
-                        : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                    }`}
-                    onClick={() => setUrgencyType('planning')}
-                  >
-                    <div className="bg-green-100 p-3 rounded-full">
-                      <CheckCircle className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div>
-                      <span className="font-medium block text-gray-800">Just Planning</span>
-                      <span className="text-sm text-gray-600">Exploring options for future needs</span>
-                    </div>
-                    <div className="ml-auto">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        urgencyType === 'planning' ? 'bg-green-500 border-green-500' : 'border-gray-300'
-                      }`}>
-                        {urgencyType === 'planning' && <CheckCircle className="h-3 w-3 text-white" />}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <Link to="/maid-form">
-                  <Button className="w-full bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white py-4 text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group">
-                    Continue to Requirements
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

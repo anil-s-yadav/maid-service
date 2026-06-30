@@ -1,214 +1,200 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { TRANSLATIONS } from "../utils/translations";
+import { submitLead } from "../utils/leadCapture";
+import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted, resetPartialLead } from "../utils/partialLead";
+import { CheckCircle2, Globe, Send } from "lucide-react";
+import { AREAS_SERVED, SERVICES } from "../utils/constants";
 
 export const MaidForm = () => {
+  const [lang, setLang] = useState('en');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  const t = TRANSLATIONS[lang];
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
-    address: '',
-    serviceType: '',
+    age: '',
+    location: '',
+    jobType: '',
     workingHours: '',
-    salary: '',
-    urgency: '',
-    experience: '',
-    requirements: ''
+    education: ''
   });
 
-  const handleInputChange = (e) => {
+  useEffect(() => {
+    initPartialLeadCapture();
+    return () => resetPartialLead();
+  }, []);
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => {
+      const newData = { ...prev, [name]: value };
+      updatePartialLeadData({
+        name: newData.name,
+        phone: newData.phone,
+        service: `Maid Job App - ${newData.jobType}`,
+        location: newData.location
+      });
+      return newData;
+    });
   };
 
-  const handleSelectChange = (name, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-    alert('Your requirement has been submitted successfully! We will contact you soon.');
+    setIsSubmitting(true);
+    
+    // Format message
+    const message = `
+      Age: ${formData.age}
+      Edu: ${formData.education}
+      Working Hours: ${formData.workingHours}
+    `.trim();
+
+    await submitLead({
+      name: formData.name,
+      phone: formData.phone,
+      service: `JOB APPLICATION: ${formData.jobType}`,
+      location: formData.location,
+      message,
+      type: 'full'
+    });
+
+    markFormSubmitted();
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
+
+  if (isSuccess) {
+    return (
+      <div className="max-w-2xl mx-auto mt-12 bg-white rounded-3xl p-8 shadow-xl text-center border border-slate-100">
+        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle2 className="w-10 h-10 text-green-600" />
+        </div>
+        <h2 className="text-3xl font-bold text-brand-navy mb-4 font-heading">{t.successTitle}</h2>
+        <p className="text-lg text-slate-600 mb-8">{t.successMessage}</p>
+        <button 
+          onClick={() => window.location.href = '/'}
+          className="bg-brand-teal text-white px-8 py-3 rounded-full font-bold hover:bg-teal-500 transition-colors"
+        >
+          {t.homeButton}
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <Card className="max-w-2xl mx-auto shadow-xl">
-      <CardHeader className="text-center">
-        <CardTitle className="text-3xl font-bold text-gray-800">
-          Maid <span className="text-purple-600">Requirement</span> Form
-        </CardTitle>
-        <p className="text-gray-600">Fill out your details and requirements below</p>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="name">Full Name (पूरा नाम) *</Label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleInputChange}
-                className="mt-1"
-                placeholder="Enter your full name"
-              />
+    <div className="max-w-3xl mx-auto mt-8 mb-20 bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+      
+      {/* Header & Language Selection */}
+      <div className="bg-brand-navy px-6 pt-6 pb-4 md:px-8 md:pt-8 md:pb-6 text-white">
+        <div className="flex justify-end mb-3">
+          <div className="flex items-center gap-2 bg-white/10 rounded-full py-1.5 px-3 backdrop-blur-sm border border-white/10 shadow-sm">
+            <Globe className="w-4 h-4 text-slate-300 shrink-0" />
+            <select 
+              value={lang} 
+              onChange={(e) => setLang(e.target.value)}
+              className="bg-transparent text-sm font-medium text-white border-none focus:ring-0 cursor-pointer outline-none appearance-none pr-2"
+            >
+              <option value="en" className="text-slate-800">English</option>
+              <option value="hi" className="text-slate-800">हिंदी</option>
+              <option value="mr" className="text-slate-800">मराठी</option>
+            </select>
+          </div>
+        </div>
+
+        <h1 className="text-2xl md:text-3xl font-bold font-heading mb-2">{t.title}</h1>
+        <p className="text-slate-300 text-sm md:text-base">{t.subtitle}</p>
+      </div>
+
+      <div className="px-6 pb-6 pt-4 md:px-8 md:pb-8 md:pt-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">{t.fullName} *</label>
+              <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder={t.fullNamePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
             </div>
-            <div>
-              <Label htmlFor="phone">Phone Number (फ़ोन नंबर) *</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                required
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="mt-1"
-                placeholder="+91 9876543210"
-              />
+            
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">{t.phone} *</label>
+              <input type="tel" name="phone" required minLength="10" maxLength="10" value={formData.phone} onChange={(e) => handleChange({ target: { name: 'phone', value: e.target.value.replace(/\D/g, '') }})} placeholder={t.phonePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
             </div>
-          </div>
-
-          <div>
-            <Label htmlFor="email">Email Address (मेल पता)*</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={formData.email}
-              onChange={handleInputChange}
-              className="mt-1"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="address">Address (पता)*</Label>
-            <Textarea
-              id="address"
-              name="address"
-              required
-              value={formData.address}
-              onChange={handleInputChange}
-              className="mt-1"
-              placeholder="Enter your complete address"
-              rows={3}
-            />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="serviceType">Service Type (सेवा प्रकार)*</Label>
-              <Select value={formData.serviceType} onValueChange={(value) => handleSelectChange('serviceType', value)}>
-                <SelectTrigger className="mt-1">
-                  <SelectValue placeholder="Select service type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="part-time-maid">Part-Time Maid</SelectItem>
-                  <SelectItem value="full-time-maid">Full-Time Maid</SelectItem>
-                  <SelectItem value="live-in-maid">Live-In Maid</SelectItem>
-                  <SelectItem value="baby-care">Baby Care</SelectItem>
-                  <SelectItem value="elder-care">Elder Care</SelectItem>
-                  <SelectItem value="cooking-only">Cooking Only</SelectItem>
-                  <SelectItem value="cleaning-only">Cleaning Only</SelectItem>
-                </SelectContent>
-              </Select>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">{t.age} *</label>
+              <input type="number" name="age" required min="18" max="65" value={formData.age} onChange={handleChange} placeholder={t.agePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
             </div>
-            <div>
-              <Label htmlFor="workingHours">Working Hours / काम के घंटे</Label>
-              <Select value={formData.workingHours} onValueChange={(value) => handleSelectChange('workingHours', value)}>
-                <SelectTrigger className="mt-1">
-                  <SelectValue placeholder="Select working hours" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="2-4-hours">2-4 Hours</SelectItem>
-                  <SelectItem value="4-6-hours">4-6 Hours</SelectItem>
-                  <SelectItem value="6-8-hours">6-8 Hours</SelectItem>
-                  <SelectItem value="8-12-hours">8-12 Hours</SelectItem>
-                  <SelectItem value="24-hours">24 Hours (Live-in)</SelectItem>
-                </SelectContent>
-              </Select>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Location (Mumbai) *</label>
+              <select name="location" required value={formData.location} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+                <option value="" disabled>Select your nearest area</option>
+                {AREAS_SERVED.map(area => (
+                  <option key={area} value={area}>{area}</option>
+                ))}
+                <option value="Other">Other Area in Mumbai</option>
+              </select>
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="expectedSalary">Expected Salary / अपेक्षित वेतन</Label>
-              <Input
-                id="salary"
-                name="salary"
-                type="number"
-                value={formData.salary}
-                onChange={handleInputChange}
-                className="mt-1"
-                placeholder="e.g., 15000"
-              />
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">{t.jobType} *</label>
+              <select name="jobType" required value={formData.jobType} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+                <option value="" disabled>Select Job</option>
+                {SERVICES.map(s => (
+                  <option key={s.id} value={s.id}>{s.name}</option>
+                ))}
+              </select>
             </div>
-            <div>
-              <Label htmlFor="urgency">Urgency / अर्जेंसी / तत्काल आवश्यकता</Label>
-              <Select value={formData.urgency} onValueChange={(value) => handleSelectChange('urgency', value)}>
-                <SelectTrigger className="mt-1">
-                  <SelectValue placeholder="When do you need?" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="urgent">Urgent (Within 2-3 days)</SelectItem>
-                  <SelectItem value="this-week">This Week</SelectItem>
-                  <SelectItem value="this-month">This Month</SelectItem>
-                  <SelectItem value="planning">Just Planning</SelectItem>
-                </SelectContent>
-              </Select>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Working Hours *</label>
+              <select name="workingHours" required value={formData.workingHours} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+                <option value="" disabled>Select Hours</option>
+                <option value="4">4 Hours</option>
+                <option value="6">6 Hours</option>
+                <option value="8">8 Hours</option>
+                <option value="10">10 Hours</option>
+                <option value="12">12 Hours (Full Day)</option>
+                <option value="24">24 Hours (Live-in)</option>
+              </select>
             </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-sm font-semibold text-slate-700">{t.education} *</label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { id: 'below-10th', label: t.eduBelow10 },
+                  { id: '10th', label: t.edu10th },
+                  { id: '12th', label: t.edu12th },
+                  { id: 'graduate', label: t.eduGraduate }
+                ].map(edu => (
+                  <label key={edu.id} className={`flex items-center justify-center text-center p-3 rounded-xl border cursor-pointer transition-colors ${formData.education === edu.id ? 'bg-brand-teal/10 border-brand-teal text-brand-teal font-bold' : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-brand-teal/50'}`}>
+                    <input type="radio" name="education" value={edu.id} required checked={formData.education === edu.id} onChange={handleChange} className="hidden" />
+                    <span className="text-sm">{edu.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            
           </div>
 
-          <div>
-            <Label htmlFor="preferredExperience">Preferred Experience / पसंदीदा अनुभव</Label>
-            <Select value={formData.experience} onValueChange={(value) => handleSelectChange('experience', value)}>
-              <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Select experience preference" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="fresher">Fresher (0-1 years)</SelectItem>
-                <SelectItem value="experienced">Experienced (2-5 years)</SelectItem>
-                <SelectItem value="highly-experienced">Highly Experienced (5+ years)</SelectItem>
-                <SelectItem value="no-preference">No Preference</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="mt-8 pt-6 border-t border-slate-100 text-center">
+            <button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-500 text-white px-12 py-4 rounded-full font-bold transition-all shadow-lg active:scale-95 disabled:opacity-70 text-lg w-full md:w-auto"
+            >
+              {isSubmitting ? t.submitting : t.submit} <Send className="w-5 h-5 ml-2" />
+            </button>
+            <p className="text-sm text-slate-500 mt-4">
+              By submitting, you agree to our terms and background check process.
+            </p>
           </div>
 
-          <div>
-            <Label htmlFor="requirements">Additional Requirements (अतिरिक्त जरूरतें)</Label>
-            <Textarea
-              id="requirements"
-              name="requirements"
-              value={formData.requirements}
-              onChange={handleInputChange}
-              className="mt-1"
-              placeholder="Please specify any additional requirements like language preference, specific tasks, etc."
-              rows={4}
-            />
-          </div>
-
-          <Button 
-            type="submit" 
-            className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-lg py-3"
-          >
-            Submit Requirement
-          </Button>
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

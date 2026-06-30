@@ -1,131 +1,78 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-const testimonials = [
-  {
-    name: "Salim Shaikh",
-    review: "Using Violet Web Haven was a game-changer! Finding a part-time maid who is punctual and great at cooking was effortless. Highly recommend their services!",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    name: "Minal More", 
-    review: "After disappointing experiences with local agencies, Violet Web Haven was a breath of fresh air. They connected me with an incredibly experienced full-time nanny from Mumbai who is from Assam. The lady was very experienced and handled the kids of young age. The response time from Violet Web Haven was very impressive. Thank you Violet Web Haven...",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    name: "Vishal Salve",
-    review: "I had lost hope after losing money to several maid agencies. Violet Web Haven changed that. I hired an 8-hour maid in Mumbai for Elder care and cooking, and they waited for my satisfaction before payment. Trustworthy and reliable service!",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    name: "Priya Sharma",
-    review: "Finding reliable housekeeping was always a struggle until I found Violet Web Haven. The professional they sent is thorough, efficient, and respectful. My home has never been cleaner!",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1542596737-24b556c40a75?w=150&h=150&fit=crop&crop=face"
-  },
-   {
-    name: "Amit Patel",
-    review: "Needed a driver urgently for a family trip. Violet Web Haven provided a professional and punctual driver on short notice. The booking process was smooth and the service was excellent.",
-    rating: 4,
-    avatar: "https://images.unsplash.com/photo-1539571696357-433388e79979?w=150&h=150&fit=crop&crop=face"
-  }
-];
+import { useInView, animations } from "../hooks/useInView";
 
 export const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const timerRef = useRef(null);
+  const [ref, inView] = useInView({ threshold: 0.1 });
 
-  // Auto-slide functionality
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Change slide every 6 seconds
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, []);
-
-  // Stop auto-slide on manual click
-  const handleDotClick = (index) => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
+  const reviews = [
+    {
+      name: "Priya Sharma",
+      location: "Andheri West, Mumbai",
+      text: "Getting a reliable maid in Mumbai was a nightmare until I found Verified Maids. The maid they sent is professional, punctual, and very good at her job.",
+      rating: 5,
+      service: "Full-time Maid"
+    },
+    {
+      name: "Rahul Desai",
+      location: "Powai, Mumbai",
+      text: "The cook we hired through them makes excellent Maharashtrian food. The best part is the background verification which gives us peace of mind.",
+      rating: 5,
+      service: "Cook"
+    },
+    {
+      name: "Sneha Patel",
+      location: "Bandra, Mumbai",
+      text: "We needed a Japa Maid urgently after my delivery. They arranged one within 24 hours and she was incredibly well-trained and helpful.",
+      rating: 5,
+      service: "Japa Maid"
     }
-    setCurrentIndex(index);
-  };
+  ];
 
   return (
-    <section className="py-24 bg-white" id="testimonials">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            What Our <span className="text-teal-600">Happy Clients Say</span>
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-[400px] bg-brand-navy -skew-y-3 origin-top-left -z-10"></div>
+      
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-16 pt-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">
+            Trusted by Mumbai Families
           </h2>
-          <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-            Hear directly from the families and individuals who have experienced the convenience and quality of our domestic help services.
+          <p className="text-lg text-slate-300">
+            Don't just take our word for it. Here's what families across Mumbai have to say about our services.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto relative">
-           <div className="grid md:grid-cols-1 gap-8">
-              {testimonials.map((testimonial, index) => (
-                 <Card 
-                    key={index} 
-                    className={`border-0 shadow-xl rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 transition-all duration-500 p-8 ${index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute top-0 left-0 w-full'}`}
-                    style={{ zIndex: testimonials.length - index }} // Ensure correct stacking
-                 >
-                    <CardContent className="p-0 text-center">
-                       <Quote className="h-10 w-10 text-purple-400 mx-auto mb-6" />
-                       
-                       <p className="text-gray-700 mb-6 leading-relaxed italic text-lg">
-                          "{testimonial.review}"
-                       </p>
-                       
-                       <div className="flex justify-center mb-4">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                             <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
-                          ))}
-                       </div>
-                       
-                       <div className="flex items-center justify-center space-x-4">
-                          <img 
-                             src={testimonial.avatar} 
-                             alt={testimonial.name}
-                             className="w-14 h-14 rounded-full object-cover border-2 border-teal-500 shadow-md"
-                          />
-                          <div>
-                             <h4 className="font-semibold text-gray-800 text-lg">{testimonial.name}</h4>
-                             {/* You can add designation or location here if available */}
-                          </div>
-                       </div>
-                    </CardContent>
-                 </Card>
-              ))}
-           </div>
-        </div>
-
-        {/* Pagination dots */}
-        <div className="flex justify-center mt-12 space-x-3">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleDotClick(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-teal-600 w-4 h-4' : 'bg-gray-300'}`}
-            />
+        <div 
+          ref={ref}
+          className={`grid md:grid-cols-3 gap-8 max-w-6xl mx-auto transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out}`}
+        >
+          {reviews.map((review, idx) => (
+            <div key={idx} className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 relative mt-8 md:mt-0">
+              <div className="absolute -top-6 right-8 w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center shadow-lg">
+                <Quote className="w-5 h-5 text-white fill-white" />
+              </div>
+              
+              <div className="flex gap-1 mb-6">
+                {[...Array(review.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-brand-gold fill-brand-gold" />
+                ))}
+              </div>
+              
+              <p className="text-slate-600 mb-8 leading-relaxed italic">
+                "{review.text}"
+              </p>
+              
+              <div className="border-t border-slate-100 pt-6">
+                <h4 className="font-bold text-brand-navy font-heading">{review.name}</h4>
+                <p className="text-sm text-slate-500">{review.location}</p>
+                <span className="inline-block mt-2 text-xs font-semibold text-brand-teal bg-brand-teal/10 px-2 py-1 rounded">
+                  {review.service}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 };
-
-export function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}

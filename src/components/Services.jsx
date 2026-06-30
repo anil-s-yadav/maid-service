@@ -1,96 +1,97 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Home, 
-  ChefHat, 
-  Baby, 
-  Users, 
-  Stethoscope,
-  Syringe,
-} from "lucide-react";
+import { SERVICES } from "../utils/constants";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useInView, animations } from "../hooks/useInView";
 
-const services = [
-  { 
-    icon: Home, 
-    title: "Maid Services", 
-    description: "Professional house cleaning and maintenance services",
-    longDescription: "Our professional maids are trained in all aspects of housekeeping including deep cleaning, dusting, mopping, laundry, and maintaining a hygienic living environment. All our maids are background verified and professionally trained.",
-  },
-  { 
-    icon: ChefHat, 
-    title: "Cooks", 
-    description: "Expert culinary professionals for your home",
-    longDescription: "Find experienced cooks who specialize in various cuisines. Our cooks are trained in food safety, nutrition, and can prepare meals according to your dietary preferences and requirements.",
-  },
-  { 
-    icon: Baby, 
-    title: "Baby Care", 
-    description: "Qualified and experienced childcare professionals",
-    longDescription: "Our baby care specialists are trained in child development, first aid, and early education. They provide attentive care, engage in developmental activities, and ensure your child's safety and well-being.",
-  },
- 
-  { 
-    icon: Stethoscope, 
-    title: "Patient Care", 
-    description: "Comprehensive medical assistance at home",
-    longDescription: "Our patient care professionals provide medical assistance, medication management, wound care, and daily living support. They work closely with healthcare providers to ensure the best care for your loved ones.",
-  },
-  { 
-    icon: Users, 
-    title: "Elder Care", 
-    description: "Compassionate and professional senior care",
-    longDescription: "Our elder care specialists provide companionship, assistance with daily activities, medication reminders, and emotional support. They are trained to handle various age-related conditions with patience and understanding.",
-  },
-  
-  { 
-    icon: Syringe, 
-    title: "Nursing Care", 
-    description: "Qualified nursing professionals for home care",
-    longDescription: "Our registered nurses provide professional medical care at home, including wound care, medication administration, health monitoring, and coordination with healthcare providers.",
-  },
- 
-];
+// Note: Using dynamic icon lookup from lucide-react would require mapping, 
+// for simplicity we use predefined icons in constant or default ones.
+import { Home, ChefHat, Baby, Users, HeartPulse, Sparkle } from "lucide-react";
+
+const iconMap = {
+  'house-maid': Home,
+  'cook': ChefHat,
+  'babysitter': Baby,
+  'japa-maid': HeartPulse,
+  'patient-care': Users,
+  'all-rounder': Sparkle,
+};
 
 export const Services = () => {
+  const [headerRef, headerInView] = useInView();
+
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Explore Our <span className="text-teal-600">Premium Services</span>
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
+      {/* Decorative BG element */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal/5 rounded-full blur-3xl -translate-y-1/2"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div 
+          ref={headerRef} 
+          className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${headerInView ? animations.fadeUp.in : animations.fadeUp.out}`}
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 text-brand-teal font-semibold text-sm mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>Our Services</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6 font-heading">
+            Specialized Care For Your Home
           </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            Discover a wide array of professional domestic services designed to simplify your life and maintain your home or office to the highest standards.
+          <p className="text-lg text-slate-600">
+            From daily chores to specialized newborn care, our verified professionals are trained to provide the highest standard of service.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {services.map((service, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-0 rounded-lg overflow-hidden flex flex-col items-center justify-center p-6 text-center bg-white"
-            >
-              <CardContent className="p-0 flex flex-col items-center justify-center">
-                <div className="bg-blue-100 rounded-full p-4 mb-4">
-                  <service.icon className="h-10 w-10 text-blue-600" />
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {SERVICES.map((service, index) => {
+            const Icon = iconMap[service.id] || Home;
+            return (
+              <div 
+                key={service.id}
+                className="group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-brand-teal/30 transition-all duration-300"
+              >
+                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-teal group-hover:text-white transition-colors duration-300">
+                  <Icon className="w-7 h-7 text-brand-teal group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">
-                   {service.title}
+                
+                <h3 className="text-2xl font-bold text-brand-navy mb-3 font-heading">
+                  {service.name}
                 </h3>
-                <p className="text-gray-600 text-sm">{service.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                
+                <p className="text-slate-600 mb-8 line-clamp-3">
+                  {service.description}
+                </p>
+
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-sm font-semibold text-brand-navy bg-slate-50 px-3 py-1.5 rounded-lg">
+                    Starts ₹{service.baseRate.toLocaleString()}/mo
+                  </span>
+                  
+                  <Link 
+                    to={`/services/${service.id}`} 
+                    className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-teal group-hover:text-white transition-colors duration-300"
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="mt-20 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Can't Find What You Need?</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-10">
-            Our services are flexible. If you have unique requirements or need a specialized professional, please reach out to us.
-          </p>
-          <a href="/contact" className="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-10 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl">
-            Request a Custom Service
-          </a>
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-2 bg-brand-navy hover:bg-slate-800 text-white px-8 py-4 rounded-full font-semibold transition-colors shadow-lg"
+          >
+            Request Custom Service
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
+
       </div>
     </section>
   );

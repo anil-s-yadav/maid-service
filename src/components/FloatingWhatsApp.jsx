@@ -1,22 +1,70 @@
-
-import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
+import { useState } from 'react';
+import { MessageCircle, X, Calculator } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BRAND, getWhatsAppLink } from '../utils/constants';
 
 export const FloatingWhatsApp = () => {
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "919819122200"; // WhatsApp number from header
-    const message = "Hi! I'm interested in your maid services. Can you help me?";
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, "_blank");
-  };
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [closed, setClosed] = useState(false);
+
+  if (closed) return null;
 
   return (
-    <Button
-      onClick={handleWhatsAppClick}
-      className="fixed bottom-4 right-4 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg transition-all duration-300 hover:scale-110 animate-pulse"
-      size="icon"
-    >
-      <MessageCircle className="h-7 w-7 text-white" />
-    </Button>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 hidden md:flex">
+      
+      {/* Tooltip Card (shows on hover) */}
+      <div 
+        className={`bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 p-4 w-64 transform transition-all duration-300 origin-bottom-right ${showTooltip ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 pointer-events-none translate-y-4'} absolute bottom-[140px] right-0`}
+      >
+        <button 
+          onClick={() => setClosed(true)} 
+          className="absolute top-2 right-2 text-slate-400 hover:text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-full p-1 transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 bg-[#25D366]/10 rounded-full flex items-center justify-center shrink-0 border border-[#25D366]/20">
+            <img src={BRAND.logo} alt="Logo" className="w-6 h-6 object-contain" />
+          </div>
+          <div>
+            <h4 className="font-bold text-sm text-brand-navy leading-tight">{BRAND.name}</h4>
+            <p className="text-xs text-slate-500">Typically replies instantly</p>
+          </div>
+        </div>
+        <p className="text-sm bg-slate-50 p-3 rounded-xl rounded-tl-sm border border-slate-100 text-slate-600 leading-relaxed shadow-sm">
+          Hi! Looking for a verified maid? How can we help you today? 👋
+        </p>
+      </div>
+
+      {/* WhatsApp Button (Top) */}
+      <a
+        href={getWhatsAppLink()}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+        className="group relative flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full pr-6 pl-2 py-2 shadow-lg shadow-[#25D366]/30 transition-all hover:scale-105 active:scale-95 z-10 border-2 border-white"
+        aria-label="Chat on WhatsApp"
+      >
+        <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-20 -z-10"></div>
+        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0 backdrop-blur-sm">
+          <MessageCircle size={22} className="text-white drop-shadow-sm" fill="currentColor" />
+        </div>
+        <span className="font-bold text-sm whitespace-nowrap drop-shadow-sm">Chat with us</span>
+      </a>
+
+      {/* Salary Calculator Button (Bottom) */}
+      <Link
+        to="/price"
+        className="group relative flex items-center gap-3 bg-brand-navy hover:bg-slate-800 text-white rounded-full pr-6 pl-2 py-2 shadow-lg shadow-brand-navy/30 transition-all hover:scale-105 active:scale-95 z-10 border-2 border-white"
+        aria-label="Calculate Salary"
+      >
+        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shrink-0 backdrop-blur-sm">
+          <Calculator size={20} className="text-white drop-shadow-sm" />
+        </div>
+        <span className="font-bold text-sm whitespace-nowrap text-brand-gold drop-shadow-sm">Calculate Salary</span>
+      </Link>
+
+    </div>
   );
 };
