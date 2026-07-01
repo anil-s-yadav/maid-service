@@ -68,15 +68,15 @@ export const MaidForm = () => {
 
   if (isSuccess) {
     return (
-      <div className="max-w-2xl mx-auto mt-12 bg-white rounded-3xl p-8 shadow-xl text-center border border-slate-100">
+      <div className="max-w-2xl mx-auto mt-12 dark:bg-[#1e293b] bg-white rounded-3xl p-8 shadow-xl text-center border dark:border-white/10 border-slate-100 transition-colors">
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 className="w-10 h-10 text-green-600" />
         </div>
-        <h2 className="text-3xl font-bold text-brand-navy mb-4 font-heading">{t.successTitle}</h2>
-        <p className="text-lg text-slate-600 mb-8">{t.successMessage}</p>
+        <h2 className="text-3xl font-bold dark:text-white text-brand-navy mb-4 font-heading transition-colors">{t.successTitle}</h2>
+        <p className="text-lg dark:text-slate-300 text-slate-600 mb-8 transition-colors">{t.successMessage}</p>
         <button 
           onClick={() => window.location.href = '/'}
-          className="bg-brand-teal text-white px-8 py-3 rounded-full font-bold hover:bg-teal-500 transition-colors"
+          className="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-amber-500 transition-colors"
         >
           {t.homeButton}
         </button>
@@ -85,7 +85,7 @@ export const MaidForm = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto mt-8 mb-20 bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+    <div className="max-w-3xl mx-auto mt-8 mb-20 dark:bg-[#1e293b] bg-white rounded-3xl shadow-xl border dark:border-white/10 border-slate-100 overflow-hidden transition-colors">
       
       {/* Header & Language Selection */}
       <div className="bg-brand-navy px-6 pt-6 pb-4 md:px-8 md:pt-8 md:pb-6 text-white">
@@ -113,23 +113,23 @@ export const MaidForm = () => {
           
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">{t.fullName} *</label>
-              <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder={t.fullNamePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">{t.fullName} *</label>
+              <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder={t.fullNamePlaceholder} className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors" />
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">{t.phone} *</label>
-              <input type="tel" name="phone" required minLength="10" maxLength="10" value={formData.phone} onChange={(e) => handleChange({ target: { name: 'phone', value: e.target.value.replace(/\D/g, '') }})} placeholder={t.phonePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">{t.phone} *</label>
+              <input type="tel" name="phone" required minLength="10" maxLength="10" value={formData.phone} onChange={(e) => handleChange({ target: { name: 'phone', value: e.target.value.replace(/\D/g, '') }})} placeholder={t.phonePlaceholder} className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors" />
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">{t.age} *</label>
-              <input type="number" name="age" required min="18" max="65" value={formData.age} onChange={handleChange} placeholder={t.agePlaceholder} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal" />
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">{t.age} *</label>
+              <input type="number" name="age" required min="18" max="65" value={formData.age} onChange={handleChange} placeholder={t.agePlaceholder} className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors" />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">Location (Mumbai) *</label>
-              <select name="location" required value={formData.location} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">Location (Mumbai) *</label>
+              <select name="location" required value={formData.location} onChange={handleChange} className="w-full dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold appearance-none text-slate-700 transition-colors">
                 <option value="" disabled>Select your nearest area</option>
                 {AREAS_SERVED.map(area => (
                   <option key={area} value={area}>{area}</option>
@@ -139,8 +139,8 @@ export const MaidForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">{t.jobType} *</label>
-              <select name="jobType" required value={formData.jobType} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">{t.jobType} *</label>
+              <select name="jobType" required value={formData.jobType} onChange={handleChange} className="w-full dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold appearance-none text-slate-700 transition-colors">
                 <option value="" disabled>Select Job</option>
                 {SERVICES.map(s => (
                   <option key={s.id} value={s.id}>{s.name}</option>
@@ -149,8 +149,8 @@ export const MaidForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700">Working Hours *</label>
-              <select name="workingHours" required value={formData.workingHours} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal appearance-none text-slate-700">
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">Working Hours *</label>
+              <select name="workingHours" required value={formData.workingHours} onChange={handleChange} className="w-full dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold appearance-none text-slate-700 transition-colors">
                 <option value="" disabled>Select Hours</option>
                 <option value="4">4 Hours</option>
                 <option value="6">6 Hours</option>
@@ -162,7 +162,7 @@ export const MaidForm = () => {
             </div>
 
             <div className="space-y-2 md:col-span-2">
-              <label className="text-sm font-semibold text-slate-700">{t.education} *</label>
+              <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">{t.education} *</label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { id: 'below-10th', label: t.eduBelow10 },
@@ -170,7 +170,7 @@ export const MaidForm = () => {
                   { id: '12th', label: t.edu12th },
                   { id: 'graduate', label: t.eduGraduate }
                 ].map(edu => (
-                  <label key={edu.id} className={`flex items-center justify-center text-center p-3 rounded-xl border cursor-pointer transition-colors ${formData.education === edu.id ? 'bg-brand-teal/10 border-brand-teal text-brand-teal font-bold' : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-brand-teal/50'}`}>
+                  <label key={edu.id} className={`flex items-center justify-center text-center p-3 rounded-xl border cursor-pointer transition-colors ${formData.education === edu.id ? 'bg-brand-gold/10 border-brand-gold text-brand-gold font-bold' : 'dark:bg-white/5 dark:border-white/10 dark:text-slate-300 bg-slate-50 border-slate-200 text-slate-600 hover:border-brand-gold/50'}`}>
                     <input type="radio" name="education" value={edu.id} required checked={formData.education === edu.id} onChange={handleChange} className="hidden" />
                     <span className="text-sm">{edu.label}</span>
                   </label>
@@ -180,15 +180,15 @@ export const MaidForm = () => {
             
           </div>
 
-          <div className="mt-8 pt-6 border-t border-slate-100 text-center">
+          <div className="mt-8 pt-6 border-t dark:border-white/10 border-slate-100 text-center transition-colors">
             <button 
               type="submit" 
               disabled={isSubmitting} 
-              className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-500 text-white px-12 py-4 rounded-full font-bold transition-all shadow-lg active:scale-95 disabled:opacity-70 text-lg w-full md:w-auto"
+              className="inline-flex items-center gap-2 bg-brand-gold hover:bg-amber-500 text-white px-12 py-4 rounded-full font-bold transition-all shadow-lg active:scale-95 disabled:opacity-70 text-lg w-full md:w-auto"
             >
               {isSubmitting ? t.submitting : t.submit} <Send className="w-5 h-5 ml-2" />
             </button>
-            <p className="text-sm text-slate-500 mt-4">
+            <p className="text-sm dark:text-slate-400 text-slate-500 mt-4 transition-colors">
               By submitting, you agree to our terms and background check process.
             </p>
           </div>

@@ -62,7 +62,7 @@ export const OurPrice = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Our Flexible <span className="text-teal-600">Pricing Plans</span>
+            Our Flexible <span className="text-amber-600">Pricing Plans</span>
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Choose from our transparent pricing options designed to fit your needs and budget. Get premium domestic help without any hidden costs.
@@ -76,13 +76,13 @@ export const OurPrice = () => {
               key={index} 
               className={`relative transform transition-all duration-300 hover:scale-105 border-0 rounded-xl shadow-xl ${
                 plan.popular 
-                  ? 'border-teal-500 border-2' 
+                  ? 'border-amber-500 border-2' 
                   : ''
               }`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-teal-500 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center space-x-1 shadow-lg">
+                  <div className="bg-amber-500 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center space-x-1 shadow-lg">
                     <Star className="h-4 w-4 fill-current text-white" />
                     <span>Most Popular Choice</span>
                   </div>
@@ -93,7 +93,7 @@ export const OurPrice = () => {
                 <CardTitle className="text-3xl font-bold text-gray-800">{plan.title}</CardTitle>
                 <p className="text-purple-700 font-medium mt-1">{plan.subtitle}</p>
                 <div className="mt-6">
-                  <span className="text-5xl font-bold text-teal-600">{plan.price}</span>
+                  <span className="text-5xl font-bold text-amber-600">{plan.price}</span>
                   <span className="text-gray-700 ml-2 font-medium">{plan.period}</span>
                 </div>
               </CardHeader>
@@ -109,7 +109,7 @@ export const OurPrice = () => {
                 </ul>
                 
                 <Button 
-                  className={`w-full text-lg font-semibold py-7 rounded-md transition-colors duration-300 shadow-lg ${ plan.popular ? 'bg-teal-600 hover:bg-teal-700' : 'bg-purple-600 hover:bg-purple-700'}`}
+                  className={`w-full text-lg font-semibold py-7 rounded-md transition-colors duration-300 shadow-lg ${ plan.popular ? 'bg-amber-600 hover:bg-amber-700' : 'bg-purple-600 hover:bg-purple-700'}`}
                 >
                   Select This Plan
                 </Button>
@@ -128,7 +128,7 @@ export const OurPrice = () => {
               <Card key={index} className="text-center border-0 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
                 <CardContent className="p-6 space-y-3">
                   <h4 className="text-xl font-semibold text-gray-800">{service.name}</h4>
-                  <p className="text-teal-600 font-bold text-2xl">{service.price}</p>
+                  <p className="text-amber-600 font-bold text-2xl">{service.price}</p>
                 </CardContent>
               </Card>
             ))}

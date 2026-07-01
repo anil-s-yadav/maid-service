@@ -50,12 +50,12 @@ const Login = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       
       {/* Back to Home Link */}
-      <Link to="/" className="absolute top-6 left-6 md:top-8 md:left-8 flex items-center gap-2 text-slate-500 hover:text-brand-teal transition-colors font-medium z-20 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-200">
+      <Link to="/" className="absolute top-6 left-6 md:top-8 md:left-8 flex items-center gap-2 text-slate-500 hover:text-brand-gold transition-colors font-medium z-20 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-200">
         <ArrowLeft className="w-4 h-4" /> Back to Home
       </Link>
 
       {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal/10 rounded-full blur-3xl -translate-y-1/2 z-0"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 z-0"></div>
       
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <Link to="/" className="flex justify-center mb-8">
@@ -90,7 +90,7 @@ const Login = () => {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g,'')})}
-                  className="block w-full pl-12 rounded-xl border-slate-200 py-3 text-slate-900 bg-slate-50 focus:ring-brand-teal focus:border-brand-teal sm:text-sm"
+                  className="block w-full pl-12 rounded-xl border-slate-200 py-3 text-slate-900 bg-slate-50 focus:ring-brand-gold focus:border-brand-gold sm:text-sm"
                   placeholder="Enter registered number"
                 />
               </div>
@@ -111,7 +111,7 @@ const Login = () => {
                     e.preventDefault();
                     setFormData({...formData, password: e.clipboardData.getData('text')});
                   }}
-                  className="block w-full pl-10 rounded-xl border-slate-200 py-3 text-slate-900 bg-slate-50 focus:ring-brand-teal focus:border-brand-teal sm:text-sm"
+                  className="block w-full pl-10 rounded-xl border-slate-200 py-3 text-slate-900 bg-slate-50 focus:ring-brand-gold focus:border-brand-gold sm:text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -123,7 +123,7 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-brand-teal focus:ring-brand-teal"
+                  className="h-4 w-4 rounded border-gray-300 text-brand-gold focus:ring-brand-gold"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-600">
                   Remember me
@@ -131,7 +131,7 @@ const Login = () => {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="font-medium text-brand-teal hover:text-teal-600">
+                <a href="#" className="font-medium text-brand-gold hover:text-amber-600">
                   Forgot your password?
                 </a>
               </div>

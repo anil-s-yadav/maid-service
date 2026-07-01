@@ -62,11 +62,11 @@ export const VerificationProcess = () => {
 
   return (
     <>
-      {/* Section 1: How We Verify — Dark Premium */}
-      <section className="py-10 md:py-16 bg-[#0a1128] relative overflow-hidden border-t border-brand-gold/20 shadow-[inset_0_10px_30px_rgba(0,0,0,0.5)]">
+      {/* Section 1: How We Verify */}
+      <section className="py-10 md:py-16 dark:bg-[#0f172a] bg-white relative overflow-hidden border-t dark:border-brand-gold/20 border-slate-100 shadow-[inset_0_10px_30px_rgba(0,0,0,0.5)] dark:shadow-[inset_0_10px_30px_rgba(0,0,0,0.5)] transition-colors duration-500">
         {/* Decorative background */}
         <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-teal/8 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-gold/8 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Header */}
@@ -75,10 +75,10 @@ export const VerificationProcess = () => {
               <ShieldCheck className="w-3.5 h-3.5 text-brand-gold" />
               <span className="text-[11px] font-semibold text-brand-gold tracking-wide uppercase">Our 6-Step Verification Process</span>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-white mb-3 leading-tight">
-              How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-yellow-300">Verify & Certify</span> Every Maid
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading dark:text-white text-slate-900 mb-3 leading-tight transition-colors">
+              How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-brand-gold">Verify & Certify</span> Every Maid
             </h2>
-            <p className="text-slate-400 text-[13px] md:text-sm max-w-2xl mx-auto">
+            <p className="dark:text-slate-400 text-slate-600 text-[13px] md:text-sm max-w-2xl mx-auto transition-colors">
               No shortcuts. No compromises. Every professional in our network passes through a rigorous 6-step screening and training process before reaching your home.
             </p>
           </div>
@@ -91,26 +91,26 @@ export const VerificationProcess = () => {
             {verificationSteps.map((item, idx) => (
               <div
                 key={idx}
-                className="relative bg-white/[0.04] backdrop-blur-md rounded-xl p-4 md:p-5 border border-white/10 hover:bg-white/[0.08] hover:border-brand-gold/30 transition-all group"
+                className="relative dark:bg-slate-800/80 bg-slate-50 backdrop-blur-md rounded-xl p-4 md:p-5 border dark:border-white/10 border-slate-200 dark:hover:bg-slate-800 hover:bg-white dark:hover:border-brand-gold/30 hover:border-brand-gold/50 transition-all group shadow-sm hover:shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
               >
                 {/* Step Number */}
-                <div className="absolute top-4 right-4 text-3xl font-black text-white/[0.06] font-heading leading-none select-none">
+                <div className="absolute top-4 right-4 text-3xl font-black dark:text-white/[0.04] text-slate-900/[0.04] font-heading leading-none select-none transition-colors">
                   {item.step}
                 </div>
 
                 <div className="bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 p-2.5 rounded-xl w-fit mb-3 border border-brand-gold/20 group-hover:scale-110 transition-transform">
                   <item.icon className="w-5 h-5 text-brand-gold" />
                 </div>
-                <h3 className="text-white font-bold font-heading text-[15px] mb-1.5">{item.title}</h3>
-                <p className="text-slate-400 text-[13px] leading-relaxed">{item.description}</p>
+                <h3 className="dark:text-white text-slate-900 font-bold font-heading text-[15px] mb-1.5 transition-colors">{item.title}</h3>
+                <p className="dark:text-slate-400 text-slate-600 text-[13px] leading-relaxed transition-colors">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section 2: What We Verify + Certification — Dark Premium */}
-      <section className="py-12 md:py-16 bg-[#0a1128] border-t border-white/10 relative overflow-hidden">
+      {/* Section 2: What We Verify + Certification */}
+      <section className="py-12 md:py-16 dark:bg-[#0f172a] bg-slate-50 border-t dark:border-white/10 border-slate-200 relative overflow-hidden transition-colors duration-500">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-[80px] -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -118,24 +118,24 @@ export const VerificationProcess = () => {
 
             {/* Left: What We Verify */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-teal/10 text-brand-teal font-semibold text-xs uppercase tracking-wider mb-4 border border-brand-teal/20">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-xs uppercase tracking-wider mb-4 border border-brand-gold/20">
                 <FileCheck2 className="w-4 h-4" />
                 <span>What We Verify</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white font-heading mb-3 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold dark:text-white text-slate-900 font-heading mb-3 leading-tight transition-colors">
                 Every Detail is Checked & Documented
               </h2>
-              <p className="text-slate-300 text-sm md:text-base mb-6">
+              <p className="dark:text-slate-300 text-slate-600 text-sm md:text-base mb-6 transition-colors">
                 Our team cross-checks every data point through official records, in-person visits, and employer references.
               </p>
 
               <div className="grid grid-cols-2 gap-3">
                 {verificationDetails.map((detail, idx) => (
-                  <div key={idx} className="flex items-center gap-3 bg-white/[0.03] backdrop-blur-md rounded-xl p-3 border border-white/10 shadow-sm hover:shadow-md hover:border-brand-gold/30 hover:bg-white/[0.06] transition-all group">
+                  <div key={idx} className="flex items-center gap-3 dark:bg-slate-800/80 bg-white backdrop-blur-md rounded-xl p-3 border dark:border-white/10 border-slate-200 shadow-sm hover:shadow-md dark:hover:border-brand-gold/30 hover:border-brand-gold/50 dark:hover:bg-slate-800 hover:bg-slate-50 transition-all group dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
                     <div className="bg-brand-gold/10 p-2 rounded-lg shrink-0 group-hover:bg-brand-gold/20 transition-colors">
                       <detail.icon className="w-4 h-4 text-brand-gold" />
                     </div>
-                    <span className="text-[13px] font-medium text-slate-200">{detail.label}</span>
+                    <span className="text-[13px] font-medium dark:text-slate-200 text-slate-700 transition-colors">{detail.label}</span>
                   </div>
                 ))}
               </div>

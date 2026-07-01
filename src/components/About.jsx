@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl -translate-y-1/2"></div>
+    <section id="about" className="py-24 dark:bg-[#0f172a] bg-slate-50 relative overflow-hidden transition-colors duration-500">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl -translate-y-1/2"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-4 font-heading">
-            About <span className="text-brand-teal">{BRAND.name}</span>
+          <h2 className="text-4xl lg:text-5xl font-bold dark:text-white text-brand-navy mb-4 font-heading transition-colors">
+            About <span className="text-brand-gold">{BRAND.name}</span>
           </h2>
-          <p className="text-slate-600 text-lg">
+          <p className="dark:text-slate-300 text-slate-600 text-lg transition-colors">
             We are dedicated to providing exceptional domestic help services, connecting you with trusted and background-verified professionals to manage your household needs with absolute peace of mind.
           </p>
         </div>
@@ -25,22 +25,22 @@ export const About = () => {
               alt={`Our team of verified professionals at ${BRAND.name}`}
               className="rounded-3xl shadow-2xl w-full h-[450px] object-cover"
             />
-            <div className="absolute -bottom-8 -right-4 md:-right-8 bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100 transform rotate-2">
+            <div className="absolute -bottom-8 -right-4 md:-right-8 dark:bg-[#1e293b] bg-white p-6 md:p-8 rounded-3xl shadow-xl border dark:border-white/10 border-slate-100 transform rotate-2 transition-colors">
               <div className="flex items-center space-x-4">
-                <div className="bg-brand-teal/10 p-4 rounded-full">
-                  <Users className="h-8 w-8 text-brand-teal" />
+                <div className="bg-brand-gold/10 p-4 rounded-full">
+                  <Users className="h-8 w-8 text-brand-gold" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-brand-navy font-heading">10,000+</h3>
-                  <p className="text-slate-500 font-medium text-sm">Happy Families</p>
+                  <h3 className="text-3xl font-bold dark:text-white text-brand-navy font-heading transition-colors">10,000+</h3>
+                  <p className="dark:text-slate-400 text-slate-500 font-medium text-sm transition-colors">Happy Families</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-brand-navy font-heading">Our Commitment to Excellence and Trust</h3>
-            <p className="text-slate-600 leading-relaxed text-lg">
+            <h3 className="text-3xl font-bold dark:text-white text-brand-navy font-heading transition-colors">Our Commitment to Excellence and Trust</h3>
+            <p className="dark:text-slate-300 text-slate-600 leading-relaxed text-lg transition-colors">
               At {BRAND.name}, your family's safety is our highest priority. We meticulously vet every professional in our network through Aadhaar verification, address checks, and reference calls. Our goal is to build lasting relationships based on exceptional service and mutual respect.
             </p>
             
@@ -50,8 +50,8 @@ export const About = () => {
                   <Award className="h-6 w-6 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-navy mb-1 text-lg">Uncompromising Quality</h4>
-                  <p className="text-slate-600">Rigorous screening and continuous evaluation ensure the highest standards of service delivery.</p>
+                  <h4 className="font-bold dark:text-white text-brand-navy mb-1 text-lg transition-colors">Uncompromising Quality</h4>
+                  <p className="dark:text-slate-400 text-slate-600 transition-colors">Rigorous screening and continuous evaluation ensure the highest standards of service delivery.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -59,14 +59,14 @@ export const About = () => {
                   <Clock className="h-6 w-6 text-brand-gold" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-navy mb-1 text-lg">Dependability You Can Count On</h4>
-                  <p className="text-slate-600">We prioritize punctuality and reliability, ensuring our professionals are there when you need them.</p>
+                  <h4 className="font-bold dark:text-white text-brand-navy mb-1 text-lg transition-colors">Dependability You Can Count On</h4>
+                  <p className="dark:text-slate-400 text-slate-600 transition-colors">We prioritize punctuality and reliability, ensuring our professionals are there when you need them.</p>
                 </div>
               </div>
             </div>
 
             <div className="pt-4">
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-500 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-brand-teal/30 transition-all hover:-translate-y-1">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-gold hover:bg-amber-500 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-brand-gold/30 transition-all hover:-translate-y-1">
                 Enquire Now <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

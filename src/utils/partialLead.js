@@ -57,8 +57,8 @@ export function initPartialLeadCapture() {
     hasSubmitted = true;
 
     const leadPayload = {
-      ...formData,
       type: 'partial',
+      ...formData,
       timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       source: formData.source || window.location.pathname,
     };

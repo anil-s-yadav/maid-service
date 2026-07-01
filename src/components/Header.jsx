@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, UserCircle } from 'lucide-react';
+import { Menu, X, Phone, UserCircle, Sun, Moon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { BRAND } from '../utils/constants';
+import { useTheme } from '../contexts/ThemeProvider';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,12 +28,9 @@ export const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const darkPages = ['/', '/about', '/services'];
-  const isDarkHero = darkPages.includes(location.pathname);
-
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0a1128]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(217,119,6,0.15)] py-2 border-b border-brand-gold/30' : isDarkHero ? 'bg-transparent py-4' : 'bg-[#0a1128] py-4'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0a1128]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(217,119,6,0.15)] py-2 border-b border-brand-gold/30' : 'bg-[#0a1128] py-4'}`}>
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
             
@@ -61,7 +60,12 @@ export const Header = () => {
             </nav>
 
             {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center gap-5">
+            <div className="hidden md:flex items-center gap-5 z-50">
+              {/* Theme Toggle Desktop */}
+              <button onClick={toggleTheme} className="text-white hover:text-brand-gold transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Toggle Theme">
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              
               <a href={`tel:${BRAND.phoneClean}`} className="flex items-center gap-2 text-white hover:text-brand-gold transition-colors text-sm font-medium">
                 <Phone className="w-4 h-4" />
                 <span>{BRAND.phone}</span>
@@ -76,13 +80,21 @@ export const Header = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <button 
-              className="md:hidden z-50 p-2 text-white hover:text-brand-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-            </button>
+            {/* Mobile Controls */}
+            <div className="md:hidden flex items-center gap-3 z-50">
+              {/* Theme Toggle Mobile */}
+              <button onClick={toggleTheme} className="text-white hover:text-brand-gold transition-colors p-2" aria-label="Toggle Theme">
+                {theme === 'dark' ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+              </button>
+              
+              {/* Mobile Menu Toggle */}
+              <button 
+                className="p-2 text-white hover:text-brand-gold transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              </button>
+            </div>
           </div>
         </div>
       </header>

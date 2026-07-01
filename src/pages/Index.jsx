@@ -14,7 +14,7 @@ import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       <SEOHead
         title="Home"
         description="Verified Maids provides trusted, background-checked house maids, cooks, babysitters, nannies, and caregivers in Mumbai. 24-hour placement with free replacement."

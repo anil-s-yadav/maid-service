@@ -86,19 +86,19 @@ const Dashboard = () => {
         <nav className="flex-1 py-6 px-4 space-y-2">
           <button 
             onClick={() => setActiveTab('overview')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'overview' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'overview' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
           >
             <User className="w-5 h-5" /> Dashboard
           </button>
           <button 
             onClick={() => setActiveTab('contracts')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'contracts' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'contracts' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
           >
             <FileText className="w-5 h-5" /> My Contracts
           </button>
           <button 
             onClick={() => setActiveTab('billing')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'billing' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'billing' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
           >
             <CreditCard className="w-5 h-5" /> Billing & Invoices
           </button>
@@ -131,19 +131,19 @@ const Dashboard = () => {
             <nav className="flex-1 py-6 px-4 space-y-2">
               <button 
                 onClick={() => { setActiveTab('overview'); setIsMobileMenuOpen(false); }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'overview' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'overview' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
               >
                 <User className="w-5 h-5" /> Dashboard
               </button>
               <button 
                 onClick={() => { setActiveTab('contracts'); setIsMobileMenuOpen(false); }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'contracts' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'contracts' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
               >
                 <FileText className="w-5 h-5" /> My Contracts
               </button>
               <button 
                 onClick={() => { setActiveTab('billing'); setIsMobileMenuOpen(false); }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'billing' ? 'bg-brand-teal text-white' : 'hover:bg-slate-800'}`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'billing' ? 'bg-brand-gold text-white' : 'hover:bg-slate-800'}`}
               >
                 <CreditCard className="w-5 h-5" /> Billing & Invoices
               </button>
@@ -181,7 +181,7 @@ const Dashboard = () => {
               <Bell className="w-6 h-6" />
               <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
-            <div className="h-10 w-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">
+            <div className="h-10 w-10 bg-brand-gold text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">
               {userData.name.charAt(0)}
             </div>
           </div>
@@ -194,7 +194,7 @@ const Dashboard = () => {
             <div className="space-y-8 animate-in fade-in duration-500">
               {/* Welcome Card */}
               <div className="bg-gradient-to-r from-brand-navy to-slate-800 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/20 rounded-full blur-3xl -translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/20 rounded-full blur-3xl -translate-y-1/2"></div>
                 <div className="relative z-10">
                   <h2 className="text-3xl font-bold font-heading mb-2">Welcome back, {userData.name.split(' ')[0]}!</h2>
                   <p className="text-slate-300 max-w-xl">
@@ -243,7 +243,7 @@ const Dashboard = () => {
                         </button>
                         <button 
                           onClick={() => alert('Contract viewing will be available once the backend is connected.')}
-                          className="flex-1 bg-brand-teal hover:bg-teal-500 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm shadow-md"
+                          className="flex-1 bg-brand-gold hover:bg-amber-500 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm shadow-md"
                         >
                           View Contract
                         </button>
@@ -254,9 +254,9 @@ const Dashboard = () => {
               </div>
               
               {/* Quick Support */}
-              <div className="bg-brand-teal/10 border border-brand-teal/20 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-brand-gold/10 border border-brand-gold/20 rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-brand-teal">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-brand-gold">
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
@@ -302,7 +302,7 @@ const Dashboard = () => {
                         <td className="p-4 pr-6 text-right">
                           <button 
                             onClick={() => alert('Contract download will be available once the backend is connected.')}
-                            className="text-brand-teal hover:text-brand-navy font-semibold text-sm transition-colors"
+                            className="text-brand-gold hover:text-brand-navy font-semibold text-sm transition-colors"
                           >
                             Download PDF
                           </button>

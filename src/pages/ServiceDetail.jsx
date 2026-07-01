@@ -81,9 +81,9 @@ const ServiceDetail = () => {
             
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
               <div>
-                <Link to="/" className="text-brand-teal font-medium mb-6 inline-block hover:underline">&larr; Back to Home</Link>
+                <Link to="/" className="text-brand-gold font-medium mb-6 inline-block hover:underline">&larr; Back to Home</Link>
                 <h1 className="text-4xl md:text-5xl font-bold text-brand-navy font-heading leading-tight mb-4">
-                  Trusted <span className="text-brand-teal">{service.name}</span> Services
+                  Trusted <span className="text-brand-gold">{service.name}</span> Services
                 </h1>
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                   {service.description}
@@ -100,7 +100,7 @@ const ServiceDetail = () => {
               </div>
 
               <div className="relative">
-                <div className="absolute inset-0 bg-brand-teal/10 rounded-3xl transform rotate-3 translate-x-4 translate-y-4"></div>
+                <div className="absolute inset-0 bg-brand-gold/10 rounded-3xl transform rotate-3 translate-x-4 translate-y-4"></div>
                 <img 
                   src={image} 
                   alt={`${service.name} in Mumbai`} 
@@ -115,7 +115,7 @@ const ServiceDetail = () => {
                 <ul className="space-y-4">
                   {service.includes && service.includes.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-brand-teal shrink-0" />
+                      <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0" />
                       <span className="text-slate-700">{item}</span>
                     </li>
                   ))}
@@ -143,7 +143,7 @@ const ServiceDetail = () => {
                         placeholder="Your Name" 
                         value={formData.name}
                         onChange={(e) => handleChange('name', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" 
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
                       />
                     </div>
                     <div>
@@ -155,7 +155,7 @@ const ServiceDetail = () => {
                         placeholder="Mobile Number" 
                         value={formData.phone}
                         onChange={(e) => handleChange('phone', e.target.value.replace(/\D/g, ''))}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" 
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
                       />
                     </div>
                     <div>
@@ -163,7 +163,7 @@ const ServiceDetail = () => {
                         required 
                         value={formData.location}
                         onChange={(e) => handleChange('location', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none"
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
                       >
                         <option value="" disabled className="text-slate-800">Select Location</option>
                         {AREAS_SERVED.map(area => (
@@ -177,7 +177,7 @@ const ServiceDetail = () => {
                         required 
                         value={formData.hours}
                         onChange={(e) => handleChange('hours', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none"
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
                       >
                         <option value="" disabled className="text-slate-800">Select Work Hours</option>
                         <option value="4" className="text-slate-800">4 Hours</option>
@@ -191,7 +191,7 @@ const ServiceDetail = () => {
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all disabled:opacity-70"
+                      className="w-full bg-brand-gold hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all disabled:opacity-70"
                     >
                       {isSubmitting ? 'Sending...' : 'Send Me Profiles'}
                     </button>

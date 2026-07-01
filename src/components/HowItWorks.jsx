@@ -27,7 +27,7 @@ export const HowItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Our Simple <span className="text-teal-600">Process</span>
+            Our Simple <span className="text-amber-600">Process</span>
           </h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Getting the help you need is easy. Follow these simple steps to find and hire your ideal domestic professional.
@@ -44,8 +44,8 @@ export const HowItWorks = () => {
                 </div>
               )}
               
-              <div className="relative z-10 bg-white rounded-full w-28 h-28 flex items-center justify-center mb-6 shadow-xl border-4 border-teal-100">
-                <step.icon className="h-12 w-12 text-teal-600" />
+              <div className="relative z-10 bg-white rounded-full w-28 h-28 flex items-center justify-center mb-6 shadow-xl border-4 border-amber-100">
+                <step.icon className="h-12 w-12 text-amber-600" />
                 <div className="absolute -top-3 -right-3 bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-base font-bold shadow-lg">
                   {step.number}
                 </div>

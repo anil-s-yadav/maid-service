@@ -20,12 +20,15 @@ import Dashboard from "./pages/Dashboard";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import ServiceDetail from "./pages/ServiceDetail";
+import CallRedirect from "./pages/CallRedirect";
+import { ThemeProvider } from "./contexts/ThemeProvider";
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
+    <ThemeProvider>
+      <HelmetProvider>
+        <TooltipProvider>
       <Toaster />
       <Sonner />
       <MobileCTA />
@@ -45,12 +48,14 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
+          <Route path="/call/:phone" element={<CallRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       </TooltipProvider>
-    </HelmetProvider>
+      </HelmetProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

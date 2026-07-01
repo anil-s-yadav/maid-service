@@ -22,7 +22,7 @@ const iconMap = {
 };
 
 const colorMap = {
-  'house-maid': { bg: 'bg-brand-teal/10', text: 'text-brand-teal', gradient: 'from-brand-teal/20 to-brand-teal/5' },
+  'house-maid': { bg: 'bg-brand-gold/10', text: 'text-brand-gold', gradient: 'from-brand-gold/20 to-brand-gold/5' },
   'cook': { bg: 'bg-orange-50', text: 'text-orange-600', gradient: 'from-orange-100/60 to-orange-50/30' },
   'babysitter': { bg: 'bg-pink-50', text: 'text-pink-600', gradient: 'from-pink-100/60 to-pink-50/30' },
   'nanny': { bg: 'bg-purple-50', text: 'text-purple-600', gradient: 'from-purple-100/60 to-purple-50/30' },
@@ -103,7 +103,7 @@ const ServicesPage = () => {
                     <ul className="space-y-1.5">
                       {service.includes.slice(0, 4).map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-teal mt-0.5 shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0" />
                           <span className="text-xs text-slate-600">{item}</span>
                         </li>
                       ))}
@@ -119,7 +119,7 @@ const ServicesPage = () => {
                       </div>
                       <Link
                         to={`/services/${service.id}`}
-                        className="text-xs font-bold text-brand-teal hover:text-teal-600 flex items-center gap-1 transition-colors"
+                        className="text-xs font-bold text-brand-gold hover:text-amber-600 flex items-center gap-1 transition-colors"
                       >
                         Details <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
@@ -136,7 +136,7 @@ const ServicesPage = () => {
       <section className="pb-16 md:pb-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto bg-gradient-to-br from-brand-navy to-slate-900 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/20 rounded-full blur-3xl -translate-y-1/2"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/20 rounded-full blur-3xl -translate-y-1/2"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-gold/10 rounded-full blur-2xl translate-y-1/3"></div>
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl font-bold text-white font-heading mb-3">
@@ -145,7 +145,7 @@ const ServicesPage = () => {
               <p className="text-slate-300 max-w-lg mx-auto mb-6 text-sm">
                 We offer custom domestic help solutions tailored to your exact requirements. Tell us what you need and we'll find the perfect match.
               </p>
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 px-8 rounded-full shadow-lg shadow-brand-teal/30 transition-all hover:-translate-y-0.5 text-sm">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-gold hover:bg-amber-500 text-white font-bold py-3.5 px-8 rounded-full shadow-lg shadow-brand-gold/30 transition-all hover:-translate-y-0.5 text-sm">
                 Request Custom Service <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

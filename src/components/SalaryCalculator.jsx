@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Calculator, IndianRupee, Clock, Briefcase, GraduationCap, Languages, Info, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Calculator, IndianRupee, Clock, Briefcase, GraduationCap, Languages, Info, CheckCircle2, User, Phone, MapPin } from 'lucide-react';
 import { SERVICES, EXPERIENCE_LEVELS, EDUCATION_LEVELS, LANGUAGES, AREAS_SERVED } from '../utils/constants';
 import { calculateSalaryEstimate, formatRupees } from '../utils/salaryData';
 import { submitLead } from '../utils/leadCapture';
@@ -11,7 +11,7 @@ export const SalaryCalculator = () => {
     hours: '12',
     experience: '0-2',
     education: 'below-10th',
-    languages: ['hindi'],
+    languages: ['hindi'], // We'll map single select to array for calculation compatibility
     name: '',
     phone: '',
     location: ''
@@ -19,37 +19,34 @@ export const SalaryCalculator = () => {
 
   const [estimate, setEstimate] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [phoneError, setPhoneError] = useState('');
+  const timeoutRef = useRef(null);
 
-  // Update estimate on any change
   useEffect(() => {
     initPartialLeadCapture();
-    const result = calculateSalaryEstimate(formData);
-    setEstimate(result);
-  }, [formData.serviceId, formData.hours, formData.experience, formData.education, formData.languages]);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
-  const updateLeadData = (field, value) => {
-    setFormData(prev => ({...prev, [field]: value}));
-    if (['name', 'phone', 'location', 'serviceId'].includes(field)) {
-      updatePartialLeadData({ [field]: value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, phone: numericValue }));
+      updatePartialLeadData({ phone: numericValue });
+    } else if (name === 'language') {
+      setFormData(prev => ({ ...prev, languages: [value] }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      if (['name', 'serviceId', 'location'].includes(name)) {
+        updatePartialLeadData({ [name]: value });
+      }
     }
   };
 
-  const handleLanguageToggle = (lang) => {
-    setFormData(prev => {
-      const langs = [...prev.languages];
-      if (langs.includes(lang)) {
-        if (langs.length > 1) { // Keep at least one language
-          return { ...prev, languages: langs.filter(l => l !== lang) };
-        }
-        return prev;
-      }
-      return { ...prev, languages: [...langs, lang] };
-    });
-  };
-
-  const handleLeadSubmit = async (e) => {
+  const handleCalculate = async (e) => {
     e.preventDefault();
     if (formData.phone.length < 10) {
       setPhoneError('Please enter a valid 10-digit number');
@@ -59,25 +56,40 @@ export const SalaryCalculator = () => {
     setPhoneError('');
     setIsCalculating(true);
     
+    // Calculate estimate immediately to show in UI
+    const result = calculateSalaryEstimate(formData);
+    setEstimate(result);
+    
     // Simulate slight delay for effect
     await new Promise(resolve => setTimeout(resolve, 800));
+    setIsCalculating(false);
     
-    await submitLead({
-      name: formData.name,
-      phone: formData.phone,
-      service: formData.serviceId,
-      location: formData.location,
-      message: `Salary Calculator Lead - Est: ${formatRupees(estimate.min)} - ${formatRupees(estimate.max)}`,
+    // Clear previous timeout if user is "playing with prices"
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    
+    // Update partial lead so if they leave immediately, it captures the latest state
+    updatePartialLeadData({
+      message: `Salary Calculator Lead - Est: ${formatRupees(result.min)} - ${formatRupees(result.max)}`,
       type: 'full'
     });
     
-    markFormSubmitted();
-    setLeadSubmitted(true);
-    setIsCalculating(false);
+    // Debounce the actual lead submission by 15 seconds
+    timeoutRef.current = setTimeout(async () => {
+      await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        service: formData.serviceId,
+        location: formData.location || 'Mumbai (Not specified)',
+        message: `Salary Calculator Lead - Est: ${formatRupees(result.min)} - ${formatRupees(result.max)}`,
+        type: 'full',
+        source: 'Salary Calculator'
+      });
+      markFormSubmitted();
+    }, 15000); // Wait 15s to ensure they are done changing options
   };
 
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden" id="calculator">
+    <section className="py-24 dark:bg-background bg-slate-50 relative overflow-hidden transition-colors duration-500" id="calculator">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[100px] -translate-y-1/2"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -87,10 +99,10 @@ export const SalaryCalculator = () => {
             <Calculator className="w-4 h-4" />
             <span>Smart Salary Estimator</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-brand-navy mb-6 font-heading transition-colors">
             Calculate Estimated Maid Salary in Mumbai
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg dark:text-slate-300 text-slate-600 transition-colors">
             Get an instant estimate based on current Mumbai market rates, considering experience, hours, and specialized skills.
           </p>
         </div>
@@ -98,269 +110,238 @@ export const SalaryCalculator = () => {
         <div className="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
           
           {/* Left: Calculator Form */}
-          <div className="lg:col-span-3 bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-slate-100">
-            <h3 className="text-xl font-bold text-brand-navy mb-6 font-heading border-b pb-4">Customize Requirements</h3>
+          <div className="lg:col-span-3 dark:bg-[#1e293b] bg-white rounded-3xl p-6 md:p-8 shadow-xl border dark:border-white/10 border-slate-100 transition-colors">
+            <h3 className="text-xl font-bold dark:text-white text-brand-navy mb-6 font-heading border-b dark:border-white/10 pb-4 transition-colors">Customize Requirements</h3>
             
-            <div className="space-y-8">
+            <form onSubmit={handleCalculate} className="space-y-6">
               
-              {/* Service Type */}
-              <div className="space-y-3">
-                <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                  <Briefcase className="w-4 h-4 text-brand-teal" />
-                  Service Type
-                </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {SERVICES.map(s => (
-                    <button
-                      key={s.id}
-                      onClick={() => setFormData({...formData, serviceId: s.id})}
-                      className={`px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
-                        formData.serviceId === s.id 
-                          ? 'bg-brand-teal text-white border-brand-teal shadow-md shadow-brand-teal/20' 
-                          : 'bg-white text-slate-600 border-slate-200 hover:border-brand-teal/50'
-                      }`}
-                    >
-                      {s.name}
-                    </button>
-                  ))}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Service Type */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                    <Briefcase className="w-4 h-4 text-brand-gold" />
+                    Service Type
+                  </label>
+                  <select 
+                    name="serviceId" 
+                    value={formData.serviceId} 
+                    onChange={handleChange}
+                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                  >
+                    {SERVICES.map(s => (
+                      <option key={s.id} value={s.id} className="dark:bg-slate-800 dark:text-white">{s.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Working Hours */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                    <Clock className="w-4 h-4 text-brand-gold" />
+                    Working Hours
+                  </label>
+                  <select 
+                    name="hours" 
+                    value={formData.hours} 
+                    onChange={handleChange}
+                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                  >
+                    {['4', '6', '8', '10', '12', '24'].map(h => (
+                      <option key={h} value={h} className="dark:bg-slate-800 dark:text-white">{h} hours</option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
-              {/* Working Hours */}
-              <div className="space-y-3">
-                <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-brand-teal" />
-                  Working Hours
-                </label>
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-                  {['4', '6', '8', '10', '12', '24'].map(h => (
-                    <button
-                      key={h}
-                      onClick={() => setFormData({...formData, hours: h})}
-                      className={`py-2 rounded-lg border text-sm font-medium transition-all ${
-                        formData.hours === h 
-                          ? 'bg-brand-teal text-white border-brand-teal' 
-                          : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-brand-teal/50'
-                      }`}
-                    >
-                      {h} hrs
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6">
                 {/* Experience */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                    <IndianRupee className="w-4 h-4 text-brand-teal" />
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                    <IndianRupee className="w-4 h-4 text-brand-gold" />
                     Experience Required
                   </label>
-                  <div className="flex flex-col gap-2">
+                  <select 
+                    name="experience" 
+                    value={formData.experience} 
+                    onChange={handleChange}
+                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                  >
                     {EXPERIENCE_LEVELS.map(e => (
-                      <button
-                        key={e.value}
-                        onClick={() => setFormData({...formData, experience: e.value})}
-                        className={`px-4 py-2.5 rounded-lg border text-sm font-medium text-left transition-all ${
-                          formData.experience === e.value 
-                            ? 'bg-brand-teal/10 text-brand-teal border-brand-teal' 
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-brand-teal/50'
-                        }`}
-                      >
-                        {e.label}
-                      </button>
+                      <option key={e.value} value={e.value} className="dark:bg-slate-800 dark:text-white">{e.label}</option>
                     ))}
-                  </div>
+                  </select>
                 </div>
 
                 {/* Education */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-brand-teal" />
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                    <GraduationCap className="w-4 h-4 text-brand-gold" />
                     Education Level
                   </label>
-                  <div className="flex flex-col gap-2">
+                  <select 
+                    name="education" 
+                    value={formData.education} 
+                    onChange={handleChange}
+                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                  >
                     {EDUCATION_LEVELS.map(e => (
-                      <button
-                        key={e.value}
-                        onClick={() => setFormData({...formData, education: e.value})}
-                        className={`px-4 py-2.5 rounded-lg border text-sm font-medium text-left transition-all ${
-                          formData.education === e.value 
-                            ? 'bg-brand-teal/10 text-brand-teal border-brand-teal' 
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-brand-teal/50'
-                        }`}
-                      >
-                        {e.label}
-                      </button>
+                      <option key={e.value} value={e.value} className="dark:bg-slate-800 dark:text-white">{e.label}</option>
                     ))}
-                  </div>
+                  </select>
                 </div>
               </div>
 
               {/* Languages */}
-              <div className="space-y-3">
-                <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                  <Languages className="w-4 h-4 text-brand-teal" />
-                  Languages Known (Select multiple)
+              <div className="space-y-2">
+                <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                  <Languages className="w-4 h-4 text-brand-gold" />
+                  Primary Language Required
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <select 
+                  name="language" 
+                  value={formData.languages[0]} 
+                  onChange={handleChange}
+                  className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                >
                   {LANGUAGES.map(lang => (
-                    <button
-                      key={lang.value}
-                      onClick={() => handleLanguageToggle(lang.value)}
-                      className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
-                        formData.languages.includes(lang.value)
-                          ? 'bg-brand-navy text-white border-brand-navy shadow-md' 
-                          : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      {lang.label}
-                    </button>
+                    <option key={lang.value} value={lang.value} className="dark:bg-slate-800 dark:text-white">{lang.label}</option>
                   ))}
-                </div>
+                </select>
                 {formData.languages.includes('english') && (
                   <p className="text-xs text-brand-gold flex items-center gap-1 mt-2">
                     <Info className="w-3 h-3" /> English-speaking staff commands a premium in Mumbai.
                   </p>
                 )}
+                {/* Location */}
+                <div className="space-y-2 lg:col-span-2">
+                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                    <MapPin className="w-4 h-4 text-brand-gold" />
+                    Location in Mumbai
+                  </label>
+                  <select 
+                    name="location" 
+                    required
+                    value={formData.location} 
+                    onChange={handleChange}
+                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                  >
+                    <option value="" disabled className="dark:bg-slate-800 dark:text-white">Select your area</option>
+                    {AREAS_SERVED.map(area => (
+                      <option key={area} value={area} className="dark:bg-slate-800 dark:text-white">{area}</option>
+                    ))}
+                    <option value="Other" className="dark:bg-slate-800 dark:text-white">Other Mumbai Area</option>
+                  </select>
+                </div>
               </div>
 
-            </div>
+              <div className="border-t dark:border-white/10 border-slate-200 pt-6 mt-6">
+                <h4 className="text-sm font-bold dark:text-white text-brand-navy mb-4 transition-colors">Your Details to Receive Estimate</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                      <User className="w-4 h-4 text-brand-gold" />
+                      Full Name *
+                    </label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
+                      <Phone className="w-4 h-4 text-brand-gold" />
+                      Phone Number *
+                    </label>
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      required
+                      minLength="10"
+                      maxLength="10"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="9876543210"
+                      className={`w-full dark:bg-white/5 dark:text-white bg-slate-50 border ${phoneError ? 'border-red-500' : 'dark:border-white/10 border-slate-200'} rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors`}
+                    />
+                    {phoneError && <p className="text-xs text-red-500 mt-1">{phoneError}</p>}
+                  </div>
+                </div>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={isCalculating}
+                className="w-full bg-brand-gold hover:bg-amber-500 text-brand-navy font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] disabled:opacity-70 mt-6"
+              >
+                {isCalculating ? 'Calculating...' : 'Calculate Estimated Salary'}
+              </button>
+            </form>
           </div>
 
-          {/* Right: Results & Lead Capture */}
+          {/* Right: Results */}
           <div className="lg:col-span-2 space-y-6">
             
             {/* Estimate Card */}
-            <div className="bg-brand-navy rounded-3xl p-6 shadow-xl text-white">
+            <div className="bg-brand-navy rounded-3xl p-6 shadow-xl text-white h-full flex flex-col justify-center">
               <h3 className="text-lg font-medium text-slate-300 mb-2 font-heading">Estimated Monthly Salary</h3>
               
-              <div className="mt-4 mb-6">
-                <div className="text-4xl lg:text-5xl font-bold text-brand-gold mb-2 tracking-tight">
-                  {estimate ? formatRupees(estimate.min).replace('.00','') : '---'}
-                  <span className="text-2xl text-slate-400 font-normal mx-2">to</span> 
-                  {estimate ? formatRupees(estimate.max).replace('.00','') : '---'}
-                </div>
-                <p className="text-slate-400 text-sm">per month</p>
-              </div>
-
-              {estimate && (
-                <div className="space-y-3 pt-6 border-t border-slate-700/50 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Base Rate ({formData.hours} hrs)</span>
-                    <span>{formatRupees(estimate.breakdown.base).replace('.00','')}</span>
-                  </div>
-                  {estimate.breakdown.experiencePremium > 0 && (
-                    <div className="flex justify-between text-brand-teal">
-                      <span>Experience Premium</span>
-                      <span>+{formatRupees(estimate.breakdown.experiencePremium).replace('.00','')}</span>
-                    </div>
-                  )}
-                  {estimate.breakdown.educationPremium > 0 && (
-                    <div className="flex justify-between text-brand-teal">
-                      <span>Education Premium</span>
-                      <span>+{formatRupees(estimate.breakdown.educationPremium).replace('.00','')}</span>
-                    </div>
-                  )}
-                  {estimate.breakdown.languagePremium > 0 && (
-                    <div className="flex justify-between text-brand-gold">
-                      <span>Language (English)</span>
-                      <span>+{formatRupees(estimate.breakdown.languagePremium).replace('.00','')}</span>
-                    </div>
-                  )}
-                  
-                  <div className="mt-4 p-3 bg-white/5 rounded-xl text-xs text-slate-300 leading-relaxed border border-white/10">
-                    <span className="text-white font-medium">Market Average via Agency: </span>
-                    {formatRupees(estimate.marketAverage).replace('.00','')} 
-                    <br/><br/>
-                    Our direct placement model saves you up to 18% in monthly margins compared to traditional agencies.
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Lead Capture Form */}
-            <div className="bg-white rounded-3xl p-6 shadow-xl border border-slate-100">
-              {leadSubmitted ? (
-                <div className="text-center py-6">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-brand-navy mb-2">Request Received!</h3>
-                  <p className="text-slate-600 text-sm">
-                    We've saved your estimate. One of our experts will call you shortly to discuss available profiles in your budget.
-                  </p>
+              {!estimate ? (
+                <div className="text-center py-10 opacity-70">
+                  <Calculator className="w-16 h-16 text-brand-gold mx-auto mb-4 opacity-50" />
+                  <p className="text-slate-400">Fill in the requirements and your details to calculate the estimated salary.</p>
                 </div>
               ) : (
-                <>
-                  <h3 className="text-lg font-bold text-brand-navy mb-4">Get Profiles in this Budget</h3>
-                  <form onSubmit={handleLeadSubmit} className="space-y-4">
-                    <div>
-                      <input 
-                        type="text" 
-                        required
-                        placeholder="Your Name"
-                        value={formData.name}
-                        onChange={(e) => updateLeadData('name', e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors"
-                      />
+                <div className="animate-in fade-in zoom-in-95 duration-500">
+                  <div className="mt-4 mb-6">
+                    <div className="text-4xl lg:text-5xl font-bold text-brand-gold mb-2 tracking-tight">
+                      {formatRupees(estimate.min).replace('.00','')}
+                      <span className="text-2xl text-slate-400 font-normal mx-2">to</span> 
+                      {formatRupees(estimate.max).replace('.00','')}
                     </div>
-                    <div>
-                      <input 
-                        type="tel" 
-                        required
-                        maxLength="10"
-                        placeholder="Mobile Number"
-                        value={formData.phone}
-                        onChange={(e) => updateLeadData('phone', e.target.value.replace(/\D/g, ''))}
-                        className={`w-full bg-slate-50 border ${phoneError ? 'border-red-500' : 'border-slate-200'} text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors`}
-                      />
-                      {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                    <p className="text-slate-400 text-sm">per month</p>
+                  </div>
+
+                  <div className="space-y-3 pt-6 border-t border-slate-700/50 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Base Rate ({formData.hours} hrs)</span>
+                      <span>{formatRupees(estimate.breakdown.base).replace('.00','')}</span>
                     </div>
+                    {estimate.breakdown.experiencePremium > 0 && (
+                      <div className="flex justify-between text-brand-gold">
+                        <span>Experience Premium</span>
+                        <span>+{formatRupees(estimate.breakdown.experiencePremium).replace('.00','')}</span>
+                      </div>
+                    )}
+                    {estimate.breakdown.educationPremium > 0 && (
+                      <div className="flex justify-between text-brand-gold">
+                        <span>Education Premium</span>
+                        <span>+{formatRupees(estimate.breakdown.educationPremium).replace('.00','')}</span>
+                      </div>
+                    )}
+                    {estimate.breakdown.languagePremium > 0 && (
+                      <div className="flex justify-between text-brand-gold">
+                        <span>Language (English)</span>
+                        <span>+{formatRupees(estimate.breakdown.languagePremium).replace('.00','')}</span>
+                      </div>
+                    )}
                     
-                    <div className="grid grid-cols-2 gap-3">
-                      <select
-                        required
-                        value={formData.location}
-                        onChange={e => updateLeadData('location', e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors appearance-none"
-                      >
-                        <option value="" disabled>Location (Mumbai)</option>
-                        {AREAS_SERVED.map(area => (
-                          <option key={area} value={area}>{area}</option>
-                        ))}
-                        <option value="Other">Other Mumbai Area</option>
-                      </select>
-
-                      <select
-                        required
-                        value={formData.serviceId}
-                        onChange={e => updateLeadData('serviceId', e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors appearance-none"
-                      >
-                        <option value="" disabled>Select Service</option>
-                        {SERVICES.map(s => (
-                          <option key={s.id} value={s.id}>{s.name}</option>
-                        ))}
-                      </select>
+                    <div className="mt-6 p-4 bg-white/5 rounded-xl text-xs text-slate-300 leading-relaxed border border-white/10">
+                      <CheckCircle2 className="w-5 h-5 text-green-400 mb-2" />
+                      <span className="text-white font-medium block mb-1">Your Request is Sent!</span>
+                      We have captured your requirements. One of our experts will call you shortly to discuss available profiles matching this budget.
                     </div>
-
-                    <button 
-                      type="submit"
-                      disabled={isCalculating}
-                      className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all active:scale-[0.98] flex justify-center items-center"
-                    >
-                      {isCalculating ? 'Sending...' : 'Find Maids Now'}
-                    </button>
-                    <p className="text-xs text-center text-slate-500">100% Free Consultation. No commitments.</p>
-                  </form>
-                </>
+                  </div>
+                </div>
               )}
             </div>
 
           </div>
         </div>
-
       </div>
     </section>
   );

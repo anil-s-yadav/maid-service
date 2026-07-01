@@ -84,7 +84,16 @@ async function sendDiscordNotification(data) {
   const isPartial = data.type === 'partial';
   const color = isPartial ? 16753920 : 10494192; // Orange for partial, Purple for full
 
-  const phoneStr = data.phone ? `[**${data.phone}**](tel:+91${data.phone.replace(/\D/g, '')})` : '**NA**';
+  // Discord does not support tel: links in embeds (it returns 400 Bad Request). 
+  // We use a regular bold string for the phone, and add a clickable WhatsApp link, 
+  // as well as a Direct Call link that routes through our website to bypass Discord's restriction.
+  const phoneRaw = data.phone ? data.phone.replace(/\D/g, '') : '';
+  const formattedPhone = phoneRaw.length === 10 ? `+91 ${phoneRaw.slice(0, 5)} ${phoneRaw.slice(5)}` : data.phone;
+
+  const callUrl = typeof window !== 'undefined' ? `${window.location.origin}/call/${phoneRaw}` : `https://verifiedmaid.in/call/${phoneRaw}`;
+  
+  const phoneStr = phoneRaw ? `[**${formattedPhone}**](${callUrl})  ·  [💬 WhatsApp](https://wa.me/91${phoneRaw})` : '**NA**';
+
   const emailStr = data.email ? `**${data.email}**` : '**NA**';
   const serviceStr = data.service ? `**${data.service}**` : '**NA**';
   const locationStr = data.location ? `**${data.location}**` : '**NA**';
