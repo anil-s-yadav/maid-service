@@ -4,6 +4,7 @@
 // ============================================
 
 import { submitLead } from './leadCapture';
+import { LEAD_CONFIG } from './constants';
 
 let formData = {};
 let isFormDirty = false;
@@ -56,22 +57,17 @@ export function initPartialLeadCapture() {
       ...formData,
       type: 'partial',
       timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-      source: window.location.pathname,
+      source: formData.source || window.location.pathname,
     };
 
     // Try sendBeacon to Discord (most reliable for unload)
     try {
-      const discordUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL || '';
+      const discordUrl = LEAD_CONFIG.discordWebhookUrl;
       if (discordUrl && !discordUrl.startsWith('YOUR_')) {
         const embed = {
-          title: '⚠️ Partial Lead — User Left Without Submitting',
+          title: `⚠️ Partial Lead — ${leadPayload.source || '/'}`,
           color: 16776960,
-          fields: [
-            { name: '👤 Name', value: leadPayload.name || 'Unknown', inline: true },
-            { name: '📱 Phone', value: leadPayload.phone, inline: true },
-            { name: '📧 Email', value: leadPayload.email || 'Not provided', inline: true },
-            { name: '📄 Source', value: leadPayload.source, inline: true },
-          ],
+          description: `👤 Name: **${leadPayload.name || 'Unknown'}**\n📱 Phone: **${leadPayload.phone || 'Not provided'}**\n📧 Email: **${leadPayload.email || 'Not provided'}**\n🏠 Service: **${leadPayload.service || 'Not specified'}**\n📍 Location: **${leadPayload.location || 'Not specified'}**`,
           footer: { text: `Partial Lead • ${leadPayload.timestamp}` },
         };
         navigator.sendBeacon(
@@ -85,12 +81,15 @@ export function initPartialLeadCapture() {
 
     // Also try Google Sheets via sendBeacon
     try {
-      const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL || '';
+      const sheetsUrl = LEAD_CONFIG.googleSheetsUrl;
       if (sheetsUrl && !sheetsUrl.startsWith('YOUR_')) {
-        navigator.sendBeacon(
-          sheetsUrl,
-          new Blob([JSON.stringify(leadPayload)], { type: 'application/json' })
-        );
+        fetch(sheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload)
+        }).catch(() => {});
       }
     } catch (e) {
       // Silent fail

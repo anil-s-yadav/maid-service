@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, Sparkles, CheckCircle2 } from 'lucide-react';
 import { submitLead } from '../utils/leadCapture';
+import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
 import { SERVICES, AREAS_SERVED } from '../utils/constants';
 
 export const LeadPopup = () => {
@@ -8,8 +9,10 @@ export const LeadPopup = () => {
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({ name: '', phone: '', location: '', service: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    initPartialLeadCapture();
     // Show popup after 15 seconds of scrolling, but only once per session
     const timer = setTimeout(() => {
       if (!hasShown && !sessionStorage.getItem('popupShown')) {
@@ -34,19 +37,28 @@ export const LeadPopup = () => {
     };
   }, [hasShown]);
 
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    updatePartialLeadData({ [field]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.phone.length < 10) return;
+    if (formData.phone.length < 10 || isSubmitting) return;
 
+    setIsSubmitting(true);
     await submitLead({
       name: formData.name,
       phone: formData.phone,
-      service: `Popup Lead: ${formData.service || 'Not specified'}`,
+      service: formData.service || 'Not specified',
       location: formData.location,
-      type: 'full'
+      type: 'full',
+      source: 'Popup Lead'
     });
 
+    markFormSubmitted();
     setSubmitted(true);
+    setIsSubmitting(false);
     setTimeout(() => setIsOpen(false), 3000);
   };
 
@@ -93,7 +105,7 @@ export const LeadPopup = () => {
                   required
                   placeholder="Your Name"
                   value={formData.name}
-                  onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  onChange={e => handleChange('name', e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
                 />
               </div>
@@ -105,7 +117,7 @@ export const LeadPopup = () => {
                   maxLength="10"
                   placeholder="Mobile Number"
                   value={formData.phone}
-                  onChange={e => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
+                  onChange={e => handleChange('phone', e.target.value.replace(/\D/g, ''))}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
                 />
               </div>
@@ -113,7 +125,7 @@ export const LeadPopup = () => {
                 <select
                   required
                   value={formData.location}
-                  onChange={e => setFormData({ ...formData, location: e.target.value })}
+                  onChange={e => handleChange('location', e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal appearance-none text-slate-700"
                 >
                   <option value="" disabled>Location (Mumbai)</option>
@@ -126,7 +138,7 @@ export const LeadPopup = () => {
                 <select
                   required
                   value={formData.service}
-                  onChange={e => setFormData({ ...formData, service: e.target.value })}
+                  onChange={e => handleChange('service', e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal appearance-none text-slate-700"
                 >
                   <option value="" disabled>Select Service</option>
@@ -137,9 +149,10 @@ export const LeadPopup = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3 mt-2 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3 mt-2 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all active:scale-[0.98] disabled:opacity-70"
               >
-                Send Me Profiles
+                {isSubmitting ? 'Sending...' : 'Send Me Profiles'}
               </button>
             </form>
           )}

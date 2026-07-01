@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { SERVICES, BRAND, AREAS_SERVED } from '../utils/constants';
 import { Header } from '../components/Header';
@@ -5,14 +6,48 @@ import { Footer } from '../components/Footer';
 import SEOHead from '../components/SEOHead';
 import { CheckCircle2, Phone, MessageCircle } from 'lucide-react';
 import { getWhatsAppLink } from '../utils/constants';
+import { submitLead } from '../utils/leadCapture';
+import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
 
 const ServiceDetail = () => {
   const { id } = useParams();
   const service = SERVICES.find(s => s.id === id);
 
+  const [formData, setFormData] = useState({ name: '', phone: '', location: '', hours: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    initPartialLeadCapture();
+  }, [id]);
+
   if (!service) {
     return <Navigate to="/services" replace />;
   }
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({...prev, [field]: value}));
+    updatePartialLeadData({ [field]: value, service: service.name });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.phone.length < 10 || isSubmitting) return;
+
+    setIsSubmitting(true);
+    await submitLead({
+      name: formData.name,
+      phone: formData.phone,
+      service: `${service.name} (${formData.hours} hrs)`,
+      location: formData.location,
+      type: 'full',
+      source: 'Service Detail Form'
+    });
+
+    markFormSubmitted();
+    setSubmitted(true);
+    setIsSubmitting(false);
+  };
 
   // Fallback image based on service id
   const serviceImages = {
@@ -91,37 +126,77 @@ const ServiceDetail = () => {
                 <h3 className="text-2xl font-bold font-heading mb-2">Book Your {service.name}</h3>
                 <p className="text-slate-300 text-sm mb-6">Fill out this quick form and we will send verified profiles to your WhatsApp within 30 minutes.</p>
                 
-                <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Request submitted! Our RM will contact you shortly.'); }}>
-                  <div>
-                    <input type="text" required placeholder="Your Name" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" />
+                {submitted ? (
+                  <div className="text-center py-10">
+                    <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2">Request Received!</h4>
+                    <p className="text-slate-300 text-sm">Our team will contact you shortly.</p>
                   </div>
-                  <div>
-                    <input type="tel" required minLength="10" maxLength="10" placeholder="Mobile Number" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" />
-                  </div>
-                  <div>
-                    <select required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none">
-                      <option value="" disabled selected className="text-slate-800">Select Location</option>
-                      {AREAS_SERVED.map(area => (
-                        <option key={area} value={area} className="text-slate-800">{area}</option>
-                      ))}
-                      <option value="Other" className="text-slate-800">Other Mumbai Area</option>
-                    </select>
-                  </div>
-                  <div>
-                    <select required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none">
-                      <option value="" disabled selected className="text-slate-800">Select Work Hours</option>
-                      <option value="4" className="text-slate-800">4 Hours</option>
-                      <option value="6" className="text-slate-800">6 Hours</option>
-                      <option value="8" className="text-slate-800">8 Hours</option>
-                      <option value="10" className="text-slate-800">10 Hours</option>
-                      <option value="12" className="text-slate-800">12 Hours (Full Day)</option>
-                      <option value="24" className="text-slate-800">24 Hours (Live-in)</option>
-                    </select>
-                  </div>
-                  <button type="submit" className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all">
-                    Send Me Profiles
-                  </button>
-                </form>
+                ) : (
+                  <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div>
+                      <input 
+                        type="text" 
+                        required 
+                        placeholder="Your Name" 
+                        value={formData.name}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" 
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="tel" 
+                        required 
+                        minLength="10" 
+                        maxLength="10" 
+                        placeholder="Mobile Number" 
+                        value={formData.phone}
+                        onChange={(e) => handleChange('phone', e.target.value.replace(/\D/g, ''))}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal" 
+                      />
+                    </div>
+                    <div>
+                      <select 
+                        required 
+                        value={formData.location}
+                        onChange={(e) => handleChange('location', e.target.value)}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none"
+                      >
+                        <option value="" disabled className="text-slate-800">Select Location</option>
+                        {AREAS_SERVED.map(area => (
+                          <option key={area} value={area} className="text-slate-800">{area}</option>
+                        ))}
+                        <option value="Other" className="text-slate-800">Other Mumbai Area</option>
+                      </select>
+                    </div>
+                    <div>
+                      <select 
+                        required 
+                        value={formData.hours}
+                        onChange={(e) => handleChange('hours', e.target.value)}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-teal appearance-none"
+                      >
+                        <option value="" disabled className="text-slate-800">Select Work Hours</option>
+                        <option value="4" className="text-slate-800">4 Hours</option>
+                        <option value="6" className="text-slate-800">6 Hours</option>
+                        <option value="8" className="text-slate-800">8 Hours</option>
+                        <option value="10" className="text-slate-800">10 Hours</option>
+                        <option value="12" className="text-slate-800">12 Hours (Full Day)</option>
+                        <option value="24" className="text-slate-800">24 Hours (Live-in)</option>
+                      </select>
+                    </div>
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all disabled:opacity-70"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Me Profiles'}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
 

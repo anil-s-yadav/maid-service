@@ -22,65 +22,68 @@ export const Header = () => {
     { name: 'Pricing', path: '/price' },
     { name: 'Compare', path: '/why-choose-us' },
     { name: 'About', path: '/about' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-2' : 'bg-white py-4'}`}>
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 z-50">
-            <img src={BRAND.logo} alt={BRAND.name} className="h-10 w-auto" />
-            <span className="text-xl md:text-2xl font-bold font-heading text-brand-navy tracking-tight hidden sm:block">
-              {BRAND.name}
-            </span>
-          </Link>
+    <>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-2' : 'bg-white py-4'}`}>
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between">
+            
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 z-50">
+              <img src={BRAND.logo} alt={BRAND.name} className="h-12 md:h-14 w-auto rounded-xl shadow-sm" />
+              <span className="text-xl md:text-2xl font-bold font-heading text-brand-navy tracking-tight hidden sm:block">
+                {BRAND.name}
+              </span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-brand-teal ${
-                  location.pathname === link.path ? 'text-brand-teal' : 'text-slate-600'
-                }`}
-              >
-                {link.name}
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`text-sm font-medium transition-colors hover:text-brand-teal ${
+                    location.pathname === link.path ? 'text-brand-teal' : 'text-slate-600'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Desktop CTAs */}
+            <div className="hidden md:flex items-center gap-4">
+              <a href={`tel:${BRAND.phoneClean}`} className="flex items-center gap-2 text-brand-navy hover:text-brand-teal transition-colors text-sm font-medium">
+                <Phone className="w-4 h-4" />
+                <span>{BRAND.phone}</span>
+              </a>
+              <div className="h-6 w-px bg-slate-200"></div>
+              <Link to="/login" className="flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-brand-teal transition-colors">
+                <UserCircle className="w-5 h-5" />
+                <span>Login</span>
               </Link>
-            ))}
-          </nav>
+              <Link to="/maid-form" className="bg-brand-gold hover:bg-yellow-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-sm">
+                Apply as Maid
+              </Link>
+            </div>
 
-          {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-4">
-            <a href={`tel:${BRAND.phoneClean}`} className="flex items-center gap-2 text-brand-navy hover:text-brand-teal transition-colors text-sm font-medium">
-              <Phone className="w-4 h-4" />
-              <span>{BRAND.phone}</span>
-            </a>
-            <div className="h-6 w-px bg-slate-200"></div>
-            <Link to="/login" className="flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-brand-teal transition-colors">
-              <UserCircle className="w-5 h-5" />
-              <span>Login</span>
-            </Link>
-            <Link to="/maid-form" className="bg-brand-gold hover:bg-yellow-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-sm">
-              Apply as Maid
-            </Link>
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="md:hidden z-50 p-2 text-brand-navy"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden z-50 p-2 text-brand-navy"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
-      </div>
+      </header>
 
       {/* Mobile Navigation Drawer */}
-      <div className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-24 px-6 flex flex-col`}>
+      <div className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-24 px-6 flex flex-col shadow-2xl`}>
         <nav className="flex flex-col gap-6 text-lg font-medium">
           {navLinks.map((link) => (
             <Link
@@ -116,8 +119,6 @@ export const Header = () => {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 };
-
-

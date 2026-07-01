@@ -7,11 +7,11 @@ export const Footer = () => {
     <footer className="bg-brand-navy text-slate-300 pt-16 pb-8 border-t border-slate-800">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
+
           {/* Brand Info */}
-          <div>
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <img src={BRAND.logo} alt={BRAND.name} className="h-10 w-auto filter brightness-0 invert" />
+          <div className="space-y-6">
+            <Link to="/" className="flex items-center gap-2">
+              <img src={BRAND.logo} alt={BRAND.name} className="h-12 md:h-14 w-auto rounded-xl shadow-sm bg-white/10" />
               <span className="text-2xl font-bold font-heading text-white tracking-tight">
                 {BRAND.name}
               </span>
@@ -79,14 +79,14 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         {/* Areas Served Tags */}
         <div className="border-t border-slate-800 pt-8 mb-8">
           <h4 className="text-sm text-slate-500 mb-4 font-medium uppercase tracking-wider">Top Areas We Serve in Mumbai</h4>
           <div className="flex flex-wrap gap-2">
             {AREAS_SERVED.slice(0, 15).map(area => (
-              <span 
-                key={area} 
+              <span
+                key={area}
                 onClick={() => window.dispatchEvent(new CustomEvent('openLeadPopup', { detail: { location: area } }))}
                 className="text-xs border border-slate-700 bg-slate-800/50 rounded-full px-3 py-1 text-slate-400 hover:text-white hover:border-brand-teal hover:bg-brand-teal/20 cursor-pointer transition-all"
               >

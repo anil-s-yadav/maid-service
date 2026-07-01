@@ -4,6 +4,7 @@ import { Services } from "@/components/Services";
 import { Features } from "@/components/Features";
 import { TrustBanner } from "@/components/TrustBanner";
 import { ComparisonTable } from "@/components/ComparisonTable";
+import { VerificationProcess } from "@/components/VerificationProcess";
 import { FAQ } from "@/components/FAQ";
 import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
@@ -24,6 +25,7 @@ const Index = () => {
       <Features />
       <Services />
       <ComparisonTable />
+      <VerificationProcess />
       <Testimonials />
       <FAQ />
       <Footer />

@@ -15,7 +15,7 @@ import { LEAD_CONFIG, BRAND } from './constants';
 export async function submitLead(leadData) {
   const errors = [];
   const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-  const enrichedData = { ...leadData, timestamp, source: window.location.pathname };
+  const enrichedData = { ...leadData, timestamp, source: leadData.source || window.location.pathname };
 
   // Channel 1: EmailJS — Send email notification to owner
   try {
@@ -61,13 +61,13 @@ async function sendEmailNotification(data) {
 
   const templateParams = {
     to_email: BRAND.email,
-    from_name: data.name || 'Unknown',
-    phone: data.phone || 'Not provided',
-    email: data.email || 'Not provided',
-    service: data.service || 'Not specified',
-    location: data.location || 'Not specified',
+    from_name: data.name || 'NA',
+    phone: data.phone || 'NA',
+    email: data.email || 'NA',
+    service: data.service || 'NA',
+    location: data.location || 'NA',
     message: data.message || '',
-    lead_type: data.type === 'partial' ? '⚠️ PARTIAL LEAD (User left the page)' : '✅ Full Lead Submission',
+    lead_type: data.type === 'partial' ? 'PARTIAL LEAD' : 'Full Lead',
     timestamp: data.timestamp,
     source_page: data.source,
   };
@@ -81,31 +81,18 @@ async function sendEmailNotification(data) {
 async function sendDiscordNotification(data) {
   const webhookUrl = LEAD_CONFIG.discordWebhookUrl;
 
-  // Skip if not configured
-  if (webhookUrl.startsWith('YOUR_')) {
-    console.warn('Discord webhook not configured — skipping Discord notification');
-    return;
-  }
-
   const isPartial = data.type === 'partial';
-  const color = isPartial ? 16776960 : 65280; // Yellow for partial, Green for full
+  const color = isPartial ? 16753920 : 10494192; // Orange for partial, Purple for full
 
   const embed = {
-    title: isPartial ? '⚠️ Partial Lead — User Left Page' : '🎉 New Lead from Verified Maids!',
+    title: isPartial ? `⚠️ Partial Lead — Source: ${data.source || '/'}` : `🎉 New Lead - Source: ${data.source || 'NA'}`,
     color,
-    fields: [
-      { name: '👤 Name', value: data.name || 'Unknown', inline: true },
-      { name: '📱 Phone', value: data.phone || 'Not provided', inline: true },
-      { name: '📧 Email', value: data.email || 'Not provided', inline: true },
-      { name: '🏠 Service', value: data.service || 'Not specified', inline: true },
-      { name: '📍 Location', value: data.location || 'Not specified', inline: true },
-      { name: '📄 Source Page', value: data.source || '/', inline: true },
-    ],
+    description: `👤 Name: **${data.name || 'NA'}**\n📱 Phone: **${data.phone || ''}**\n📧 Email: **${data.email || ''}**\n🏠 Service: **${data.service || ''}**\n📍 Location: **${data.location || ''}**`,
     footer: { text: `Verified Maids Lead • ${data.timestamp}` },
   };
 
   if (data.message) {
-    embed.fields.push({ name: '💬 Message', value: data.message, inline: false });
+    embed.description += `\n💬 Message: **${data.message}**`;
   }
 
   await fetch(webhookUrl, {
@@ -121,11 +108,7 @@ async function sendDiscordNotification(data) {
 async function saveToGoogleSheets(data) {
   const sheetsUrl = LEAD_CONFIG.googleSheetsUrl;
 
-  // Skip if not configured
-  if (sheetsUrl.startsWith('YOUR_')) {
-    console.warn('Google Sheets not configured — skipping sheet save');
-    return;
-  }
+
 
   await fetch(sheetsUrl, {
     method: 'POST',

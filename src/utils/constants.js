@@ -22,16 +22,16 @@ export const BRAND = {
 
 // Lead capture config
 export const LEAD_CONFIG = {
-  // EmailJS — Sign up at https://www.emailjs.com/ and fill these
+  // EmailJS
   emailjs: {
-    serviceId: 'YOUR_EMAILJS_SERVICE_ID',    // Replace with your EmailJS service ID
-    templateId: 'YOUR_EMAILJS_TEMPLATE_ID',  // Replace with your EmailJS template ID
-    publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',     // Replace with your EmailJS public key
+    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_EMAILJS_SERVICE_ID',
+    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_EMAILJS_TEMPLATE_ID',
+    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_EMAILJS_PUBLIC_KEY',
   },
-  // Discord Webhook — Create in Discord Server Settings > Integrations > Webhooks
-  discordWebhookUrl: 'YOUR_DISCORD_WEBHOOK_URL', // Replace with your Discord webhook URL
-  // Google Sheets Apps Script — Deploy as Web App
-  googleSheetsUrl: 'YOUR_GOOGLE_SHEETS_APPS_SCRIPT_URL', // Replace with your Apps Script URL
+  // Discord Webhook
+  discordWebhookUrl: import.meta.env.VITE_DISCORD_WEBHOOK_URL || 'YOUR_DISCORD_WEBHOOK_URL',
+  // Google Sheets Apps Script Web App URL
+  googleSheetsUrl: import.meta.env.VITE_GOOGLE_SHEETS_URL || 'YOUR_GOOGLE_SHEETS_APPS_SCRIPT_URL',
 };
 
 // Services offered

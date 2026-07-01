@@ -3,6 +3,7 @@ import { Calculator, IndianRupee, Clock, Briefcase, GraduationCap, Languages, In
 import { SERVICES, EXPERIENCE_LEVELS, EDUCATION_LEVELS, LANGUAGES, AREAS_SERVED } from '../utils/constants';
 import { calculateSalaryEstimate, formatRupees } from '../utils/salaryData';
 import { submitLead } from '../utils/leadCapture';
+import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
 
 export const SalaryCalculator = () => {
   const [formData, setFormData] = useState({
@@ -23,9 +24,17 @@ export const SalaryCalculator = () => {
 
   // Update estimate on any change
   useEffect(() => {
+    initPartialLeadCapture();
     const result = calculateSalaryEstimate(formData);
     setEstimate(result);
   }, [formData.serviceId, formData.hours, formData.experience, formData.education, formData.languages]);
+
+  const updateLeadData = (field, value) => {
+    setFormData(prev => ({...prev, [field]: value}));
+    if (['name', 'phone', 'location', 'serviceId'].includes(field)) {
+      updatePartialLeadData({ [field]: value });
+    }
+  };
 
   const handleLanguageToggle = (lang) => {
     setFormData(prev => {
@@ -62,6 +71,7 @@ export const SalaryCalculator = () => {
       type: 'full'
     });
     
+    markFormSubmitted();
     setLeadSubmitted(true);
     setIsCalculating(false);
   };
@@ -291,7 +301,7 @@ export const SalaryCalculator = () => {
                         required
                         placeholder="Your Name"
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => updateLeadData('name', e.target.value)}
                         className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors"
                       />
                     </div>
@@ -302,7 +312,7 @@ export const SalaryCalculator = () => {
                         maxLength="10"
                         placeholder="Mobile Number"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g, '')})}
+                        onChange={(e) => updateLeadData('phone', e.target.value.replace(/\D/g, ''))}
                         className={`w-full bg-slate-50 border ${phoneError ? 'border-red-500' : 'border-slate-200'} text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors`}
                       />
                       {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
@@ -312,7 +322,7 @@ export const SalaryCalculator = () => {
                       <select
                         required
                         value={formData.location}
-                        onChange={e => setFormData({...formData, location: e.target.value})}
+                        onChange={e => updateLeadData('location', e.target.value)}
                         className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors appearance-none"
                       >
                         <option value="" disabled>Location (Mumbai)</option>
@@ -325,7 +335,7 @@ export const SalaryCalculator = () => {
                       <select
                         required
                         value={formData.serviceId}
-                        onChange={e => setFormData({...formData, serviceId: e.target.value})}
+                        onChange={e => updateLeadData('serviceId', e.target.value)}
                         className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-colors appearance-none"
                       >
                         <option value="" disabled>Select Service</option>
