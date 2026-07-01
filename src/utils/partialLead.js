@@ -52,7 +52,10 @@ export function initPartialLeadCapture() {
     if (!isFormDirty || hasSubmitted) return;
     if (!formData.phone || formData.phone.length < 10) return;
 
-    // Use navigator.sendBeacon for reliable delivery during page unload
+    // Mark as submitted to prevent duplicate partial leads on tab switch
+    isFormDirty = false;
+    hasSubmitted = true;
+
     const leadPayload = {
       ...formData,
       type: 'partial',
@@ -60,42 +63,7 @@ export function initPartialLeadCapture() {
       source: formData.source || window.location.pathname,
     };
 
-    // Try sendBeacon to Discord (most reliable for unload)
-    try {
-      const discordUrl = LEAD_CONFIG.discordWebhookUrl;
-      if (discordUrl && !discordUrl.startsWith('YOUR_')) {
-        const embed = {
-          title: `⚠️ Partial Lead — ${leadPayload.source || '/'}`,
-          color: 16776960,
-          description: `👤 Name: **${leadPayload.name || 'Unknown'}**\n📱 Phone: **${leadPayload.phone || 'Not provided'}**\n📧 Email: **${leadPayload.email || 'Not provided'}**\n🏠 Service: **${leadPayload.service || 'Not specified'}**\n📍 Location: **${leadPayload.location || 'Not specified'}**`,
-          footer: { text: `Partial Lead • ${leadPayload.timestamp}` },
-        };
-        navigator.sendBeacon(
-          discordUrl,
-          new Blob([JSON.stringify({ embeds: [embed] })], { type: 'application/json' })
-        );
-      }
-    } catch (e) {
-      // Silent fail — page is closing
-    }
-
-    // Also try Google Sheets via sendBeacon
-    try {
-      const sheetsUrl = LEAD_CONFIG.googleSheetsUrl;
-      if (sheetsUrl && !sheetsUrl.startsWith('YOUR_')) {
-        fetch(sheetsUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          keepalive: true,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadPayload)
-        }).catch(() => {});
-      }
-    } catch (e) {
-      // Silent fail
-    }
-
-    // Also try full submitLead (may not complete during unload)
+    // Try full submitLead (handles all channels)
     submitLead(leadPayload).catch(() => {});
   };
 

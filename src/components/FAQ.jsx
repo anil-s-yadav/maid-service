@@ -8,39 +8,39 @@ export const FAQ = () => {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-brand-navy mb-4 font-heading">Frequently Asked Questions</h2>
-          <p className="text-slate-600 text-lg">Got questions about hiring a maid through {BRAND.name}? We've got answers.</p>
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0a1128] mb-3 font-heading">Frequently Asked Questions</h2>
+          <p className="text-slate-500 text-sm">Got questions about hiring a maid through {BRAND.name}? We've got answers.</p>
         </div>
 
         <div 
           ref={ref}
-          className={`max-w-3xl mx-auto space-y-4 transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out}`}
+          className={`max-w-3xl mx-auto space-y-3 transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out}`}
         >
           {FAQ_DATA.map((faq, index) => (
             <div 
               key={index} 
-              className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === index ? 'border-brand-teal shadow-md' : 'border-slate-200 hover:border-brand-teal/50'}`}
+              className={`bg-white border rounded-xl overflow-hidden transition-all duration-300 ${openIndex === index ? 'border-brand-gold shadow-[0_4px_15px_rgba(217,119,6,0.1)]' : 'border-slate-200 hover:border-brand-gold/50 shadow-sm'}`}
             >
               <button 
                 onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                className="w-full px-5 py-3.5 flex items-center justify-between text-left focus:outline-none"
               >
-                <span className={`font-semibold text-lg font-heading ${openIndex === index ? 'text-brand-teal' : 'text-brand-navy'}`}>
+                <span className={`font-semibold text-sm font-heading ${openIndex === index ? 'text-brand-gold' : 'text-[#0a1128]'}`}>
                   {faq.question}
                 </span>
-                <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-brand-teal text-white' : 'bg-slate-100 text-slate-500'}`}>
-                  {openIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                <div className={`shrink-0 ml-4 w-6 h-6 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-brand-gold text-white shadow-sm' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>
+                  {openIndex === index ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                 </div>
               </button>
               
               <div 
-                className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
+                className={`px-5 overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-96 pb-4 opacity-100' : 'max-h-0 opacity-0'}`}
               >
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-[13px] text-slate-600 leading-relaxed">
                   {faq.answer}
                 </p>
               </div>

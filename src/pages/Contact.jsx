@@ -70,25 +70,25 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
       {/* Hero Header */}
-      <section className="relative pt-32 pb-20 bg-brand-navy overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-[#0a1128] overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-teal/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-6 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
             <MessageSquare className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium text-white tracking-wide">24/7 Support Available</span>
+            <span className="text-sm font-medium text-brand-gold tracking-wide">24/7 Support Available</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white mb-6">
-            Let's Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-blue-400">Touch</span>
+            Let's Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">Touch</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Whether you need a reliable maid, an experienced cook, or just have a question about our services, our expert team in Mumbai is ready to help you.
+            Whether you need a reliable premium maid, an experienced cook, or just have a question about our services, our expert team in Mumbai is ready to help you.
           </p>
         </div>
       </section>

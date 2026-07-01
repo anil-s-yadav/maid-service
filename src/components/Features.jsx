@@ -7,7 +7,7 @@ export const Features = () => {
   const features = [
     {
       icon: <BadgeCheck className="w-5 h-5 text-brand-gold" />,
-      title: "100% Verified Maids",
+      title: "100% Background Verified",
       description: "Strict 5-step background check including Aadhaar and police verification."
     },
     {
@@ -18,7 +18,7 @@ export const Features = () => {
     {
       icon: <RefreshCw className="w-5 h-5 text-brand-gold" />,
       title: "Free Replacements",
-      description: "Up to 3 free replacements within your contract period, no questions asked."
+      description: "Not happy? We provide quick free replacements within 24 hours."
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-brand-gold" />,
@@ -28,74 +28,72 @@ export const Features = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 bg-[#0a1128] relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#0a1128] relative overflow-hidden">
       {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-      
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
-          
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+
           {/* Text Side */}
           <div ref={ref} className={`transition-all duration-1000 ${inView ? animations.slideRight.in : animations.slideRight.out}`}>
-            
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.05] backdrop-blur-md border border-brand-gold/20 mb-5">
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.05] border border-white/10 mb-6 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-              <span className="text-xs font-bold text-brand-gold tracking-widest uppercase">Why Choose Us</span>
+              <span className="text-[11px] font-bold text-slate-300 tracking-wider uppercase">Why Choose Us</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5 font-heading leading-tight">
-              Why Mumbai Chooses <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">Verified Maids</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading leading-[1.2]">
+              Why Mumbai Chooses <br/><span className="text-brand-gold">Verified Maids</span>
             </h2>
-            <p className="text-slate-300 text-sm md:text-base mb-8 max-w-lg leading-relaxed">
+            <p className="text-slate-400 text-[15px] mb-10 max-w-lg leading-relaxed">
               We take the stress out of hiring domestic help. Our rigorous selection process ensures you only get the most reliable and skilled professionals in the city.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-8">
               {features.map((feature, idx) => (
-                <div key={idx} className="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/[0.05] hover:border-brand-gold/30 transition-all duration-300 group shadow-lg">
-                  <div className="w-10 h-10 bg-brand-gold/10 rounded-xl flex items-center justify-center border border-brand-gold/20 mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(217,119,6,0.1)]">
+                <div key={idx} className="flex gap-4 items-start group">
+                  <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/30 transition-all duration-300 shadow-sm">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base font-bold text-white font-heading mb-2">{feature.title}</h3>
-                  <p className="text-slate-400 text-xs leading-relaxed">{feature.description}</p>
+                  <div className="pt-1">
+                    <h3 className="text-[15px] font-bold text-white font-heading mb-1.5 group-hover:text-brand-gold transition-colors">{feature.title}</h3>
+                    <p className="text-slate-400 text-[13px] leading-relaxed">{feature.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Image Side */}
-          <div className={`relative transition-all duration-1000 delay-300 ${inView ? animations.slideLeft.in : animations.slideLeft.out} lg:pl-10 mt-10 lg:mt-0`}>
-            <div className="absolute inset-0 bg-gradient-to-tr from-brand-gold/20 to-brand-teal/20 rounded-3xl transform rotate-3 scale-105 transition-transform ml-10"></div>
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-              <div className="absolute inset-0 bg-[#0a1128]/20 mix-blend-overlay z-10"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80" 
-                alt="Professional cleaning" 
-                className="w-full h-[400px] md:h-[500px] object-cover relative z-0"
-              />
-            </div>
-            
-            {/* Floating Badge */}
-            <div className="absolute -bottom-6 left-0 md:-left-6 bg-[#0a1128]/80 backdrop-blur-xl border border-white/20 p-4 md:p-5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.6)] z-20 flex items-center gap-3 md:gap-4">
-              <div className="bg-brand-gold/20 p-2 md:p-2.5 rounded-xl border border-brand-gold/30">
-                <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-brand-gold" />
+          <div className={`relative transition-all duration-1000 delay-300 ${inView ? animations.slideLeft.in : animations.slideLeft.out} lg:pl-10 mt-12 lg:mt-0 flex justify-center`}>
+            <div className="relative w-full max-w-[400px]">
+              {/* Radial glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-gold/10 rounded-full blur-[60px]"></div>
+              
+              <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+                <img
+                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80"
+                  alt="Professional cleaning"
+                  className="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                />
               </div>
-              <div>
-                <p className="font-bold text-base md:text-lg text-white">10,000+</p>
-                <p className="text-brand-gold text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Happy Families</p>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-4 md:-left-8 bg-[#0a1128] border border-white/10 p-4 rounded-2xl shadow-2xl z-20 flex items-center gap-4 hover:-translate-y-1 transition-transform">
+                <div className="bg-brand-gold/10 p-3 rounded-xl border border-brand-gold/20">
+                  <ShieldCheck className="w-6 h-6 text-brand-gold" />
+                </div>
+                <div className="pr-2">
+                  <p className="font-bold text-xl text-white font-heading leading-tight">10,000+</p>
+                  <p className="text-brand-gold text-[10px] font-bold tracking-wider uppercase mt-0.5">Happy Families</p>
+                </div>
               </div>
             </div>
           </div>
 
         </div>
-      </div>
-      
-      {/* Wave transition to next section */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
-        <svg className="relative block w-full h-[40px] md:h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.98,131.2,201.2,122.9,243.43,117.92,283.47,100,321.39,56.44Z" fill="#ffffff"></path>
-        </svg>
       </div>
     </section>
   );

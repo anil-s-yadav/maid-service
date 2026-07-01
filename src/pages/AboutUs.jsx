@@ -59,7 +59,7 @@ const AboutUsPage = () => {
   const [timelineRef, timelineInView] = useInView({ threshold: 0.1 });
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <SEOHead
         title="About Us — Mumbai's Most Trusted Domestic Help Agency"
         description={`Learn about ${BRAND.name}, Mumbai's leading verified maid and domestic help placement agency. 100% Aadhaar-verified, background-checked house maids, cooks, babysitters, nannies, drivers, and elder care professionals. Serving 10,000+ families across Mumbai since ${BRAND.foundedYear}.`}
@@ -67,25 +67,25 @@ const AboutUsPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pb-28 bg-brand-navy overflow-hidden">
+      <section className="relative pt-32 pb-20 md:pb-28 bg-[#0a1128] overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-teal/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4"></div>
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-6 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
               <Sparkles className="w-4 h-4 text-brand-gold" />
-              <span className="text-sm font-medium text-white tracking-wide">Trusted Since {BRAND.foundedYear}</span>
+              <span className="text-sm font-medium text-brand-gold tracking-wide">Trusted Since {BRAND.foundedYear}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white mb-6 leading-tight">
-              We Are <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-blue-400">{BRAND.name}</span>
+              We Are <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">{BRAND.name}</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10">
-              Mumbai's most trusted domestic help agency. We connect families with rigorously background-verified maids, cooks, babysitters, nannies, and caregivers — placing your safety and comfort above everything.
+              Mumbai's most trusted premium domestic help agency. We connect families with rigorously background-verified professionals — placing your safety and comfort above everything.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-brand-teal hover:bg-teal-500 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-brand-teal/30 transition-all hover:-translate-y-0.5">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-gold to-amber-400 hover:from-amber-400 hover:to-amber-500 text-[#0a1128] font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-0.5">
                 Get Free Consultation <ArrowRight className="w-5 h-5" />
               </Link>
               <a href={`tel:${BRAND.phoneClean}`} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-8 rounded-full transition-all">
@@ -102,11 +102,11 @@ const AboutUsPage = () => {
           <div className="bg-white rounded-2xl shadow-xl border border-slate-100 grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 divide-x-0 lg:divide-x divide-slate-100">
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-4 p-6 md:p-8 justify-center">
-                <div className="bg-brand-teal/10 p-3 rounded-xl shrink-0">
-                  <stat.icon className="w-6 h-6 text-brand-teal" />
+                <div className="bg-brand-gold/10 p-3 rounded-xl shrink-0">
+                  <stat.icon className="w-6 h-6 text-brand-gold" />
                 </div>
                 <div>
-                  <p className="text-2xl md:text-3xl font-bold text-brand-navy font-heading">{stat.number}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-[#0a1128] font-heading">{stat.number}</p>
                   <p className="text-xs md:text-sm text-slate-500 font-medium">{stat.label}</p>
                 </div>
               </div>
@@ -261,6 +261,8 @@ const AboutUsPage = () => {
         </div>
       </section>
 
+      <VerificationProcess />
+
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6">
@@ -285,8 +287,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
-      <VerificationProcess />
 
       <Footer />
       <FloatingWhatsApp />

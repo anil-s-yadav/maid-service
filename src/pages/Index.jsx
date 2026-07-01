@@ -2,7 +2,7 @@
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Features } from "@/components/Features";
-import { TrustBanner } from "@/components/TrustBanner";
+// import { TrustBanner } from "@/components/TrustBanner";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { VerificationProcess } from "@/components/VerificationProcess";
 import { FAQ } from "@/components/FAQ";
@@ -15,17 +15,17 @@ import SEOHead from "@/components/SEOHead";
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
-      <SEOHead 
-        title="Home" 
-        description="Verified Maids provides trusted, background-checked house maids, cooks, babysitters, nannies, and caregivers in Mumbai. 24-hour placement with free replacement." 
+      <SEOHead
+        title="Home"
+        description="Verified Maids provides trusted, background-checked house maids, cooks, babysitters, nannies, and caregivers in Mumbai. 24-hour placement with free replacement."
       />
       <Header />
       <Hero />
-      <TrustBanner />
+      {/* <TrustBanner /> */}
       <Features />
       <Services />
-      <ComparisonTable />
       <VerificationProcess />
+      <ComparisonTable />
       <Testimonials />
       <FAQ />
       <Footer />

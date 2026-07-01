@@ -36,7 +36,7 @@ const ServicesPage = () => {
   const [gridRef, gridInView] = useInView({ threshold: 0.05 });
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <SEOHead
         title="Our Services — Maid, Cook, Babysitter, Nanny, Driver & More"
         description={`${BRAND.name} offers 8+ professional domestic help services in Mumbai — house maids, cooks, babysitters, nannies, japa maids, patient care, elderly care, and drivers. All 100% Aadhaar verified.`}
@@ -44,24 +44,24 @@ const ServicesPage = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-brand-navy overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-[#0a1128] overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-teal/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-6 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
             <Sparkles className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium text-white tracking-wide">8+ Specialized Services</span>
+            <span className="text-sm font-medium text-brand-gold tracking-wide">8+ Premium Services</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white mb-5 leading-tight max-w-4xl mx-auto">
-            Domestic Help Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-blue-400">You Can Trust</span>
+            Domestic Help Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">You Can Trust</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
             Every professional is Aadhaar-verified, background-checked, medically screened, and trained by our team before placement.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-brand-teal hover:bg-teal-500 text-white font-bold py-3.5 px-7 rounded-full shadow-lg shadow-brand-teal/30 transition-all hover:-translate-y-0.5 text-sm">
+            <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-gold to-amber-400 hover:from-amber-400 hover:to-amber-500 text-[#0a1128] font-bold py-3.5 px-7 rounded-full shadow-[0_0_20px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-0.5 text-sm">
               Get Free Consultation <ArrowRight className="w-4 h-4" />
             </Link>
             <a href={`tel:${BRAND.phoneClean}`} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-3.5 px-7 rounded-full transition-all text-sm">

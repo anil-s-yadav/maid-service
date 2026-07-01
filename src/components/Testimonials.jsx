@@ -1,8 +1,27 @@
-import { Star, Quote, Heart } from "lucide-react";
+import { useRef } from "react";
+import { Star, Quote, Heart, CheckCircle2 } from "lucide-react";
 import { useInView, animations } from "../hooks/useInView";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
+const colorThemes = [
+  { bg: 'bg-[#f0fdf9]', border: 'border-[#ccfbf1]', iconBg: 'bg-[#ccfbf1]', text: 'text-[#0f766e]' }, // Teal
+  { bg: 'bg-[#fffbeb]', border: 'border-[#fef3c7]', iconBg: 'bg-[#fef3c7]', text: 'text-[#b45309]' }, // Orange
+  { bg: 'bg-[#fdf2f8]', border: 'border-[#fce7f3]', iconBg: 'bg-[#fce7f3]', text: 'text-[#be185d]' }, // Pink
+  { bg: 'bg-[#faf5ff]', border: 'border-[#f3e8ff]', iconBg: 'bg-[#f3e8ff]', text: 'text-[#7e22ce]' }, // Purple
+];
 
 export const Testimonials = () => {
   const [ref, inView] = useInView({ threshold: 0.1 });
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
 
   const reviews = [
     {
@@ -10,92 +29,128 @@ export const Testimonials = () => {
       location: "Andheri West, Mumbai",
       text: "Getting a reliable maid in Mumbai was a nightmare until I found Verified Maids. The maid they sent is professional, punctual, and very good at her job.",
       rating: 5,
-      service: "Full-time Maid",
-      image: "https://i.pravatar.cc/150?img=47"
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Rahul Desai",
       location: "Powai, Mumbai",
       text: "The cook we hired through them makes excellent Maharashtrian food. The best part is the background verification which gives us complete peace of mind.",
       rating: 5,
-      service: "Cook",
-      image: "https://i.pravatar.cc/150?img=11"
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Sneha Patel",
       location: "Bandra, Mumbai",
       text: "We needed a Japa Maid urgently after my delivery. They arranged one within 24 hours and she was incredibly well-trained and helpful with the newborn.",
       rating: 5,
-      service: "Japa Maid",
-      image: "https://i.pravatar.cc/150?img=32"
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Karan Mehta",
+      location: "Juhu, Mumbai",
+      text: "Their driver service is top-notch. The driver is polite, knows all the routes well, and drives very safely. Highly recommend for anyone in Mumbai.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Anjali Gupta",
+      location: "Thane, Mumbai",
+      text: "I hired an elderly care professional for my mother. She is extremely caring, patient, and handles everything wonderfully. Truly grateful for this service.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      name: "Vikram Singh",
+      location: "Navi Mumbai",
+      text: "A very professional agency. Replacements are hassle-free as promised. The cleaning staff is meticulous and entirely trustworthy.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80"
     }
   ];
 
   return (
-    <section className="pt-24 pb-28 md:pt-28 md:pb-32 bg-[#0a1128] relative overflow-hidden">
-      {/* Top wave transition (from white) */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
-        <svg className="relative block w-full h-[40px] md:h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.98,131.2,201.2,122.9,243.43,117.92,283.47,100,321.39,56.44Z" fill="#ffffff"></path>
-        </svg>
-      </div>
-
+    <section className="py-12 md:py-16 bg-white border-t border-slate-100 relative overflow-hidden">
       {/* Subtle Background Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-teal/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white font-semibold text-xs mb-4 border border-white/20">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-xs mb-3 border border-brand-gold/20 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
             <Heart className="w-4 h-4 text-brand-gold" />
-            <span>Customer Love</span>
+            <span className="tracking-widest uppercase">Customer Love</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0a1128] mb-3 font-heading">
             Trusted by Mumbai Families
           </h2>
-          <p className="text-slate-300 text-sm md:text-base">
-            Don't just take our word for it. Here's what families across Mumbai have to say about our services.
+          <p className="text-slate-500 text-sm">
+            Don't just take our word for it. Here's what families across Mumbai have to say.
           </p>
         </div>
 
         <div 
           ref={ref}
-          className={`grid md:grid-cols-3 gap-6 max-w-6xl mx-auto transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out}`}
+          className={`w-full max-w-[1400px] mx-auto transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out} py-4 px-4 md:px-8`}
         >
-          {reviews.map((review, idx) => (
-            <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/10 relative flex flex-col group hover:bg-white/10 transition-colors">
-              <div className="absolute -top-4 right-6 w-10 h-10 bg-brand-teal rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                <Quote className="w-4 h-4 text-white fill-white" />
-              </div>
-              
-              <div className="flex gap-1 mb-5">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-brand-gold fill-brand-gold" />
-                ))}
-              </div>
-              
-              <p className="text-slate-300 mb-6 leading-relaxed text-sm md:text-base flex-grow">
-                "{review.text}"
-              </p>
-              
-              <div className="flex items-center gap-4 pt-5 border-t border-white/10">
-                <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full border-2 border-brand-teal/50 object-cover" />
-                <div>
-                  <h4 className="font-bold text-white font-heading text-sm md:text-base">{review.name}</h4>
-                  <p className="text-xs text-slate-400">{review.location}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[plugin.current]}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {reviews.map((review, idx) => {
+                const theme = colorThemes[idx % colorThemes.length];
+                return (
+                <CarouselItem key={idx} className="pl-6 md:basis-1/2 lg:basis-1/4 pt-4 pb-8">
+                  <div className={`bg-white rounded-[24px] border ${theme.border} overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
+                    
+                    {/* Top Section */}
+                    <div className={`${theme.bg} p-5 md:p-6 flex items-center gap-4`}>
+                      <div className={`w-12 h-12 rounded-2xl ${theme.iconBg} flex items-center justify-center shrink-0 p-[2px]`}>
+                        <img src={review.image} alt={review.name} className="w-full h-full rounded-[14px] object-cover" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-brand-navy font-heading text-[16px] tracking-tight">{review.name}</h4>
+                        <p className="text-slate-500 text-[12px] mt-0.5 font-medium">{review.location}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Section */}
+                    <div className="p-5 md:p-6 bg-white flex-grow flex flex-col">
+                      <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">What They Said</h5>
+                      
+                      <div className="space-y-3 mb-6 flex-grow">
+                        <p className="text-slate-600 text-[13px] md:text-[14px] leading-relaxed">
+                          "{review.text}"
+                        </p>
+                      </div>
+                      
+                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100/80">
+                        <div className="flex items-center gap-1">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
+                        <span className={`text-[12px] font-bold ${theme.text} flex items-center gap-1`}>
+                          Verified <CheckCircle2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
 
-      {/* Bottom wave transition (to slate-50) */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
-        <svg className="relative block w-full h-[40px] md:h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.98,131.2,201.2,122.9,243.43,117.92,283.47,100,321.39,56.44Z" fill="#f8fafc"></path>
-        </svg>
+                  </div>
+                </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex -left-2 md:-left-6 bg-white hover:bg-slate-50 border-slate-200 shadow-md text-[#0a1128]" />
+            <CarouselNext className="hidden md:flex -right-2 md:-right-6 bg-white hover:bg-slate-50 border-slate-200 shadow-md text-[#0a1128]" />
+          </Carousel>
+        </div>
       </div>
     </section>
   );

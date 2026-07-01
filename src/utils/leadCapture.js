@@ -84,10 +84,15 @@ async function sendDiscordNotification(data) {
   const isPartial = data.type === 'partial';
   const color = isPartial ? 16753920 : 10494192; // Orange for partial, Purple for full
 
+  const phoneStr = data.phone ? `[**${data.phone}**](tel:+91${data.phone.replace(/\D/g, '')})` : '**NA**';
+  const emailStr = data.email ? `**${data.email}**` : '**NA**';
+  const serviceStr = data.service ? `**${data.service}**` : '**NA**';
+  const locationStr = data.location ? `**${data.location}**` : '**NA**';
+
   const embed = {
     title: isPartial ? `⚠️ Partial Lead — Source: ${data.source || '/'}` : `🎉 New Lead - Source: ${data.source || 'NA'}`,
     color,
-    description: `👤 Name: **${data.name || 'NA'}**\n📱 Phone: **${data.phone || ''}**\n📧 Email: **${data.email || ''}**\n🏠 Service: **${data.service || ''}**\n📍 Location: **${data.location || ''}**`,
+    description: `👤 Name: **${data.name || 'NA'}**\n📱 Phone: ${phoneStr}\n📧 Email: ${emailStr}\n🏠 Service: ${serviceStr}\n📍 Location: ${locationStr}`,
     footer: { text: `Verified Maids Lead • ${data.timestamp}` },
   };
 
