@@ -29,42 +29,42 @@ export const Testimonials = () => {
       location: "Andheri West, Mumbai",
       text: "Getting a reliable maid in Mumbai was a nightmare until I found Verified Maids. The maid they sent is professional, punctual, and very good at her job.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Rahul Desai",
       location: "Powai, Mumbai",
       text: "The cook we hired through them makes excellent Maharashtrian food. The best part is the background verification which gives us complete peace of mind.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Sneha Patel",
       location: "Bandra, Mumbai",
       text: "We needed a Japa Maid urgently after my delivery. They arranged one within 24 hours and she was incredibly well-trained and helpful with the newborn.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Karan Mehta",
       location: "Juhu, Mumbai",
       text: "Their driver service is top-notch. The driver is polite, knows all the routes well, and drives very safely. Highly recommend for anyone in Mumbai.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Anjali Gupta",
       location: "Thane, Mumbai",
       text: "I hired an elderly care professional for my mother. She is extremely caring, patient, and handles everything wonderfully. Truly grateful for this service.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150&auto=format&fit=crop&q=80"
     },
     {
       name: "Vikram Singh",
       location: "Navi Mumbai",
       text: "A very professional agency. Replacements are hassle-free as promised. The cleaning staff is meticulous and entirely trustworthy.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1557862921-37829c790f19?w=150&auto=format&fit=crop&q=80"
     }
   ];
 

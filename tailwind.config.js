@@ -94,7 +94,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 3s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'marquee': 'marquee 50s linear infinite',
+        'marquee': 'marquee 120s linear infinite',
       }
     }
   },

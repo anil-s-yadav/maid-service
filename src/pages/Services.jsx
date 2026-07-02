@@ -4,7 +4,7 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import SEOHead from "@/components/SEOHead";
 import { SERVICES, BRAND } from "@/utils/constants";
 import { Link } from "react-router-dom";
-import { 
+import {
   ArrowRight, Sparkles, CheckCircle2, Phone,
   Home, ChefHat, Baby, Heart, HeartPulse, Stethoscope, Users, Car
 } from "lucide-react";
@@ -31,6 +31,17 @@ const colorMap = {
   'elderly-care': { bg: 'bg-green-50', text: 'text-green-600', gradient: 'from-green-100/60 to-green-50/30' },
   'driver': { bg: 'bg-indigo-50', text: 'text-indigo-600', gradient: 'from-indigo-100/60 to-indigo-50/30' },
 };
+
+const topProfiles = [
+  { name: "Priya Kadam", role: "House Maid", image: "https://plus.unsplash.com/premium_photo-1661964243697-734d7bd664ff?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Sujata Gupta", role: "Expert Cook", image: "https://plus.unsplash.com/premium_photo-1681483534373-2d9250d3e1e9?w=400&h=500&fit=crop" },
+  { name: "Anjali Jadhav", role: "Babysitter", image: "https://images.unsplash.com/photo-1780329944297-b83645a87dd4?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Meera Solanki", role: "Nanny", image: "https://images.unsplash.com/photo-1606961339352-e9897cea6b92?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Neha Kewat", role: "Japa Maid", image: "https://images.unsplash.com/photo-1714595747121-7067706bc557?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Kavita Nehe", role: "Patient Care", image: "https://plus.unsplash.com/premium_photo-1682089874677-3eee554feb19?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Sunita Kamble", role: "Elderly Care", image: "https://plus.unsplash.com/premium_photo-1682089949039-131eca5d7285?q=80&w=400&h=500&auto=format&fit=crop" },
+  { name: "Ramesh Kori", role: "Professional Driver", image: "https://plus.unsplash.com/premium_photo-1691032016317-639a11f71b85?q=80&w=400&h=500&auto=format&fit=crop" },
+];
 
 const ServicesPage = () => {
   const [gridRef, gridInView] = useInView({ threshold: 0.05 });
@@ -129,6 +140,56 @@ const ServicesPage = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Profiles Carousel */}
+      <section className="py-16 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold font-heading text-brand-navy mb-3">Meet Our Verified Professionals</h2>
+          <p className="text-slate-500 text-sm max-w-2xl mx-auto">Real profiles of our thoroughly vetted, trained, and highly experienced domestic staff ready to serve your home.</p>
+        </div>
+
+        <div className="flex w-fit animate-marquee hover:[animation-play-state:paused] gap-6 px-4 py-4">
+          {/* We duplicate the array to create a seamless infinite loop */}
+          {[...topProfiles, ...topProfiles, ...topProfiles].map((profile, i) => (
+            <div
+              key={i}
+              className="group relative flex flex-col w-[260px] h-[340px] rounded-2xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-xl hover:border-brand-gold/30 transition-all duration-300 hover:-translate-y-2 shrink-0 cursor-default"
+            >
+              {/* Colored Top Bar */}
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-gold to-amber-500 z-20"></div>
+
+              {/* Full-card Image */}
+              <img
+                src={profile.image}
+                alt={profile.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-0"
+              />
+
+              {/* Gradient Overlay for contrast behind the glass */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+              {/* Light Glassmorphic Info Box */}
+              <div className="absolute bottom-3 inset-x-3 z-20 p-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/50 shadow-lg flex flex-col items-center text-center group-hover:bg-white/90 transition-colors">
+                <h3 className="text-base font-bold text-brand-navy font-heading leading-tight mb-0.5 group-hover:text-brand-gold transition-colors">
+                  {profile.name}
+                </h3>
+                <p className="text-xs font-semibold text-brand-gold mb-2">
+                  {profile.role}
+                </p>
+
+                {/* Verified Badge */}
+                <div className="flex items-center gap-1 bg-green-50/80 border border-green-200/60 px-2 py-1 rounded-full w-full justify-center">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                  <span className="text-[10px] font-bold text-green-700 uppercase tracking-widest">Verified</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
