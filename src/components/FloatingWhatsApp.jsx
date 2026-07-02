@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MessageCircle, X, Calculator } from 'lucide-react';
+import { X, Calculator } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Link } from 'react-router-dom';
 import { BRAND, getWhatsAppLink } from '../utils/constants';
 
@@ -48,7 +49,7 @@ export const FloatingWhatsApp = () => {
       >
         <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-20 -z-10"></div>
         <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center shrink-0 backdrop-blur-sm">
-          <MessageCircle size={18} className="text-white drop-shadow-sm" fill="currentColor" />
+          <WhatsAppIcon className="w-[18px] h-[18px] text-white drop-shadow-sm" fill="currentColor" />
         </div>
         <span className="font-bold text-xs whitespace-nowrap drop-shadow-sm">Chat with us</span>
       </a>

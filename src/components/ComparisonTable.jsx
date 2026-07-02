@@ -1,4 +1,4 @@
-import { CheckCircle2, XCircle, ShieldCheck } from "lucide-react";
+import { CheckCircle2, XCircle, ShieldCheck, HelpCircle } from "lucide-react";
 import { useInView, animations } from "../hooks/useInView";
 
 export const ComparisonTable = () => {
@@ -45,9 +45,10 @@ export const ComparisonTable = () => {
 
     if (value === "Sometimes") {
       return (
-        <div className="flex items-center gap-1.5 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800 bg-orange-50 text-orange-400 px-3 py-1 rounded-full border border-orange-100 shadow-sm transition-colors">
-          <XCircle className="w-4 h-4" />
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider hidden sm:inline-block">Sometimes</span>
+        <div className="flex items-center justify-center gap-1.5 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800 bg-orange-50 text-orange-400 px-2 sm:px-3 py-1 rounded-full border border-orange-100 shadow-sm transition-colors">
+          <HelpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 hidden sm:block" />
+          <span className="text-[9px] font-bold uppercase tracking-wider sm:hidden">Maybe</span>
+          <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline-block">Sometimes</span>
         </div>
       );
     }

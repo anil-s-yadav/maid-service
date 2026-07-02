@@ -4,7 +4,8 @@ import { SERVICES, BRAND, AREAS_SERVED } from '../utils/constants';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import SEOHead from '../components/SEOHead';
-import { CheckCircle2, Phone, MessageCircle } from 'lucide-react';
+import { CheckCircle2, Phone } from 'lucide-react';
+import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { getWhatsAppLink } from '../utils/constants';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
@@ -94,7 +95,7 @@ const ServiceDetail = () => {
                     <Phone className="w-5 h-5" /> Call Now
                   </a>
                   <a href={getWhatsAppLink(`Hi, I need a ${service.name} in Mumbai.`)} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 rounded-xl font-bold transition-all shadow-md">
-                    <MessageCircle className="w-5 h-5" /> WhatsApp
+                    <WhatsAppIcon className="w-5 h-5" /> WhatsApp
                   </a>
                 </div>
               </div>
