@@ -22,14 +22,14 @@ const iconMap = {
 };
 
 const colorMap = {
-  'house-maid': { bg: 'bg-brand-gold/10', text: 'text-brand-gold', gradient: 'from-brand-gold/20 to-brand-gold/5' },
+  'house-maid': { bg: 'bg-amber-50', text: 'text-amber-600', gradient: 'from-amber-100/60 to-amber-50/30' },
   'cook': { bg: 'bg-orange-50', text: 'text-orange-600', gradient: 'from-orange-100/60 to-orange-50/30' },
   'babysitter': { bg: 'bg-pink-50', text: 'text-pink-600', gradient: 'from-pink-100/60 to-pink-50/30' },
   'nanny': { bg: 'bg-purple-50', text: 'text-purple-600', gradient: 'from-purple-100/60 to-purple-50/30' },
   'japa-maid': { bg: 'bg-rose-50', text: 'text-rose-600', gradient: 'from-rose-100/60 to-rose-50/30' },
   'patient-care': { bg: 'bg-blue-50', text: 'text-blue-600', gradient: 'from-blue-100/60 to-blue-50/30' },
   'elderly-care': { bg: 'bg-green-50', text: 'text-green-600', gradient: 'from-green-100/60 to-green-50/30' },
-  'driver': { bg: 'bg-amber-50', text: 'text-amber-600', gradient: 'from-amber-100/60 to-amber-50/30' },
+  'driver': { bg: 'bg-indigo-50', text: 'text-indigo-600', gradient: 'from-indigo-100/60 to-indigo-50/30' },
 };
 
 const ServicesPage = () => {

@@ -63,10 +63,10 @@ export const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
+
           {/* Left: Text Content */}
           <div ref={titleRef} className={`lg:col-span-6 xl:col-span-6 transition-all duration-1000 ${titleInView ? animations.fadeUp.in : animations.fadeUp.out}`}>
-            
+
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full dark:bg-white/[0.08] bg-brand-gold/10 backdrop-blur-md border border-brand-gold/30 mb-5 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
               <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
               <span className="text-[11px] font-bold text-brand-gold tracking-widest uppercase">Mumbai's Premium Agency</span>
@@ -76,23 +76,24 @@ export const Hero = () => {
               Hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-amber-400 to-brand-gold">Trusted & Verified</span><br />
               Domestic Help
             </h1>
-            
+
             <p className="text-base md:text-lg dark:text-slate-300 text-slate-600 mb-8 max-w-xl leading-relaxed transition-colors">
               Experience peace of mind with our 100% Aadhaar-verified, medically screened, and professionally trained maids, cooks, and nannies.
             </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">  <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
+              <BadgeCheck className="w-4 h-4 text-brand-gold" />
+              <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Police Verified</span>
+            </div>
               <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
                 <Shield className="w-4 h-4 text-brand-gold" />
                 <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Aadhaar Verified</span>
               </div>
-              <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
-                <BadgeCheck className="w-4 h-4 text-brand-gold" />
-                <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Police Verified</span>
-              </div>
+
+
               <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
                 <Star className="w-4 h-4 text-brand-gold" />
-                <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">3-Day Trained</span>
+                <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Fully Trained</span>
               </div>
             </div>
 

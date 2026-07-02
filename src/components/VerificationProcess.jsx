@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { useInView, animations } from "../hooks/useInView";
 import { Link } from "react-router-dom";
+import { BRAND } from "../utils/constants";
 
 const verificationSteps = [
   {
@@ -63,46 +64,54 @@ export const VerificationProcess = () => {
   return (
     <>
       {/* Section 1: How We Verify */}
-      <section className="py-10 md:py-16 dark:bg-[#0f172a] bg-white relative overflow-hidden border-t dark:border-brand-gold/20 border-slate-100 shadow-[inset_0_10px_30px_rgba(0,0,0,0.5)] dark:shadow-[inset_0_10px_30px_rgba(0,0,0,0.5)] transition-colors duration-500">
+      <section className="py-10 md:py-16 dark:bg-[#0f172a] bg-white relative overflow-hidden border-t dark:border-brand-gold/20 border-slate-100 transition-colors duration-500">
         {/* Decorative background */}
-        <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-gold/8 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 mb-3">
               <ShieldCheck className="w-3.5 h-3.5 text-brand-gold" />
-              <span className="text-[11px] font-semibold text-brand-gold tracking-wide uppercase">Our 6-Step Verification Process</span>
+              <span className="text-[10px] md:text-xs font-bold text-brand-gold tracking-widest uppercase">Our 6-Step Verification</span>
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading dark:text-white text-slate-900 mb-3 leading-tight transition-colors">
-              How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-brand-gold">Verify & Certify</span> Every Maid
+              How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-500">Verify & Certify</span> Every Maid
             </h2>
-            <p className="dark:text-slate-400 text-slate-600 text-[13px] md:text-sm max-w-2xl mx-auto transition-colors">
-              No shortcuts. No compromises. Every professional in our network passes through a rigorous 6-step screening and training process before reaching your home.
+            <p className="dark:text-slate-400 text-slate-600 text-xs md:text-sm max-w-xl mx-auto transition-colors">
+              No shortcuts. No compromises. Every professional passes through our rigorous 6-step screening process.
             </p>
           </div>
 
           {/* Steps Grid */}
           <div
             ref={stepsRef}
-            className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto transition-all duration-1000 ${stepsInView ? animations.fadeUp.in : animations.fadeUp.out}`}
+            className={`grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto transition-all duration-1000 ${stepsInView ? animations.fadeUp.in : animations.fadeUp.out}`}
           >
             {verificationSteps.map((item, idx) => (
               <div
                 key={idx}
-                className="relative dark:bg-slate-800/80 bg-slate-50 backdrop-blur-md rounded-xl p-4 md:p-5 border dark:border-white/10 border-slate-200 dark:hover:bg-slate-800 hover:bg-white dark:hover:border-brand-gold/30 hover:border-brand-gold/50 transition-all group shadow-sm hover:shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+                className="group relative dark:bg-[#1e293b] bg-white rounded-xl md:rounded-2xl p-3.5 md:p-5 border dark:border-white/10 border-slate-200/80 hover:border-brand-gold/40 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
               >
-                {/* Step Number */}
-                <div className="absolute top-4 right-4 text-3xl font-black dark:text-white/[0.04] text-slate-900/[0.04] font-heading leading-none select-none transition-colors">
+                {/* Colored top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-gold to-amber-400 opacity-60"></div>
+
+                {/* Step number watermark */}
+                <div className="absolute -bottom-2 -right-1 text-4xl md:text-5xl font-black dark:text-white/[0.03] text-brand-navy/[0.04] font-heading leading-none select-none">
                   {item.step}
                 </div>
 
-                <div className="bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 p-2.5 rounded-xl w-fit mb-3 border border-brand-gold/20 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-5 h-5 text-brand-gold" />
+                <div className="relative z-10 flex gap-3 items-start">
+                  {/* Step badge */}
+                  <div className="bg-gradient-to-br from-brand-gold to-amber-500 w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 shadow-md">
+                    <item.icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3 className="dark:text-white text-brand-navy font-bold font-heading text-[13px] md:text-[15px] leading-snug mb-1 transition-colors">{item.title}</h3>
+                    <p className="dark:text-slate-400 text-slate-500 text-[11px] md:text-xs leading-relaxed transition-colors line-clamp-3">{item.description}</p>
+                  </div>
                 </div>
-                <h3 className="dark:text-white text-slate-900 font-bold font-heading text-[15px] mb-1.5 transition-colors">{item.title}</h3>
-                <p className="dark:text-slate-400 text-slate-600 text-[13px] leading-relaxed transition-colors">{item.description}</p>
               </div>
             ))}
           </div>
@@ -162,8 +171,13 @@ export const VerificationProcess = () => {
                     <Award className="w-64 h-64 text-brand-navy" />
                   </div>
 
+                  {/* Brand Logo Top Left */}
+                  <div className="absolute top-5 left-5 md:top-7 md:left-7 z-20">
+                    <img src={BRAND.logo} alt={BRAND.name} className="h-12 md:h-16 w-auto object-contain rounded-xl drop-shadow-md" />
+                  </div>
+
                   <div className="relative z-10">
-                    <h4 className="text-brand-gold font-bold tracking-widest text-[10px] md:text-xs uppercase mb-4">Verified Maids™</h4>
+                    <h4 className="text-brand-gold font-bold tracking-widest text-[10px] md:text-xs uppercase mb-4 mt-2 md:mt-0">Verified Maids™</h4>
                     
                     <h3 className="text-2xl md:text-3xl font-bold text-brand-navy mb-2" style={{ fontFamily: 'Georgia, serif' }}>
                       Certificate of Verification
