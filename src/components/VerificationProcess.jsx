@@ -146,68 +146,69 @@ export const VerificationProcess = () => {
               ref={certRef}
               className={`transition-all duration-1000 ${certInView ? animations.fadeUp.in : animations.fadeUp.out}`}
             >
-              <div className="bg-gradient-to-br from-[#121c3a] to-[#0a1128] rounded-[24px] p-6 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-brand-gold/20 max-w-[460px] mx-auto lg:ml-auto">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="bg-[#fdfbf7] p-2 md:p-3 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] max-w-[460px] mx-auto lg:ml-auto transform md:rotate-2 hover:rotate-0 transition-transform duration-500 relative">
+                
+                {/* Ribbon decoration */}
+                <div className="absolute -top-3 -right-3 w-16 h-16 overflow-hidden hidden md:block">
+                  <div className="bg-brand-gold text-white text-[8px] font-bold uppercase tracking-widest text-center py-1 w-24 absolute top-4 -right-6 rotate-45 shadow-sm">
+                    Verified
+                  </div>
+                </div>
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="bg-brand-gold/20 p-2.5 rounded-xl border border-brand-gold/30">
-                      <Award className="w-6 h-6 text-brand-gold" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold font-heading text-white tracking-wide">Verified Maids™ Certificate</h3>
-                      <p className="text-slate-400 text-[11px] font-semibold uppercase tracking-widest mt-1">Official Skill & Trust Certification</p>
-                    </div>
+                <div className="border-4 border-double border-brand-gold/40 p-6 md:p-8 text-center relative overflow-hidden h-full flex flex-col justify-center bg-white/50">
+                  
+                  {/* Subtle Background Watermark */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+                    <Award className="w-64 h-64 text-brand-navy" />
                   </div>
 
-                  <div className="bg-white/[0.04] backdrop-blur-xl rounded-2xl p-5 border border-white/10 mb-6">
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
-                      <div className="flex items-center gap-2">
-                        <BadgeCheck className="w-5 h-5 text-brand-gold" />
-                        <span className="text-brand-gold font-bold text-[12px] uppercase tracking-wider">Certified Professional</span>
+                  <div className="relative z-10">
+                    <h4 className="text-brand-gold font-bold tracking-widest text-[10px] md:text-xs uppercase mb-4">Verified Maids™</h4>
+                    
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-navy mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+                      Certificate of Verification
+                    </h3>
+                    
+                    <p className="text-slate-500 text-[9px] md:text-[10px] uppercase tracking-widest mb-6">
+                      Official Skill & Trust Certification
+                    </p>
+
+                    <p className="text-xs md:text-sm text-slate-600 mb-2 italic" style={{ fontFamily: 'Georgia, serif' }}>
+                      This is to proudly certify that
+                    </p>
+
+                    <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-4 italic border-b border-slate-300 pb-2 inline-block px-8" style={{ fontFamily: 'Georgia, serif' }}>
+                      Sunita Yadav
+                    </h2>
+
+                    <p className="text-[11px] md:text-xs text-slate-600 mb-8 leading-relaxed max-w-[90%] mx-auto">
+                      has successfully passed the comprehensive 6-step background verification, including Aadhaar & Police checks, and has completed the official professional training program.
+                    </p>
+
+                    <div className="flex justify-between items-end mt-4 pt-4 border-t border-slate-200">
+                      <div className="text-left">
+                        <div className="w-16 md:w-20 border-b border-slate-400 mb-1"></div>
+                        <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Date of Issue</p>
+                        <p className="text-[10px] text-brand-navy font-bold">{new Date().getFullYear()}</p>
                       </div>
-                      <Sparkles className="w-4 h-4 text-brand-gold/60" />
-                    </div>
-
-                    <div className="space-y-3">
-                      {[
-                        { label: "Full Name", value: "Sunita Yadav", color: "text-white" },
-                        { label: "Aadhaar Verified", value: "✓ Yes", color: "text-[#25D366]" },
-                        { label: "Background Check", value: "✓ Clear", color: "text-[#25D366]" },
-                        { label: "Experience", value: "5 Years", color: "text-white" },
-                        { label: "Skills", value: "Cooking, Cleaning", color: "text-white" },
-                        { label: "Training", value: "✓ 3-Day Completed", color: "text-brand-gold" },
-                      ].map((row, i) => (
-                        <div key={i} className="flex justify-between items-center">
-                          <span className="text-slate-400 text-[13px]">{row.label}</span>
-                          <span className={`${row.color} font-bold text-[13px]`}>{row.value}</span>
+                      
+                      {/* Gold Seal */}
+                      <div className="relative mx-2">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-brand-gold to-amber-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white relative z-10">
+                          <BadgeCheck className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between pt-5 mt-5 border-t border-white/10">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center">
-                          <Award className="w-3.5 h-3.5 text-brand-gold" />
-                        </div>
-                        <span className="text-white text-[11px] font-bold tracking-wide">Verified Maids™</span>
+                        <div className="absolute inset-0 bg-brand-gold animate-ping rounded-full opacity-20"></div>
                       </div>
-                      <span className="text-slate-500 text-[10px] font-mono tracking-wider">#VM-2025-0847</span>
-                    </div>
-                  </div>
 
-                  <div className="flex flex-wrap gap-x-5 gap-y-3">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0" />
-                      <span className="text-slate-300 text-[12px] font-medium">3-day training</span>
+                      <div className="text-right">
+                        <div className="font-['Brush_Script_MT',cursive,serif] text-xl md:text-2xl text-brand-navy leading-none mb-1 -mt-2">A. Yadav</div>
+                        <div className="w-16 md:w-20 border-b border-slate-400 mb-1 ml-auto"></div>
+                        <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Authorized Sign</p>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0" />
-                      <span className="text-slate-300 text-[12px] font-medium">6-step verified</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0" />
-                      <span className="text-slate-300 text-[12px] font-medium">Certificate shared</span>
+
+                    <div className="mt-6 text-[8px] md:text-[9px] text-slate-400 font-mono tracking-widest">
+                      CERT ID: VM-{new Date().getFullYear()}-0847
                     </div>
                   </div>
                 </div>
