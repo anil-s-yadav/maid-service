@@ -303,7 +303,7 @@ export const BLOG_POSTS = [
   {
     id: 1,
     slug: 'maid-salary-mumbai-2025-complete-guide',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1661964243697-734d7bd664ff?q=80&w=800&auto=format&fit=crop',
     title: 'Maid Salary in Mumbai 2025 – Complete Guide',
     excerpt: 'Wondering how much to pay your maid in Mumbai? Here is a comprehensive guide to maid salaries across different areas, hours, and service types.',
     category: 'Salary Guide',
@@ -336,7 +336,7 @@ export const BLOG_POSTS = [
   {
     id: 2,
     slug: 'how-to-hire-verified-maid-mumbai',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1723568666044-1b066e26b1fb?q=80&w=421&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'How to Hire a Verified Maid in Mumbai — Step by Step',
     excerpt: 'Finding a trustworthy maid in Mumbai can be overwhelming. Follow this step-by-step guide to hire a background-verified maid safely.',
     category: 'Hiring Tips',
@@ -366,7 +366,7 @@ export const BLOG_POSTS = [
   {
     id: 3,
     slug: 'cook-vs-maid-which-domestic-help',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1681483534373-2d9250d3e1e9?q=80&w=800&auto=format&fit=crop',
     title: 'Cook vs Maid: Which Domestic Help Do You Actually Need?',
     excerpt: 'Confused between hiring a cook and a maid? Understanding the differences can save you money and ensure you get the right help.',
     category: 'Hiring Tips',
@@ -390,7 +390,7 @@ export const BLOG_POSTS = [
   {
     id: 4,
     slug: 'questions-before-hiring-nanny',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1606961339352-e9897cea6b92?q=80&w=800&auto=format&fit=crop',
     title: '10 Questions to Ask Before Hiring a Nanny in Mumbai',
     excerpt: 'Hiring a nanny for your child is a big decision. Ask these 10 essential questions to find the perfect caregiver.',
     category: 'Hiring Tips',
@@ -432,7 +432,7 @@ export const BLOG_POSTS = [
   {
     id: 5,
     slug: 'japa-maid-services-mumbai',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1714595747121-7067706bc557?q=80&w=800&auto=format&fit=crop',
     title: 'Japa Maid Services in Mumbai — Complete Guide for New Parents',
     excerpt: 'Everything you need to know about hiring a japa maid in Mumbai — what they do, costs, and how to find a verified one.',
     category: 'Mumbai Life',
@@ -463,7 +463,7 @@ export const BLOG_POSTS = [
   {
     id: 6,
     slug: 'background-verification-domestic-help',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1682089949039-131eca5d7285?q=80&w=800&auto=format&fit=crop',
     title: 'Why Background Verification Matters for Domestic Help',
     excerpt: 'Hiring unverified domestic help puts your family at risk. Learn why background checks are essential and what a proper verification covers.',
     category: 'Domestic Help',

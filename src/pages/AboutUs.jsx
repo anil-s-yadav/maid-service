@@ -25,13 +25,13 @@ const values = [
     icon: ShieldCheck,
     title: "Uncompromising Safety",
     description: "Every professional undergoes Aadhaar verification, police background checks, medical screening, and reference verification before placement.",
-    color: "bg-brand-gold/10 text-brand-gold",
+    color: "bg-purple-50 text-purple-600",
   },
   {
     icon: Award,
     title: "Quality Assurance",
     description: "Rigorous training in hygiene, etiquette, cooking, childcare, and elderly care ensures consistent, premium-quality service delivery.",
-    color: "bg-brand-gold/10 text-brand-gold",
+    color: "bg-pink-50 text-pink-600",
   },
   {
     icon: Clock,

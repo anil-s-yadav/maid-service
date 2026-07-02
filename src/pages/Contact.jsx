@@ -76,35 +76,35 @@ const Contact = () => {
       <Header />
 
       {/* Hero Header */}
-      <section className="relative pt-32 pb-20 dark:bg-[#0f172a] bg-slate-50 overflow-hidden transition-colors duration-500">
+      <section className="relative pt-32 pb-16 dark:bg-[#0f172a] bg-slate-50 overflow-hidden transition-colors duration-500">
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-6 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
-            <MessageSquare className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium text-brand-gold tracking-wide">24/7 Support Available</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-4 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
+            <MessageSquare className="w-3.5 h-3.5 text-brand-gold" />
+            <span className="text-xs font-medium text-brand-gold tracking-wide">24/7 Support Available</span>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading dark:text-white text-slate-900 mb-6 transition-colors">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading dark:text-white text-slate-900 mb-4 transition-colors">
             Let's Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">Touch</span>
           </h1>
-          <p className="text-lg dark:text-slate-300 text-slate-600 max-w-2xl mx-auto leading-relaxed transition-colors">
+          <p className="text-sm md:text-base dark:text-slate-300 text-slate-600 max-w-2xl mx-auto leading-relaxed transition-colors">
             Whether you need a reliable premium maid, an experienced cook, or just have a question about our services, our expert team in Mumbai is ready to help you.
           </p>
         </div>
       </section>
 
       {/* Main Content Area */}
-      <section className="py-10 md:py-14 flex-grow relative z-20 -mt-10">
+      <section className="py-8 md:py-10 flex-grow relative z-20 -mt-10">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-16">
 
             {/* Left: Contact Form */}
             <div className="lg:col-span-3 dark:bg-[#1e293b] bg-white rounded-2xl p-5 md:p-6 shadow-2xl border dark:border-white/10 border-slate-100 transition-colors">
-              <div className="mb-5">
-                <h2 className="text-2xl font-bold dark:text-white text-brand-navy font-heading mb-1 transition-colors">Send us a Message</h2>
-                <p className="dark:text-slate-400 text-slate-500 text-sm transition-colors">Fill out the form and our Relationship Manager will call you within 30 minutes.</p>
+              <div className="mb-4">
+                <h2 className="text-lg font-bold dark:text-white text-brand-navy font-heading mb-1 transition-colors">Send us a Message</h2>
+                <p className="dark:text-slate-400 text-slate-500 text-xs transition-colors">Fill out the form and our Relationship Manager will call you within 30 minutes.</p>
               </div>
 
               {submitted ? (
@@ -217,8 +217,8 @@ const Contact = () => {
                   </div>
 
                   {formData.service === 'Other' && (
-                    <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
-                      <label htmlFor="customService" className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">Please specify the service <span className="text-red-500">*</span></label>
+                    <div className="space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-300">
+                      <label htmlFor="customService" className="text-xs font-semibold dark:text-slate-300 text-slate-700 transition-colors">Please specify the service <span className="text-red-500">*</span></label>
                       <input
                         id="customService"
                         name="customService"
@@ -226,14 +226,14 @@ const Contact = () => {
                         required
                         value={formData.customService}
                         onChange={handleInputChange}
-                        className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+                        className="w-full text-sm dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
                         placeholder="e.g., Pet sitting, gardening..."
                       />
                     </div>
                   )}
 
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">Additional Message</label>
+                  <div className="space-y-1.5">
+                    <label htmlFor="message" className="text-xs font-semibold dark:text-slate-300 text-slate-700 transition-colors">Additional Message</label>
                     <textarea
                       id="message"
                       name="message"
@@ -248,12 +248,17 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-brand-gold hover:bg-amber-500 text-white font-bold text-sm py-2.5 rounded-lg shadow-[0_0_20px_rgba(13,148,136,0.3)] transition-all active:scale-[0.98] disabled:opacity-70 mt-1"
+                    className="w-full text-sm bg-brand-gold hover:bg-amber-500 text-brand-navy font-bold py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-2 mt-4"
                   >
-                    {isSubmitting ? 'Sending Message...' : 'Request Free Consultation'}
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-brand-navy border-t-transparent rounded-full animate-spin"></span>
+                        Sending...
+                      </span>
+                    ) : 'Request Free Consultation'}
                   </button>
-                  <p className="text-center text-xs dark:text-slate-400 text-slate-500 flex items-center justify-center gap-1.5 mt-2 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-brand-gold" /> 100% Free Consultation. No Commitments.
+                  <p className="text-center text-[10px] dark:text-slate-400 text-slate-500 flex items-center justify-center gap-1.5 mt-2 transition-colors">
+                    <CheckCircle2 className="w-3 h-3 text-brand-gold" /> 100% Free Consultation. No Commitments.
                   </p>
                 </form>
               )}
@@ -262,13 +267,13 @@ const Contact = () => {
             {/* Right: Premium Contact Details Card */}
             <div className="lg:col-span-2 flex flex-col gap-4">
 
-              <div className="bg-gradient-to-br from-brand-navy to-slate-900 rounded-2xl p-5 md:p-6 shadow-2xl relative overflow-hidden">
+              <div className="bg-gradient-to-br from-brand-navy to-slate-900 rounded-2xl p-4 md:p-5 shadow-2xl relative overflow-hidden">
                 {/* Decorative background shapes */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/20 rounded-full blur-2xl"></div>
                 <div className="absolute bottom-0 left-0 w-28 h-28 bg-brand-gold/10 rounded-full blur-2xl"></div>
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2.5 mb-5">
+                  <div className="flex items-center gap-2.5 mb-4">
                     <div className="bg-brand-gold/20 p-2 rounded-lg">
                       <Sparkles className="w-4 h-4 text-brand-gold" />
                     </div>
@@ -328,14 +333,14 @@ const Contact = () => {
               </div>
 
               {/* Trust Badge */}
-              <div className="bg-brand-gold/10 border border-brand-gold/20 rounded-3xl p-6 text-center">
-                <div className="flex justify-center mb-3">
-                  <div className="bg-brand-gold p-2 rounded-full">
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+              <div className="bg-brand-gold/10 border border-brand-gold/20 rounded-2xl p-4 text-center">
+                <div className="flex justify-center mb-2">
+                  <div className="bg-brand-gold p-1.5 rounded-full">
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                   </div>
                 </div>
-                <h4 className="dark:text-white text-brand-navy font-bold mb-1 transition-colors">100% Aadhaar & Police Verified Profiles</h4>
-                <p className="dark:text-slate-300 text-slate-600 text-sm transition-colors">Every maid undergoes strict background and police verification before placement.</p>
+                <h4 className="text-brand-navy dark:text-white font-bold font-heading text-sm mb-1 transition-colors">100% Verified Staff</h4>
+                <p className="text-slate-600 dark:text-slate-400 text-xs transition-colors">All our professionals undergo strict background checks and police verification before deployment.</p>
               </div>
 
             </div>

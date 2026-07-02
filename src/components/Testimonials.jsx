@@ -90,12 +90,19 @@ export const Testimonials = () => {
 
         <div 
           ref={ref}
-          className={`w-full max-w-[1400px] mx-auto transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out} py-4 px-4 md:px-8`}
+          className={`relative w-full max-w-[1400px] mx-auto transition-all duration-1000 ${inView ? animations.fadeUp.in : animations.fadeUp.out} py-4 px-0 md:px-8`}
         >
+          {/* Edge Fades for scroll illusion */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-white dark:from-[#0f172a] to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-white dark:from-[#0f172a] to-transparent z-10 pointer-events-none"></div>
+
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
+              breakpoints: {
+                '(min-width: 768px)': { align: 'start' }
+              }
             }}
             plugins={[plugin.current]}
             onMouseEnter={plugin.current.stop}
@@ -106,7 +113,7 @@ export const Testimonials = () => {
               {reviews.map((review, idx) => {
                 const theme = colorThemes[idx % colorThemes.length];
                 return (
-                <CarouselItem key={idx} className="pl-6 md:basis-1/2 lg:basis-1/4 pt-4 pb-8">
+                <CarouselItem key={idx} className="pl-4 basis-[80%] md:basis-1/2 lg:basis-1/4 pt-4 pb-8">
                   <div className={`dark:bg-[#1e293b] bg-white rounded-[24px] border ${theme.border} overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
                     
                     {/* Top Section */}

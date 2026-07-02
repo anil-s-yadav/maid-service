@@ -89,44 +89,44 @@ export const SalaryCalculator = () => {
   };
 
   return (
-    <section className="py-24 dark:bg-background bg-slate-50 relative overflow-hidden transition-colors duration-500" id="calculator">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[100px] -translate-y-1/2"></div>
+    <section className="py-10 md:py-16 dark:bg-background bg-slate-50 relative overflow-hidden transition-colors duration-500" id="calculator">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-sm mb-6 border border-brand-gold/20">
-            <Calculator className="w-4 h-4" />
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-xs mb-3 border border-brand-gold/20">
+            <Calculator className="w-3.5 h-3.5" />
             <span>Smart Salary Estimator</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-brand-navy mb-6 font-heading transition-colors">
+          <h2 className="text-2xl md:text-3xl font-bold dark:text-white text-brand-navy mb-3 font-heading transition-colors">
             Calculate Estimated Maid Salary in Mumbai
           </h2>
-          <p className="text-lg dark:text-slate-300 text-slate-600 transition-colors">
+          <p className="text-sm dark:text-slate-400 text-slate-500 transition-colors">
             Get an instant estimate based on current Mumbai market rates, considering experience, hours, and specialized skills.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           
           {/* Left: Calculator Form */}
-          <div className="lg:col-span-3 dark:bg-[#1e293b] bg-white rounded-3xl p-6 md:p-8 shadow-xl border dark:border-white/10 border-slate-100 transition-colors">
-            <h3 className="text-xl font-bold dark:text-white text-brand-navy mb-6 font-heading border-b dark:border-white/10 pb-4 transition-colors">Customize Requirements</h3>
+          <div className="lg:col-span-3 dark:bg-[#1e293b] bg-white rounded-3xl p-5 md:p-6 shadow-xl border dark:border-white/10 border-slate-100 transition-colors">
+            <h3 className="text-lg font-bold dark:text-white text-brand-navy mb-4 font-heading border-b dark:border-white/10 pb-3 transition-colors">Customize Requirements</h3>
             
-            <form onSubmit={handleCalculate} className="space-y-6">
+            <form onSubmit={handleCalculate} className="space-y-4">
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4">
                 {/* Service Type */}
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                    <Briefcase className="w-4 h-4 text-brand-gold" />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <Briefcase className="w-3.5 h-3.5 text-brand-gold" />
                     Service Type
                   </label>
                   <select 
                     name="serviceId" 
                     value={formData.serviceId} 
                     onChange={handleChange}
-                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
                   >
                     {SERVICES.map(s => (
                       <option key={s.id} value={s.id} className="dark:bg-slate-800 dark:text-white">{s.name}</option>
@@ -135,16 +135,16 @@ export const SalaryCalculator = () => {
                 </div>
 
                 {/* Working Hours */}
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                    <Clock className="w-4 h-4 text-brand-gold" />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <Clock className="w-3.5 h-3.5 text-brand-gold" />
                     Working Hours
                   </label>
                   <select 
                     name="hours" 
                     value={formData.hours} 
                     onChange={handleChange}
-                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
                   >
                     {['4', '6', '8', '10', '12', '24'].map(h => (
                       <option key={h} value={h} className="dark:bg-slate-800 dark:text-white">{h} hours</option>
@@ -153,18 +153,18 @@ export const SalaryCalculator = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4">
                 {/* Experience */}
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                    <IndianRupee className="w-4 h-4 text-brand-gold" />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <IndianRupee className="w-3.5 h-3.5 text-brand-gold" />
                     Experience Required
                   </label>
                   <select 
                     name="experience" 
                     value={formData.experience} 
                     onChange={handleChange}
-                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
                   >
                     {EXPERIENCE_LEVELS.map(e => (
                       <option key={e.value} value={e.value} className="dark:bg-slate-800 dark:text-white">{e.label}</option>
@@ -173,16 +173,16 @@ export const SalaryCalculator = () => {
                 </div>
 
                 {/* Education */}
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                    <GraduationCap className="w-4 h-4 text-brand-gold" />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <GraduationCap className="w-3.5 h-3.5 text-brand-gold" />
                     Education Level
                   </label>
                   <select 
                     name="education" 
                     value={formData.education} 
                     onChange={handleChange}
-                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
                   >
                     {EDUCATION_LEVELS.map(e => (
                       <option key={e.value} value={e.value} className="dark:bg-slate-800 dark:text-white">{e.label}</option>
@@ -191,31 +191,34 @@ export const SalaryCalculator = () => {
                 </div>
               </div>
 
-              {/* Languages */}
-              <div className="space-y-2">
-                <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                  <Languages className="w-4 h-4 text-brand-gold" />
-                  Primary Language Required
-                </label>
-                <select 
-                  name="language" 
-                  value={formData.languages[0]} 
-                  onChange={handleChange}
-                  className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
-                >
-                  {LANGUAGES.map(lang => (
-                    <option key={lang.value} value={lang.value} className="dark:bg-slate-800 dark:text-white">{lang.label}</option>
-                  ))}
-                </select>
-                {formData.languages.includes('english') && (
-                  <p className="text-xs text-brand-gold flex items-center gap-1 mt-2">
-                    <Info className="w-3 h-3" /> English-speaking staff commands a premium in Mumbai.
-                  </p>
-                )}
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* Languages */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <Languages className="w-3.5 h-3.5 text-brand-gold" />
+                    Primary Language
+                  </label>
+                  <select 
+                    name="language" 
+                    value={formData.languages[0]} 
+                    onChange={handleChange}
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
+                  >
+                    {LANGUAGES.map(lang => (
+                      <option key={lang.value} value={lang.value} className="dark:bg-slate-800 dark:text-white">{lang.label}</option>
+                    ))}
+                  </select>
+                  {formData.languages.includes('english') && (
+                    <p className="text-[10px] text-brand-gold flex items-center gap-1 mt-1">
+                      <Info className="w-3 h-3 shrink-0" /> English speakers command a premium.
+                    </p>
+                  )}
+                </div>
+
                 {/* Location */}
-                <div className="space-y-2 lg:col-span-2">
-                  <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                    <MapPin className="w-4 h-4 text-brand-gold" />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                    <MapPin className="w-3.5 h-3.5 text-brand-gold" />
                     Location in Mumbai
                   </label>
                   <select 
@@ -223,23 +226,23 @@ export const SalaryCalculator = () => {
                     required
                     value={formData.location} 
                     onChange={handleChange}
-                    className="w-full appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors text-slate-700 dark:text-white"
+                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
                   >
-                    <option value="" disabled className="dark:bg-slate-800 dark:text-white">Select your area</option>
+                    <option value="" disabled className="dark:bg-slate-800 dark:text-white">Select area</option>
                     {AREAS_SERVED.map(area => (
                       <option key={area} value={area} className="dark:bg-slate-800 dark:text-white">{area}</option>
                     ))}
-                    <option value="Other" className="dark:bg-slate-800 dark:text-white">Other Mumbai Area</option>
+                    <option value="Other" className="dark:bg-slate-800 dark:text-white">Other</option>
                   </select>
                 </div>
               </div>
 
-              <div className="border-t dark:border-white/10 border-slate-200 pt-6 mt-6">
-                <h4 className="text-sm font-bold dark:text-white text-brand-navy mb-4 transition-colors">Your Details to Receive Estimate</h4>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                      <User className="w-4 h-4 text-brand-gold" />
+              <div className="border-t dark:border-white/10 border-slate-200 pt-4 mt-4">
+                <h4 className="text-xs font-bold dark:text-white text-brand-navy mb-3 transition-colors uppercase tracking-wider">Your Details to Receive Estimate</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                      <User className="w-3.5 h-3.5 text-brand-gold" />
                       Full Name *
                     </label>
                     <input 
@@ -249,12 +252,12 @@ export const SalaryCalculator = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className="w-full dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors"
+                      className="w-full text-sm dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-2 transition-colors">
-                      <Phone className="w-4 h-4 text-brand-gold" />
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold dark:text-slate-300 text-slate-700 flex items-center gap-1.5 transition-colors">
+                      <Phone className="w-3.5 h-3.5 text-brand-gold" />
                       Phone Number *
                     </label>
                     <input 
@@ -266,7 +269,7 @@ export const SalaryCalculator = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="9876543210"
-                      className={`w-full dark:bg-white/5 dark:text-white bg-slate-50 border ${phoneError ? 'border-red-500' : 'dark:border-white/10 border-slate-200'} rounded-xl px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors`}
+                      className={`w-full text-sm dark:bg-white/5 dark:text-white bg-slate-50 border ${phoneError ? 'border-red-500' : 'dark:border-white/10 border-slate-200'} rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors`}
                     />
                     {phoneError && <p className="text-xs text-red-500 mt-1">{phoneError}</p>}
                   </div>
@@ -276,7 +279,7 @@ export const SalaryCalculator = () => {
               <button 
                 type="submit" 
                 disabled={isCalculating}
-                className="w-full bg-brand-gold hover:bg-amber-500 text-brand-navy font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] disabled:opacity-70 mt-6"
+                className="w-full text-sm bg-brand-gold hover:bg-amber-500 text-brand-navy font-bold py-3 rounded-lg shadow-md transition-all active:scale-[0.98] disabled:opacity-70 mt-5"
               >
                 {isCalculating ? 'Calculating...' : 'Calculate Estimated Salary'}
               </button>

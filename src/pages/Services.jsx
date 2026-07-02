@@ -22,14 +22,14 @@ const iconMap = {
 };
 
 const colorMap = {
-  'house-maid': { bg: 'bg-amber-50', text: 'text-amber-600', gradient: 'from-amber-100/60 to-amber-50/30' },
-  'cook': { bg: 'bg-orange-50', text: 'text-orange-600', gradient: 'from-orange-100/60 to-orange-50/30' },
-  'babysitter': { bg: 'bg-pink-50', text: 'text-pink-600', gradient: 'from-pink-100/60 to-pink-50/30' },
-  'nanny': { bg: 'bg-purple-50', text: 'text-purple-600', gradient: 'from-purple-100/60 to-purple-50/30' },
-  'japa-maid': { bg: 'bg-rose-50', text: 'text-rose-600', gradient: 'from-rose-100/60 to-rose-50/30' },
-  'patient-care': { bg: 'bg-blue-50', text: 'text-blue-600', gradient: 'from-blue-100/60 to-blue-50/30' },
-  'elderly-care': { bg: 'bg-green-50', text: 'text-green-600', gradient: 'from-green-100/60 to-green-50/30' },
-  'driver': { bg: 'bg-indigo-50', text: 'text-indigo-600', gradient: 'from-indigo-100/60 to-indigo-50/30' },
+  'house-maid': { bg: 'dark:bg-amber-900/30 bg-amber-50', text: 'dark:text-amber-400 text-amber-600', gradient: 'dark:from-amber-900/20 dark:to-amber-900/5 from-amber-100/60 to-amber-50/30' },
+  'cook': { bg: 'dark:bg-orange-900/30 bg-orange-50', text: 'dark:text-orange-400 text-orange-600', gradient: 'dark:from-orange-900/20 dark:to-orange-900/5 from-orange-100/60 to-orange-50/30' },
+  'babysitter': { bg: 'dark:bg-pink-900/30 bg-pink-50', text: 'dark:text-pink-400 text-pink-600', gradient: 'dark:from-pink-900/20 dark:to-pink-900/5 from-pink-100/60 to-pink-50/30' },
+  'nanny': { bg: 'dark:bg-purple-900/30 bg-purple-50', text: 'dark:text-purple-400 text-purple-600', gradient: 'dark:from-purple-900/20 dark:to-purple-900/5 from-purple-100/60 to-purple-50/30' },
+  'japa-maid': { bg: 'dark:bg-rose-900/30 bg-rose-50', text: 'dark:text-rose-400 text-rose-600', gradient: 'dark:from-rose-900/20 dark:to-rose-900/5 from-rose-100/60 to-rose-50/30' },
+  'patient-care': { bg: 'dark:bg-blue-900/30 bg-blue-50', text: 'dark:text-blue-400 text-blue-600', gradient: 'dark:from-blue-900/20 dark:to-blue-900/5 from-blue-100/60 to-blue-50/30' },
+  'elderly-care': { bg: 'dark:bg-green-900/30 bg-green-50', text: 'dark:text-green-400 text-green-600', gradient: 'dark:from-green-900/20 dark:to-green-900/5 from-green-100/60 to-green-50/30' },
+  'driver': { bg: 'dark:bg-indigo-900/30 bg-indigo-50', text: 'dark:text-indigo-400 text-indigo-600', gradient: 'dark:from-indigo-900/20 dark:to-indigo-900/5 from-indigo-100/60 to-indigo-50/30' },
 };
 
 const topProfiles = [
@@ -47,7 +47,7 @@ const ServicesPage = () => {
   const [gridRef, gridInView] = useInView({ threshold: 0.05 });
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen dark:bg-[#0a0f1e] bg-white flex flex-col transition-colors duration-500">
       <SEOHead
         title="Our Services — Maid, Cook, Babysitter, Nanny, Driver & More"
         description={`${BRAND.name} offers 8+ professional domestic help services in Mumbai — house maids, cooks, babysitters, nannies, japa maids, patient care, elderly care, and drivers. All 100% Aadhaar verified.`}
@@ -55,27 +55,27 @@ const ServicesPage = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-[#0a1128] overflow-hidden">
+      <section className="relative pt-24 pb-16 bg-[#0a1128] overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-gold/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-6 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
-            <Sparkles className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium text-brand-gold tracking-wide">8+ Premium Services</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 backdrop-blur-md border border-brand-gold/20 mb-4 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
+            <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+            <span className="text-xs font-medium text-brand-gold tracking-wide">8+ Premium Services</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white mb-5 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-white mb-4 leading-tight max-w-4xl mx-auto">
             Domestic Help Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">You Can Trust</span>
           </h1>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-6">
             Every professional is Aadhaar-verified, background-checked, medically screened, and trained by our team before placement.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-gold to-amber-400 hover:from-amber-400 hover:to-amber-500 text-[#0a1128] font-bold py-3.5 px-7 rounded-full shadow-[0_0_20px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-0.5 text-sm">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-gold to-amber-400 hover:from-amber-400 hover:to-amber-500 text-[#0a1128] font-bold py-2.5 px-6 rounded-full shadow-[0_0_20px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-0.5 text-sm">
               Get Free Consultation <ArrowRight className="w-4 h-4" />
             </Link>
-            <a href={`tel:${BRAND.phoneClean}`} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-3.5 px-7 rounded-full transition-all text-sm">
+            <a href={`tel:${BRAND.phoneClean}`} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-2.5 px-6 rounded-full transition-all text-sm">
               <Phone className="w-4 h-4" /> {BRAND.phone}
             </a>
           </div>
@@ -83,7 +83,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-20 relative z-20 -mt-10">
+      <section className="py-10 md:py-16 relative z-20 -mt-8">
         <div className="container mx-auto px-4 md:px-6">
           <div
             ref={gridRef}
@@ -95,27 +95,27 @@ const ServicesPage = () => {
               return (
                 <div
                   key={service.id}
-                  className="bg-white rounded-2xl overflow-hidden border border-amber-200/60 shadow-[0_2px_12px_-2px_rgba(217,119,6,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(217,119,6,0.25)] hover:border-amber-300/80 transition-all duration-300 group flex flex-col"
+                  className="dark:bg-[#1e293b] bg-white rounded-2xl overflow-hidden border dark:border-white/10 border-amber-200/60 shadow-[0_2px_12px_-2px_rgba(217,119,6,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(217,119,6,0.25)] hover:border-amber-300/80 dark:hover:border-amber-500/50 transition-all duration-300 group flex flex-col"
                 >
                   {/* Gradient Top Strip */}
                   <div className={`bg-gradient-to-r ${colors.gradient} p-5 pb-4`}>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className={`${colors.bg} p-2.5 rounded-xl border border-slate-100`}>
+                      <div className={`${colors.bg} p-2.5 rounded-xl border dark:border-white/10 border-slate-100 transition-colors`}>
                         <Icon className={`w-5 h-5 ${colors.text}`} />
                       </div>
-                      <h3 className="text-lg font-bold text-brand-navy font-heading">{service.name}</h3>
+                      <h3 className="text-lg font-bold dark:text-white text-brand-navy font-heading transition-colors">{service.name}</h3>
                     </div>
-                    <p className="text-slate-600 text-xs leading-relaxed line-clamp-2">{service.description}</p>
+                    <p className="dark:text-white/80 text-slate-600 text-xs leading-relaxed line-clamp-2 transition-colors">{service.description}</p>
                   </div>
 
                   {/* Includes */}
                   <div className="p-5 pt-4 flex-grow">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">What's Included</p>
+                    <p className="text-[10px] font-bold dark:text-slate-400 text-slate-400 uppercase tracking-wider mb-2.5 transition-colors">What's Included</p>
                     <ul className="space-y-1.5">
                       {service.includes.slice(0, 4).map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0" />
-                          <span className="text-xs text-slate-600">{item}</span>
+                          <span className="text-xs dark:text-slate-300 text-slate-600 transition-colors">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -123,10 +123,13 @@ const ServicesPage = () => {
 
                   {/* Footer */}
                   <div className="px-5 pb-5 mt-auto">
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                      <div>
-                        <span className="text-lg font-bold text-brand-navy font-heading">₹{service.baseRate.toLocaleString()}</span>
-                        <span className="text-xs text-slate-400">/month</span>
+                    <div className="flex items-center justify-between pt-3 border-t dark:border-white/10 border-slate-100 transition-colors">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] dark:text-slate-400 text-slate-400 font-medium uppercase tracking-wider mb-0.5 transition-colors">Starting from</span>
+                        <div className="flex items-baseline">
+                          <span className="text-lg font-bold dark:text-white text-brand-navy font-heading transition-colors">₹{service.baseRate.toLocaleString()}*</span>
+                          <span className="text-xs dark:text-slate-400 text-slate-400 ml-1 transition-colors">/mo</span>
+                        </div>
                       </div>
                       <Link
                         to={`/services/${service.id}`}
@@ -140,17 +143,23 @@ const ServicesPage = () => {
               );
             })}
           </div>
+          
+          <div className="mt-8 max-w-4xl mx-auto text-center px-4">
+            <p className="text-[11px] text-slate-400 italic">
+              *Prices shown are estimated starting base rates for standard 8-hour shifts. Actual salaries may vary significantly based on your exact location within Mumbai, the candidate's years of experience, specific skillset, working hours, and scope of work. Final pricing is agreed upon mutually between the employer and the candidate during the interview process.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Featured Profiles Carousel */}
-      <section className="py-16 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+      <section className="py-16 dark:bg-[#0a1128] bg-slate-50 border-y dark:border-white/10 border-slate-200 overflow-hidden relative transition-colors duration-500">
+        <div className="absolute top-0 left-0 w-8 md:w-16 h-full bg-gradient-to-r dark:from-[#0a1128] from-slate-50 to-transparent z-10 pointer-events-none transition-colors"></div>
+        <div className="absolute top-0 right-0 w-8 md:w-16 h-full bg-gradient-to-l dark:from-[#0a1128] from-slate-50 to-transparent z-10 pointer-events-none transition-colors"></div>
 
-        <div className="container mx-auto px-4 text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold font-heading text-brand-navy mb-3">Meet Our Verified Professionals</h2>
-          <p className="text-slate-500 text-sm max-w-2xl mx-auto">Real profiles of our thoroughly vetted, trained, and highly experienced domestic staff ready to serve your home.</p>
+        <div className="container mx-auto px-4 text-center mb-10 relative z-20">
+          <h2 className="text-2xl md:text-3xl font-bold font-heading dark:text-white text-brand-navy mb-3 transition-colors">Meet Our Verified Professionals</h2>
+          <p className="dark:text-slate-400 text-slate-500 text-sm max-w-2xl mx-auto transition-colors">Real profiles of our thoroughly vetted, trained, and highly experienced domestic staff ready to serve your home.</p>
         </div>
 
         <div className="flex w-fit animate-marquee hover:[animation-play-state:paused] gap-6 px-4 py-4">
@@ -174,11 +183,11 @@ const ServicesPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent z-10 pointer-events-none"></div>
 
               {/* Light Glassmorphic Info Box */}
-              <div className="absolute bottom-3 inset-x-3 z-20 p-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/50 shadow-lg flex flex-col items-center text-center group-hover:bg-white/90 transition-colors">
-                <h3 className="text-base font-bold text-brand-navy font-heading leading-tight mb-0.5 group-hover:text-brand-gold transition-colors">
+              <div className="absolute bottom-3 inset-x-3 z-20 p-2.5 rounded-xl dark:bg-[#1e293b]/70 bg-white/30 backdrop-blur-md border dark:border-white/10 border-white/50 shadow-lg flex flex-col items-center text-center dark:group-hover:bg-[#1e293b]/90 group-hover:bg-white/90 transition-colors">
+                <h3 className="text-base font-bold dark:text-white text-brand-navy font-heading leading-tight mb-0.5 group-hover:text-brand-gold dark:group-hover:text-brand-gold transition-colors">
                   {profile.name}
                 </h3>
-                <p className="text-xs font-semibold text-brand-gold mb-2">
+                <p className="text-xs font-bold dark:text-slate-300 text-brand-navy mb-2 transition-colors">
                   {profile.role}
                 </p>
 

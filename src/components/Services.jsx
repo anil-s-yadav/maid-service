@@ -16,14 +16,14 @@ const iconMap = {
 };
 
 const styleMap = {
-  'house-maid':   { gradient: 'from-amber-500 to-yellow-500',   iconBg: 'bg-amber-500',   accent: 'text-amber-500',   darkAccent: 'dark:text-amber-400',   glow: 'dark:shadow-amber-500/10' },
-  'cook':         { gradient: 'from-orange-500 to-red-400',      iconBg: 'bg-orange-500',  accent: 'text-orange-500',  darkAccent: 'dark:text-orange-400',  glow: 'dark:shadow-orange-500/10' },
-  'babysitter':   { gradient: 'from-pink-500 to-rose-400',       iconBg: 'bg-pink-500',    accent: 'text-pink-500',    darkAccent: 'dark:text-pink-400',    glow: 'dark:shadow-pink-500/10' },
-  'nanny':        { gradient: 'from-purple-500 to-violet-400',   iconBg: 'bg-purple-500',  accent: 'text-purple-500',  darkAccent: 'dark:text-purple-400',  glow: 'dark:shadow-purple-500/10' },
-  'japa-maid':    { gradient: 'from-rose-500 to-pink-400',       iconBg: 'bg-rose-500',    accent: 'text-rose-500',    darkAccent: 'dark:text-rose-400',    glow: 'dark:shadow-rose-500/10' },
-  'patient-care': { gradient: 'from-blue-500 to-cyan-400',       iconBg: 'bg-blue-500',    accent: 'text-blue-500',    darkAccent: 'dark:text-blue-400',    glow: 'dark:shadow-blue-500/10' },
-  'elderly-care': { gradient: 'from-emerald-500 to-teal-400',    iconBg: 'bg-emerald-500', accent: 'text-emerald-500', darkAccent: 'dark:text-emerald-400', glow: 'dark:shadow-emerald-500/10' },
-  'driver':       { gradient: 'from-indigo-500 to-blue-400',     iconBg: 'bg-indigo-500',  accent: 'text-indigo-500',  darkAccent: 'dark:text-indigo-400',  glow: 'dark:shadow-indigo-500/10' },
+  'house-maid': { gradient: 'from-amber-500 to-yellow-500', iconBg: 'bg-amber-500', accent: 'text-amber-500', darkAccent: 'dark:text-amber-400', glow: 'dark:shadow-amber-500/10' },
+  'cook': { gradient: 'from-orange-500 to-red-400', iconBg: 'bg-orange-500', accent: 'text-orange-500', darkAccent: 'dark:text-orange-400', glow: 'dark:shadow-orange-500/10' },
+  'babysitter': { gradient: 'from-pink-500 to-rose-400', iconBg: 'bg-pink-500', accent: 'text-pink-500', darkAccent: 'dark:text-pink-400', glow: 'dark:shadow-pink-500/10' },
+  'nanny': { gradient: 'from-purple-500 to-violet-400', iconBg: 'bg-purple-500', accent: 'text-purple-500', darkAccent: 'dark:text-purple-400', glow: 'dark:shadow-purple-500/10' },
+  'japa-maid': { gradient: 'from-rose-500 to-pink-400', iconBg: 'bg-rose-500', accent: 'text-rose-500', darkAccent: 'dark:text-rose-400', glow: 'dark:shadow-rose-500/10' },
+  'patient-care': { gradient: 'from-blue-500 to-cyan-400', iconBg: 'bg-blue-500', accent: 'text-blue-500', darkAccent: 'dark:text-blue-400', glow: 'dark:shadow-blue-500/10' },
+  'elderly-care': { gradient: 'from-emerald-500 to-teal-400', iconBg: 'bg-emerald-500', accent: 'text-emerald-500', darkAccent: 'dark:text-emerald-400', glow: 'dark:shadow-emerald-500/10' },
+  'driver': { gradient: 'from-indigo-500 to-blue-400', iconBg: 'bg-indigo-500', accent: 'text-indigo-500', darkAccent: 'dark:text-indigo-400', glow: 'dark:shadow-indigo-500/10' },
 };
 
 export const Services = () => {
@@ -37,7 +37,7 @@ export const Services = () => {
       <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] dark:bg-blue-500/[0.03] bg-transparent rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 text-brand-gold font-bold text-xs mb-4 border border-brand-gold/20 shadow-[0_0_15px_rgba(217,119,6,0.1)]">
@@ -45,7 +45,7 @@ export const Services = () => {
             <span className="uppercase tracking-widest">Our Services</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-brand-navy mb-4 font-heading transition-colors">
-            Specialized Care For <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-500">Your Home</span>
+            Our Services For <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-500">Your Home</span>
           </h2>
           <p className="dark:text-slate-300 text-slate-600 text-sm md:text-base transition-colors max-w-xl mx-auto">
             From daily chores to specialized newborn care, our verified professionals are trained to provide the highest standard of service.
@@ -79,9 +79,12 @@ export const Services = () => {
                       <h3 className="text-sm md:text-base font-bold dark:text-white text-brand-navy font-heading leading-tight transition-colors">
                         {service.name}
                       </h3>
-                      <p className={`text-[11px] md:text-xs font-semibold ${style.accent} ${style.darkAccent} mt-0.5`}>
-                        ₹{service.baseRate.toLocaleString()}/mo
-                      </p>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="text-[9px] md:text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wide">Starts</span>
+                        <p className={`text-[11px] md:text-xs font-bold ${style.accent} ${style.darkAccent}`}>
+                          ₹{service.baseRate.toLocaleString()}*/mo
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -115,15 +118,21 @@ export const Services = () => {
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-          <Link 
-            to="/contact" 
-            className="inline-flex items-center gap-2 dark:bg-brand-gold dark:text-[#0a1128] dark:hover:bg-amber-400 bg-brand-navy hover:bg-slate-800 text-white px-7 py-3.5 rounded-full font-semibold text-sm transition-colors shadow-lg"
+        {/* Bottom CTA & Disclaimer */}
+        <div className="mt-12 text-center flex flex-col items-center">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 dark:bg-brand-gold dark:text-[#0a1128] dark:hover:bg-amber-400 bg-brand-navy hover:bg-slate-800 text-white px-7 py-3.5 rounded-full font-semibold text-sm transition-colors shadow-lg mb-8"
           >
             Request Custom Service
             <ArrowRight className="w-4 h-4" />
           </Link>
+
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <p className="text-[10px] md:text-[11px] text-slate-400 dark:text-slate-500 italic">
+              *Prices shown are estimated starting base rates for standard 8-hour shifts. Actual salaries vary based on exact location in Mumbai, candidate's experience, skill level, and exact scope of work. Final pricing is mutually agreed upon during the interview.
+            </p>
+          </div>
         </div>
 
       </div>
