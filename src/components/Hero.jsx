@@ -28,7 +28,13 @@ export const Hero = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.phone.length < 10 || isSubmitting) return;
+    
+    if (formData.phone.length < 10) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+    
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
     try {
@@ -59,43 +65,62 @@ export const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-
-          {/* Left: Text Content */}
-          <div ref={titleRef} className={`lg:col-span-6 xl:col-span-6 transition-all duration-1000 ${titleInView ? animations.fadeUp.in : animations.fadeUp.out}`}>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full dark:bg-white/[0.08] bg-brand-gold/10 backdrop-blur-md border border-brand-gold/30 mb-5 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
-              <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-              <span className="text-[11px] font-bold text-brand-gold tracking-widest uppercase">Mumbai's Premium Agency</span>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center max-w-7xl mx-auto">
+          
+          {/* Left Content */}
+          <div className="text-center lg:text-left pt-4 lg:pt-0">
+            {/* Top Badge */}
+            <div 
+              ref={titleRef}
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full dark:bg-[#1e293b]/80 bg-white/80 backdrop-blur-sm border dark:border-white/10 border-slate-200 mb-6 shadow-sm transition-all duration-700 ${titleInView ? animations.fadeUp : 'opacity-0 translate-y-4'}`}
+            >
+              <BadgeCheck className="w-4 h-4 text-brand-gold" />
+              <span className="text-xs md:text-sm font-bold dark:text-slate-200 text-slate-800 tracking-wide uppercase transition-colors">
+                #1 Trusted Agency in Mumbai
+              </span>
             </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight font-heading transition-colors">
-              Hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-amber-400 to-brand-gold">Trusted & Verified</span><br />
-              Domestic Help
+            
+            {/* Main Headline */}
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold dark:text-white text-slate-900 leading-[1.15] mb-6 font-heading transition-all duration-700 delay-100 ${titleInView ? animations.fadeUp : 'opacity-0 translate-y-4'}`}>
+              Find Your Perfect <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200 relative inline-block">
+                Domestic Help
+                <div className="absolute -bottom-2 left-0 right-0 h-3 bg-brand-gold/20 -rotate-1 blur-sm rounded-full"></div>
+              </span>
             </h1>
-
-            <p className="text-base md:text-lg dark:text-slate-300 text-slate-600 mb-8 max-w-xl leading-relaxed transition-colors">
-              Experience peace of mind with our 100% Aadhaar-verified, medically screened, and professionally trained maids, cooks, and nannies.
+            
+            <p className={`text-lg md:text-xl dark:text-slate-300 text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed transition-all duration-700 delay-200 ${titleInView ? animations.fadeUp : 'opacity-0 translate-y-4'}`}>
+              Get verified, trained, and reliable maids, cooks, and nannies in Mumbai. 24-hour placement with a free replacement guarantee.
             </p>
 
-            <div className="flex flex-wrap gap-3">  <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
-              <BadgeCheck className="w-4 h-4 text-brand-gold" />
-              <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Police & Aadhaar Verified</span>
-            </div>
-              <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
-                <Star className="w-4 h-4 text-brand-gold" />
-                <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Fully Trained</span>
+            {/* Trust Indicators */}
+            <div className={`flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 transition-all duration-700 delay-300 ${titleInView ? animations.fadeUp : 'opacity-0 translate-y-4'}`}>
+              <div className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className={`w-8 h-8 rounded-full border-2 dark:border-[#0f172a] border-slate-50 overflow-hidden bg-slate-200 transition-colors`}>
+                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" />
+                    </div>
+                  ))}
+                </div>
+                <div className="text-left ml-2">
+                  <div className="flex text-brand-gold">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                    ))}
+                  </div>
+                  <div className="text-xs font-bold dark:text-white text-slate-900 transition-colors">10,000+ Families</div>
+                </div>
               </div>
-
             </div>
-
           </div>
 
-          {/* Right: Booking Form (Glassmorphism) */}
-          <div ref={formRef} className={`lg:col-span-6 xl:col-span-6 relative w-full max-w-[460px] mx-auto lg:ml-0 lg:mr-auto transition-all duration-1000 delay-300 ${formInView ? animations.scaleUp.in : animations.scaleUp.out}`}>
-            <div className="absolute -inset-0.5 bg-gradient-to-b from-brand-gold/50 to-brand-gold/30 rounded-3xl blur-md opacity-40"></div>
-
-            <div className="relative dark:bg-[#1e293b]/90 bg-white/90 backdrop-blur-xl border dark:border-white/10 border-slate-200 rounded-3xl p-6 shadow-2xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-colors">
+          {/* Right Form Card */}
+          <div className="w-full max-w-md mx-auto lg:ml-auto perspective-1000">
+            <div 
+              ref={formRef}
+              className={`relative dark:bg-[#1e293b]/90 bg-white/90 backdrop-blur-xl border dark:border-white/10 border-slate-200 rounded-3xl p-6 shadow-2xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-1000 ${formInView ? 'opacity-100 rotate-y-0 translate-x-0' : 'opacity-0 rotate-y-12 translate-x-12'}`}
+            >
               <div className="mb-5 text-center">
                 <h2 className="text-xl md:text-2xl font-bold dark:text-white text-slate-900 mb-1 font-heading transition-colors">Book Free Consultation</h2>
                 <p className="text-brand-gold text-[10px] md:text-[11px] font-bold uppercase tracking-widest">Profiles on WhatsApp in 30 Min</p>
@@ -133,11 +158,9 @@ export const Hero = () => {
                       type="tel"
                       name="phone"
                       required
-                      minLength="10"
-                      maxLength="10"
                       value={formData.phone}
                       onChange={(e) => handleChange({ target: { name: 'phone', value: e.target.value.replace(/\D/g, '') } })}
-                      placeholder="Mobile Number"
+                      placeholder="Mobile Number (10 digits)"
                       className="w-full dark:bg-slate-900/50 bg-slate-50 border dark:border-white/5 border-slate-300 dark:text-white text-slate-900 text-sm rounded-xl pl-11 pr-4 py-2.5 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors placeholder:text-slate-500"
                     />
                   </div>
@@ -147,7 +170,6 @@ export const Hero = () => {
                     <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
                     <select
                       name="location"
-                      required
                       value={formData.location}
                       onChange={handleChange}
                       className="w-full dark:bg-slate-900/50 bg-slate-50 border dark:border-white/5 border-slate-300 dark:text-white text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 appearance-none focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors dark:[&>option]:bg-slate-900 [&>option]:bg-white"
@@ -167,7 +189,6 @@ export const Hero = () => {
                   <div className="relative">
                     <select
                       name="service"
-                      required
                       value={formData.service}
                       onChange={handleChange}
                       className="w-full dark:bg-slate-900/50 bg-slate-50 border dark:border-white/5 border-slate-300 dark:text-white text-slate-900 text-sm rounded-xl px-4 py-2.5 appearance-none focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors dark:[&>option]:bg-slate-900 [&>option]:bg-white"
