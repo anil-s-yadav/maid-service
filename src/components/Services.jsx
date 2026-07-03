@@ -101,6 +101,12 @@ export const Services = () => {
                         <span className="dark:text-slate-400 text-slate-500 text-[11px] truncate transition-colors">{item}</span>
                       </div>
                     ))}
+                    {service.includes && service.includes.length > 2 && (
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className={`w-3 h-3 ${style.accent} ${style.darkAccent} shrink-0`} />
+                        <span className="dark:text-slate-400 text-slate-500 text-[11px] truncate transition-colors capitalize">{service.includes[service.includes.length - 1]}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* CTA Footer */}

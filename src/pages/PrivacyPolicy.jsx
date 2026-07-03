@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ShieldCheck } from "lucide-react";
 import { BRAND } from "@/utils/constants";
+import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   const lastUpdated = "July 2, 2026";
@@ -83,7 +84,12 @@ const PrivacyPolicy = () => {
               </p>
             </div>
 
-            <h2>5. Contact Us</h2>
+            <h2>5. Disclaimer Regarding Website Content</h2>
+            <p>
+              Please note that certain elements on this website—including but not limited to images of staff and clients, user reviews, medical screening claims, projected service statistics (e.g., "10000+ happy families"), and specific time guarantees (e.g., "30-minute profiles")—are currently used for illustrative and reference purposes. For full legal details on our service limitations and representative content, please refer to the Disclaimers section in our <Link to="/terms" className="text-brand-gold hover:underline">Terms of Service</Link>.
+            </p>
+
+            <h2>6. Contact Us</h2>
             <p>If you have questions or comments about this policy, you may email us at <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a> or contact us by post at:</p>
             <p>
               <strong>{BRAND.name}</strong><br />

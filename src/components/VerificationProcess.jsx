@@ -172,8 +172,8 @@ export const VerificationProcess = () => {
                   </div>
 
                   {/* Brand Logo Top Left */}
-                  <div className="absolute top-5 left-5 md:top-7 md:left-7 z-20">
-                    <img src={BRAND.logo} alt={BRAND.name} className="h-12 md:h-16 w-auto object-contain rounded-xl drop-shadow-md" />
+                  <div className="absolute top-3 left-3 md:top-7 md:left-7 z-20">
+                    <img src={BRAND.logo} alt={BRAND.name} className="h-8 md:h-16 w-auto object-contain rounded-xl drop-shadow-md" />
                   </div>
 
                   <div className="relative z-10">

@@ -6,7 +6,7 @@ export const ComparisonTable = () => {
 
   const features = [
     { name: "Aadhaar & Police Verification", us: true, others: "Sometimes", positive: true },
-    { name: "Free Replacements", us: true, others: "Sometimes", positive: true },
+    { name: "3 Free Replacements", us: true, others: "Sometimes", positive: true },
     { name: "Transparent Salary Breakdown", us: true, others: "Sometimes", positive: true },
     { name: "Medically Screened Staff", us: true, others: "Sometimes", positive: true },
     { name: "Professional Training", us: true, others: "Sometimes", positive: true },

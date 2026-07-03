@@ -8,7 +8,7 @@ export const Features = () => {
     {
       icon: <BadgeCheck className="w-5 h-5 text-brand-gold" />,
       title: "100% Background Verified",
-      description: "Strict 5-step background check including Aadhaar and police verification."
+      description: "Strict 6-step background check including Aadhaar and police verification."
     },
     {
       icon: <UserCheck className="w-5 h-5 text-brand-gold" />,
@@ -45,7 +45,7 @@ export const Features = () => {
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-slate-900 mb-6 font-heading leading-[1.2] transition-colors">
-              Why Mumbai Chooses <br/><span className="text-brand-gold">Verified Maids</span>
+              Why Mumbai Chooses <br /><span className="text-brand-gold">Verified Maids</span>
             </h2>
             <p className="dark:text-slate-400 text-slate-600 text-[15px] mb-10 max-w-lg leading-relaxed transition-colors">
               We take the stress out of hiring domestic help. Our rigorous selection process ensures you only get the most reliable and skilled professionals in the city.
@@ -71,7 +71,7 @@ export const Features = () => {
             <div className="relative w-full max-w-[400px]">
               {/* Radial glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-gold/10 rounded-full blur-[60px]"></div>
-              
+
               <div className="relative rounded-[2.5rem] overflow-hidden border-4 border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
                 <img
                   src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80"

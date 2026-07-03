@@ -83,18 +83,13 @@ export const Hero = () => {
 
             <div className="flex flex-wrap gap-3">  <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
               <BadgeCheck className="w-4 h-4 text-brand-gold" />
-              <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Police Verified</span>
+              <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Police & Aadhaar Verified</span>
             </div>
-              <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
-                <Shield className="w-4 h-4 text-brand-gold" />
-                <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Aadhaar Verified</span>
-              </div>
-
-
               <div className="flex items-center gap-2 dark:bg-white/[0.06] bg-slate-200 backdrop-blur-md dark:border-white/10 border-slate-300 px-4 py-2 rounded-xl shadow-lg dark:hover:bg-white/[0.1] hover:bg-slate-300 transition-colors">
                 <Star className="w-4 h-4 text-brand-gold" />
                 <span className="dark:text-white text-slate-800 text-[11px] font-bold uppercase tracking-wider">Fully Trained</span>
               </div>
+
             </div>
 
           </div>

@@ -4,7 +4,7 @@ import { BRAND, AREAS_SERVED, SERVICES } from '../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0a1128] text-slate-400 pt-10 pb-6 border-t border-white/5 relative z-10">
+    <footer className="bg-[#0a1128] text-slate-400 pt-10 pb-28 md:pb-6 border-t border-white/5 relative z-10">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
 

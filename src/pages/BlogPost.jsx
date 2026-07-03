@@ -93,8 +93,15 @@ const BlogPost = () => {
 
               <article
                 className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-heading dark:prose-headings:text-white prose-headings:text-brand-navy prose-h2:text-2xl prose-h3:text-xl prose-a:text-brand-gold prose-a:font-semibold hover:prose-a:text-amber-600 prose-img:rounded-3xl prose-img:shadow-lg dark:bg-card bg-white p-6 md:p-10 rounded-3xl shadow-sm border dark:border-white/10 border-slate-200 transition-colors"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              >
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                
+                <div className="mt-10 pt-6 border-t dark:border-white/10 border-slate-200">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 italic m-0">
+                    <strong>Image Credits & Resources:</strong> Featured images and assets used in this post are sourced from <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a> and other royalty-free resources for illustrative purposes.
+                  </p>
+                </div>
+              </article>
 
               {/* In-article CTA */}
               <div className="mt-12 bg-gradient-to-r from-brand-navy to-slate-800 rounded-3xl p-8 text-center text-white relative overflow-hidden shadow-xl">

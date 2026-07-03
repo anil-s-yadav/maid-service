@@ -83,12 +83,23 @@ const TermsOfService = () => {
               {BRAND.name} shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your use of our services or any conduct of the candidates.
             </p>
 
-            <h2>6. Governing Law</h2>
+            <h2>6. Website Disclaimers & Illustrative Content</h2>
+            <p>
+              Please note the following regarding the content and claims presented on our website:
+            </p>
+            <ul>
+              <li><strong>Illustrative Assets:</strong> The images, photographs, and user review names/avatars used on this website are for representational and reference purposes only. They may not depict actual staff members or clients and are used to illustrate the types of services we offer.</li>
+              <li><strong>Service Timelines:</strong> Our stated timelines (e.g., "Profiles on WhatsApp in 30 minutes", "Replacement within 24 hours") are target service standards. Actual response times may vary due to human delays, technical glitches, or candidate availability.</li>
+              <li><strong>Service Statistics & Claims:</strong> Claims such as "10000+ happy families" and other figures mentioned in our About section represent our projected business capacity, network scale, or historical industry experience, and are used for illustrative purposes.</li>
+              <li><strong>Medical Screenings:</strong> Mentions of "Medically Screened" staff apply exclusively to specific premium service tiers or upon explicit request, as comprehensive medical testing for every candidate is not standard due to time and cost constraints.</li>
+            </ul>
+
+            <h2>7. Governing Law</h2>
             <p>
               These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Mumbai, Maharashtra.
             </p>
 
-            <h2>7. Contact Information</h2>
+            <h2>8. Contact Information</h2>
             <p>If you have any questions about these Terms, please contact us at:</p>
             <p>
               Email: <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a><br />

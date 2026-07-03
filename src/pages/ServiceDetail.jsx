@@ -28,7 +28,7 @@ const ServiceDetail = () => {
 
   const handleChange = (field, value) => {
     setFormData(prev => ({...prev, [field]: value}));
-    updatePartialLeadData({ [field]: value, service: service.name });
+    updatePartialLeadData({ [field]: value, service: service.name, source: 'Service Detail Form' });
   };
 
   const handleSubmit = async (e) => {
@@ -68,7 +68,7 @@ const ServiceDetail = () => {
   const seoKeywords = `${service.name} in Mumbai, hire ${service.name.toLowerCase()}, best ${service.name.toLowerCase()} agency, reliable ${service.name.toLowerCase()} Mumbai, 24 hour ${service.name.toLowerCase()}`;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen dark:bg-[#0f172a] bg-slate-50 flex flex-col transition-colors duration-500 overflow-x-hidden">
       <SEOHead 
         title={`${service.name} Services in Mumbai`} 
         description={`Hire background-verified, experienced ${service.name.toLowerCase()}s in Mumbai. ${service.description}`} 
@@ -80,50 +80,50 @@ const ServiceDetail = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-10 md:mb-16">
               <div>
-                <Link to="/" className="text-brand-gold font-medium mb-6 inline-block hover:underline">&larr; Back to Home</Link>
-                <h1 className="text-4xl md:text-5xl font-bold text-brand-navy font-heading leading-tight mb-4">
+                <Link to="/services" className="text-brand-gold font-medium mb-6 inline-block hover:underline">&larr; Back to Services</Link>
+                <h1 className="text-3xl md:text-5xl font-bold dark:text-white text-brand-navy font-heading leading-tight mb-4 transition-colors">
                   Trusted <span className="text-brand-gold">{service.name}</span> Services
                 </h1>
-                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                <p className="text-lg dark:text-slate-300 text-slate-600 mb-8 leading-relaxed transition-colors">
                   {service.description}
                 </p>
                 
-                <div className="flex gap-4">
-                  <a href={`tel:${BRAND.phoneClean}`} className="flex items-center gap-2 bg-brand-navy hover:bg-slate-800 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-md">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <a href={`tel:${BRAND.phoneClean}`} className="flex items-center justify-center gap-2 bg-brand-navy hover:bg-slate-800 text-white px-4 md:px-6 py-3.5 md:py-3 rounded-xl font-bold transition-all shadow-md">
                     <Phone className="w-5 h-5" /> Call Now
                   </a>
-                  <a href={getWhatsAppLink(`Hi, I need a ${service.name} in Mumbai.`)} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 rounded-xl font-bold transition-all shadow-md">
+                  <a href={getWhatsAppLink(`Hi, I need a ${service.name} in Mumbai.`)} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 md:px-6 py-3.5 md:py-3 rounded-xl font-bold transition-all shadow-md">
                     <WhatsAppIcon className="w-5 h-5" /> WhatsApp
                   </a>
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="absolute inset-0 bg-brand-gold/10 rounded-3xl transform rotate-3 translate-x-4 translate-y-4"></div>
+              <div className="relative mt-8 md:mt-0 w-[90%] md:w-[85%] mx-auto">
+                <div className="absolute inset-0 bg-brand-gold/10 rounded-3xl transform rotate-2 translate-x-2 translate-y-2 md:rotate-3 md:translate-x-4 md:translate-y-4"></div>
                 <img 
                   src={image} 
                   alt={`${service.name} in Mumbai`} 
-                  className="rounded-3xl shadow-xl w-full h-[400px] object-cover relative z-10"
+                  className="rounded-3xl shadow-xl w-full h-[320px] md:h-[380px] object-cover relative z-10"
                 />
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 mt-16">
-              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-                <h3 className="text-2xl font-bold text-brand-navy font-heading mb-6">What is included?</h3>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mt-10 md:mt-16">
+              <div className="dark:bg-card bg-white p-6 md:p-8 rounded-3xl shadow-sm border dark:border-white/10 border-slate-100 transition-colors">
+                <h3 className="text-2xl font-bold dark:text-white text-brand-navy font-heading mb-6 transition-colors">What is included?</h3>
                 <ul className="space-y-4">
                   {service.includes && service.includes.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0" />
-                      <span className="text-slate-700">{item}</span>
+                      <span className="dark:text-slate-300 text-slate-700 transition-colors">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-brand-navy to-slate-800 p-8 rounded-3xl shadow-xl text-white">
+              <div className="bg-gradient-to-br from-brand-navy to-slate-800 p-6 md:p-8 rounded-3xl shadow-xl text-white">
                 <h3 className="text-2xl font-bold font-heading mb-2">Book Your {service.name}</h3>
                 <p className="text-slate-300 text-sm mb-6">Fill out this quick form and we will send verified profiles to your WhatsApp within 30 minutes.</p>
                 
@@ -202,8 +202,8 @@ const ServiceDetail = () => {
             </div>
 
             {/* Hidden SEO Keywords paragraph for better ranking */}
-            <div className="mt-16 text-sm text-slate-600 text-center max-w-4xl mx-auto bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <p><span className="font-semibold text-brand-navy">Popular Searches:</span> {seoKeywords}, {service.name.toLowerCase()} cost in mumbai, verified {service.name.toLowerCase()} near me, {service.name.toLowerCase()} agency in Andheri, Bandra, Powai.</p>
+            <div className="mt-16 text-sm dark:text-slate-400 text-slate-600 text-center max-w-4xl mx-auto dark:bg-card bg-white p-6 rounded-2xl border dark:border-white/10 border-slate-200 shadow-sm transition-colors">
+              <p><span className="font-semibold dark:text-white text-brand-navy transition-colors">Popular Searches:</span> {seoKeywords}, {service.name.toLowerCase()} cost in mumbai, verified {service.name.toLowerCase()} near me, {service.name.toLowerCase()} agency in Andheri, Bandra, Powai.</p>
             </div>
 
           </div>

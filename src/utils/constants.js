@@ -43,7 +43,7 @@ export const SERVICES = [
     nameMr: 'घरकाम करणारी बाई',
     icon: 'Home',
     description: 'Verified house maids for daily cleaning, laundry, mopping, and home organization.',
-    includes: ['Daily sweeping & mopping', 'Laundry & ironing', 'Kitchen & utensil cleaning', 'Bathroom sanitizing', 'Dusting & organizing'],
+    includes: ['Daily sweeping & mopping', 'Laundry & ironing', 'Kitchen & utensil cleaning', 'Bathroom sanitizing', 'Dusting & organizing', 'Balcony & window cleaning', 'Wardrobe arrangement', 'Plant watering', 'and more...'],
     baseRate: 8000,
   },
   {
@@ -53,7 +53,7 @@ export const SERVICES = [
     nameMr: 'स्वयंपाकी',
     icon: 'ChefHat',
     description: 'Experienced home cooks who prepare hygienic, delicious meals to your taste.',
-    includes: ['Breakfast, lunch & dinner', 'Regional & special cuisines', 'Diet & health meal planning', 'Grocery list management', 'Clean cooking area'],
+    includes: ['Breakfast, lunch & dinner', 'Regional & special cuisines', 'Diet & health meal planning', 'Grocery list management', 'Clean cooking area', 'Chopping & meal prep', 'Festival sweets & snacks', 'Serving & table setup', 'and more...'],
     baseRate: 12000,
   },
   {
@@ -63,7 +63,7 @@ export const SERVICES = [
     nameMr: 'बेबीसिटर',
     icon: 'Baby',
     description: 'Caring babysitters for your little ones — feeding, playing, and safe supervision.',
-    includes: ['Feeding & diaper changes', 'Playtime & activities', 'Sleep routine management', 'Light cleaning of baby area', 'Emergency first-aid trained'],
+    includes: ['Feeding & diaper changes', 'Engaging playtime', 'Sterilizing bottles/toys', 'Nap schedule management', 'Baby laundry', 'Stroller walks', 'Potty training support', 'Basic child hygiene', 'and more...'],
     baseRate: 10000,
   },
   {
@@ -73,7 +73,7 @@ export const SERVICES = [
     nameMr: 'नॅनी',
     icon: 'Heart',
     description: 'Full-time nannies for complete childcare — from infants to school-going children.',
-    includes: ['Complete child supervision', 'Homework assistance', 'School pick-up & drop', 'Meals & nutrition management', 'Activity planning'],
+    includes: ['Homework assistance', 'Extracurricular prep', 'Hygiene & bath routine', 'Healthy meal feeding', 'Safe indoor/outdoor play', 'School drop & pick-up', 'Children room organization', 'Creative arts & crafts', 'and more...'],
     baseRate: 15000,
   },
   {
@@ -83,7 +83,7 @@ export const SERVICES = [
     nameMr: 'जापा मेड',
     icon: 'Sparkles',
     description: 'Experienced post-natal care — mother & newborn care after delivery.',
-    includes: ['Newborn bathing & massage', 'Mother diet & nutrition', 'Night feed support', 'Post-delivery recovery care', 'Traditional japa rituals'],
+    includes: ['Newborn massage & bath', 'Mother diet & care', 'Lactation support', 'Sleep training assistance', 'Sanitizing baby items', 'Postpartum mother massage', 'Washing baby clothes', 'Night crying soothing', 'and more...'],
     baseRate: 20000,
   },
   {
@@ -93,7 +93,7 @@ export const SERVICES = [
     nameMr: 'रुग्ण सेवा',
     icon: 'Stethoscope',
     description: 'Professional patient care attendants for post-surgery recovery and illness support.',
-    includes: ['Medication reminders', 'Mobility assistance', 'Vital sign monitoring', 'Personal hygiene care', '24/7 attentive support'],
+    includes: ['Medication reminders', 'Mobility assistance', 'Bed sore prevention', 'Bathing & grooming', 'Vitals monitoring', 'Feeding via tube/mouth', 'Catheter/diaper management', 'Accompanying to checkups', 'and more...'],
     baseRate: 18000,
   },
   {
@@ -103,7 +103,7 @@ export const SERVICES = [
     nameMr: 'वृद्ध सेवा',
     icon: 'HeartHandshake',
     description: 'Compassionate elderly care companions for your parents and grandparents.',
-    includes: ['Daily routine assistance', 'Companionship & engagement', 'Medication management', 'Doctor visit accompaniment', 'Emergency response'],
+    includes: ['Daily routine assistance', 'Companionship & engagement', 'Medication management', 'Doctor visit accompaniment', 'Emergency response', 'Light physical exercises', 'Reading & recreation', 'Dietary monitoring', 'and more...'],
     baseRate: 16000,
   },
   {
@@ -113,7 +113,7 @@ export const SERVICES = [
     nameMr: 'ड्रायव्हर',
     icon: 'Car',
     description: 'Verified, licensed drivers for personal and family transportation needs.',
-    includes: ['Daily commute driving', 'School & office pick-drop', 'Errand running', 'Car maintenance oversight', 'Safe & punctual driving'],
+    includes: ['Safe city driving', 'Outstation travel', 'Vehicle cleaning & upkeep', 'Route planning', 'Running errands', 'Basic mechanical checks', 'Grocery & school drops', 'Airport transfers', 'and more...'],
     baseRate: 15000,
   },
 ];
