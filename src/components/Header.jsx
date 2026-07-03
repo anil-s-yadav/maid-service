@@ -100,7 +100,7 @@ export const Header = () => {
       </header>
 
       {/* Mobile Navigation Drawer */}
-      <div className={`fixed inset-0 dark:bg-[#0a1128] bg-white z-40 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-28 px-6 flex flex-col`}>
+      <div className={`fixed inset-0 dark:bg-[#0a1128] bg-white z-40 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden pt-28 px-6 pb-32 overflow-y-auto flex flex-col`}>
         <nav className="flex flex-col gap-6 text-lg font-medium">
           {navLinks.map((link) => (
             <Link
