@@ -1,9 +1,8 @@
-
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Features } from "@/components/Features";
-// import { TrustBanner } from "@/components/TrustBanner";
 import { ComparisonTable } from "@/components/ComparisonTable";
+import { AvailableStaff } from "@/components/AvailableStaff";
 import { VerificationProcess } from "@/components/VerificationProcess";
 import { FAQ } from "@/components/FAQ";
 import { Testimonials } from "@/components/Testimonials";
@@ -21,15 +20,14 @@ const Index = () => {
       />
       <Header />
       <Hero />
-      {/* <TrustBanner /> */}
       <Features />
       <Services />
+      <AvailableStaff />
       <VerificationProcess />
       <ComparisonTable />
       <Testimonials />
       <FAQ />
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

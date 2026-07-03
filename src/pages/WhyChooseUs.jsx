@@ -14,7 +14,6 @@ const WhyChooseUsPage = () => {
         <Features />
       </div>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

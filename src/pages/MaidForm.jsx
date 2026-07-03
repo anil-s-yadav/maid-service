@@ -21,7 +21,6 @@ const MaidFormPage = () => {
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

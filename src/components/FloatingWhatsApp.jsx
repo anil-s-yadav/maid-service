@@ -56,7 +56,7 @@ export const FloatingWhatsApp = () => {
 
       {/* Salary Calculator Button (Bottom) */}
       <Link
-        to="/price"
+        to="/our-price"
         className="group relative flex items-center gap-2 bg-[#0a1128]/80 hover:bg-[#0a1128] backdrop-blur-md text-white rounded-full pr-4 pl-1.5 py-1.5 shadow-lg shadow-black/20 transition-all hover:scale-105 active:scale-95 z-10 border border-white/20"
         aria-label="Calculate Salary"
       >

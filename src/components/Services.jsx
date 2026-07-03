@@ -30,7 +30,7 @@ export const Services = () => {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
-    <section className="py-16 md:py-20 dark:bg-[#0a0f1e] bg-slate-50 relative overflow-hidden transition-colors duration-500">
+    <section className="pt-16 pb-6 md:pt-20 md:pb-8 dark:bg-[#0a0f1e] bg-slate-50 relative overflow-hidden transition-colors duration-500">
       {/* Decorative background blobs — visible in dark mode for ambient glow */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] dark:bg-brand-gold/[0.06] bg-brand-gold/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] dark:bg-purple-500/[0.04] bg-brand-gold/5 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>

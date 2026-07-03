@@ -9,6 +9,7 @@ import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { getWhatsAppLink } from '../utils/constants';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
+import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 
 const ServiceDetail = () => {
   const { id } = useParams();
@@ -68,7 +69,7 @@ const ServiceDetail = () => {
   const seoKeywords = `${service.name} in Mumbai, hire ${service.name.toLowerCase()}, best ${service.name.toLowerCase()} agency, reliable ${service.name.toLowerCase()} Mumbai, 24 hour ${service.name.toLowerCase()}`;
 
   return (
-    <div className="min-h-screen dark:bg-[#0f172a] bg-slate-50 flex flex-col transition-colors duration-500 overflow-x-hidden">
+    <div className="min-h-screen dark:bg-[#0f172a] bg-slate-50 flex flex-col transition-colors duration-500">
       <SEOHead 
         title={`${service.name} Services in Mumbai`} 
         description={`Hire background-verified, experienced ${service.name.toLowerCase()}s in Mumbai. ${service.description}`} 
@@ -109,95 +110,129 @@ const ServiceDetail = () => {
                 />
               </div>
             </div>
+            <div className="grid md:grid-cols-12 gap-8 lg:gap-12 mt-10 md:mt-16">
+              
+              {/* Left Column: Content */}
+              <div className="md:col-span-7 xl:col-span-8 flex flex-col gap-8 md:gap-10">
+                {service.id === 'house-maid' && <BeforeAfterSlider />}
 
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mt-10 md:mt-16">
-              <div className="dark:bg-card bg-white p-6 md:p-8 rounded-3xl shadow-sm border dark:border-white/10 border-slate-100 transition-colors">
-                <h3 className="text-2xl font-bold dark:text-white text-brand-navy font-heading mb-6 transition-colors">What is included?</h3>
-                <ul className="space-y-4">
-                  {service.includes && service.includes.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0" />
-                      <span className="dark:text-slate-300 text-slate-700 transition-colors">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="dark:bg-card bg-white p-6 md:p-8 rounded-3xl shadow-sm border dark:border-white/10 border-slate-100 transition-colors">
+                  <h3 className="text-2xl font-bold dark:text-white text-brand-navy font-heading mb-6 transition-colors">What is included?</h3>
+                  <ul className="space-y-4">
+                    {service.includes && service.includes.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3 group">
+                        <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                        <span className="dark:text-slate-300 text-slate-700 transition-colors">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="dark:bg-card bg-white p-6 md:p-8 rounded-3xl shadow-sm border dark:border-white/10 border-slate-100 transition-colors">
+                  <h3 className="text-2xl font-bold dark:text-white text-brand-navy font-heading mb-6 transition-colors">Why Choose Our {service.name}s?</h3>
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold dark:text-white text-brand-navy mb-1">100% Verified Profiles</h4>
+                        <p className="text-sm dark:text-slate-400 text-slate-600">Every candidate undergoes rigorous background checks, Aadhaar verification, and medical screening before we send them to your home.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-6 h-6 text-brand-gold" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold dark:text-white text-brand-navy mb-1">Free Replacement Guarantee</h4>
+                        <p className="text-sm dark:text-slate-400 text-slate-600">Not satisfied with the service? We offer hassle-free replacements within your contract period to ensure you get the perfect match.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-gradient-to-br from-brand-navy to-slate-800 p-6 md:p-8 rounded-3xl shadow-xl text-white">
-                <h3 className="text-2xl font-bold font-heading mb-2">Book Your {service.name}</h3>
-                <p className="text-slate-300 text-sm mb-6">Fill out this quick form and we will send verified profiles to your WhatsApp within 30 minutes.</p>
-                
-                {submitted ? (
-                  <div className="text-center py-10">
-                    <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                      <CheckCircle2 className="w-8 h-8" />
+              {/* Right Column: Sticky Form */}
+              <div className="md:col-span-5 xl:col-span-4 relative">
+                <div className="sticky top-28 bg-gradient-to-br from-brand-navy to-slate-800 p-6 md:p-8 rounded-3xl shadow-xl text-white">
+                  <h3 className="text-2xl font-bold font-heading mb-2">Book Your {service.name}</h3>
+                  <p className="text-slate-300 text-sm mb-6">Fill out this quick form and we will send verified profiles to your WhatsApp within 30 minutes.</p>
+                  
+                  {submitted ? (
+                    <div className="text-center py-10">
+                      <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                        <CheckCircle2 className="w-8 h-8" />
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Request Received!</h4>
+                      <p className="text-slate-300 text-sm">Our team will contact you shortly.</p>
                     </div>
-                    <h4 className="text-xl font-bold text-white mb-2">Request Received!</h4>
-                    <p className="text-slate-300 text-sm">Our team will contact you shortly.</p>
-                  </div>
-                ) : (
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                      <input 
-                        type="text" 
-                        required 
-                        placeholder="Your Name" 
-                        value={formData.name}
-                        onChange={(e) => handleChange('name', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
-                      />
-                    </div>
-                    <div>
-                      <input 
-                        type="tel" 
-                        required 
-                        minLength="10" 
-                        maxLength="10" 
-                        placeholder="Mobile Number" 
-                        value={formData.phone}
-                        onChange={(e) => handleChange('phone', e.target.value.replace(/\D/g, ''))}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
-                      />
-                    </div>
-                    <div>
-                      <select 
-                        required 
-                        value={formData.location}
-                        onChange={(e) => handleChange('location', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
+                  ) : (
+                    <form className="space-y-4" onSubmit={handleSubmit}>
+                      <div>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder="Your Name" 
+                          value={formData.name}
+                          onChange={(e) => handleChange('name', e.target.value)}
+                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
+                        />
+                      </div>
+                      <div>
+                        <input 
+                          type="tel" 
+                          required 
+                          minLength="10" 
+                          maxLength="10" 
+                          placeholder="Mobile Number" 
+                          value={formData.phone}
+                          onChange={(e) => handleChange('phone', e.target.value.replace(/\D/g, ''))}
+                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-brand-gold" 
+                        />
+                      </div>
+                      <div>
+                        <select 
+                          required 
+                          value={formData.location}
+                          onChange={(e) => handleChange('location', e.target.value)}
+                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
+                        >
+                          <option value="" disabled className="text-slate-800">Select Location</option>
+                          {AREAS_SERVED.map(area => (
+                            <option key={area} value={area} className="text-slate-800">{area}</option>
+                          ))}
+                          <option value="Other" className="text-slate-800">Other Mumbai Area</option>
+                        </select>
+                      </div>
+                      <div>
+                        <select 
+                          required 
+                          value={formData.hours}
+                          onChange={(e) => handleChange('hours', e.target.value)}
+                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
+                        >
+                          <option value="" disabled className="text-slate-800">Select Work Hours</option>
+                          <option value="4" className="text-slate-800">4 Hours</option>
+                          <option value="6" className="text-slate-800">6 Hours</option>
+                          <option value="8" className="text-slate-800">8 Hours</option>
+                          <option value="10" className="text-slate-800">10 Hours</option>
+                          <option value="12" className="text-slate-800">12 Hours (Full Day)</option>
+                          <option value="24" className="text-slate-800">24 Hours (Live-in)</option>
+                        </select>
+                      </div>
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full bg-brand-gold hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(217,119,6,0.3)] hover:shadow-[0_0_20px_rgba(217,119,6,0.5)] transition-all disabled:opacity-70 group relative overflow-hidden"
                       >
-                        <option value="" disabled className="text-slate-800">Select Location</option>
-                        {AREAS_SERVED.map(area => (
-                          <option key={area} value={area} className="text-slate-800">{area}</option>
-                        ))}
-                        <option value="Other" className="text-slate-800">Other Mumbai Area</option>
-                      </select>
-                    </div>
-                    <div>
-                      <select 
-                        required 
-                        value={formData.hours}
-                        onChange={(e) => handleChange('hours', e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
-                      >
-                        <option value="" disabled className="text-slate-800">Select Work Hours</option>
-                        <option value="4" className="text-slate-800">4 Hours</option>
-                        <option value="6" className="text-slate-800">6 Hours</option>
-                        <option value="8" className="text-slate-800">8 Hours</option>
-                        <option value="10" className="text-slate-800">10 Hours</option>
-                        <option value="12" className="text-slate-800">12 Hours (Full Day)</option>
-                        <option value="24" className="text-slate-800">24 Hours (Live-in)</option>
-                      </select>
-                    </div>
-                    <button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-brand-gold hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl shadow-[0_0_15px_rgba(13,148,136,0.3)] transition-all disabled:opacity-70"
-                    >
-                      {isSubmitting ? 'Sending...' : 'Send Me Profiles'}
-                    </button>
-                  </form>
-                )}
+                        {isSubmitting ? 'Sending...' : 'Send Me Profiles'}
+                        {/* Shimmer effect */}
+                        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
 

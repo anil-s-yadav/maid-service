@@ -35,10 +35,11 @@ export const MobileCTA = () => {
         href={getWhatsAppLink()}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white rounded-xl py-3 font-semibold text-sm shadow-sm"
+        className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white rounded-xl py-3 font-semibold text-sm shadow-[0_0_15px_rgba(37,211,102,0.4)] relative overflow-hidden"
       >
-        <WhatsAppIcon className="w-4 h-4" />
+        <WhatsAppIcon className="w-4 h-4 animate-pulse" />
         WhatsApp
+        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 animate-[shimmer_3s_infinite]" />
       </a>
     </div>
   );

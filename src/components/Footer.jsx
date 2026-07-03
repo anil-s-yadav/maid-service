@@ -38,8 +38,8 @@ export const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4 uppercase tracking-wider text-xs">Quick Links</h3>
             <ul className="space-y-2 text-[13px]">
-              <li><Link to="/about" className="hover:text-brand-gold transition-colors">About Us</Link></li>
-              <li><Link to="/price" className="hover:text-brand-gold transition-colors">Salary Calculator</Link></li>
+              <li><Link to="/about-us" className="hover:text-brand-gold transition-colors">About Us</Link></li>
+              <li><Link to="/our-price" className="hover:text-brand-gold transition-colors">Salary Calculator</Link></li>
               <li><Link to="/why-choose-us" className="hover:text-brand-gold transition-colors">Compare Agencies</Link></li>
               <li><Link to="/blog" className="hover:text-brand-gold transition-colors">Blog & Guides</Link></li>
               <li><Link to="/contact" className="hover:text-brand-gold transition-colors">Contact Us</Link></li>

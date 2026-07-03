@@ -348,8 +348,8 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Footer */}
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

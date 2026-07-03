@@ -103,9 +103,10 @@ const ServicesPage = () => {
               const Icon = iconMap[service.id] || Home;
               const colors = colorMap[service.id] || colorMap['house-maid'];
               return (
-                <div
+                <Link
                   key={service.id}
-                  className="dark:bg-[#1e293b] bg-white rounded-2xl overflow-hidden border dark:border-white/10 border-amber-200/60 shadow-[0_2px_12px_-2px_rgba(217,119,6,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(217,119,6,0.25)] hover:border-amber-300/80 dark:hover:border-amber-500/50 transition-all duration-300 group flex flex-col"
+                  to={`/services/${service.id}`}
+                  className="dark:bg-[#1e293b] bg-white rounded-2xl overflow-hidden border dark:border-white/10 border-amber-200/60 shadow-[0_2px_12px_-2px_rgba(217,119,6,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(217,119,6,0.25)] hover:border-amber-300/80 dark:hover:border-amber-500/50 transition-all duration-300 group flex flex-col cursor-pointer"
                 >
                   {/* Gradient Top Strip */}
                   <div className={`bg-gradient-to-r ${colors.gradient} p-5 pb-4`}>
@@ -124,13 +125,13 @@ const ServicesPage = () => {
                     <ul className="space-y-1.5">
                       {service.includes.slice(0, 4).map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
                           <span className="text-xs dark:text-slate-300 text-slate-600 transition-colors">{item}</span>
                         </li>
                       ))}
                       {service.includes.length > 4 && (
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-gold mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
                           <span className="text-xs dark:text-slate-300 text-slate-600 transition-colors capitalize">{service.includes[service.includes.length - 1]}</span>
                         </li>
                       )}
@@ -147,15 +148,12 @@ const ServicesPage = () => {
                           <span className="text-xs dark:text-slate-400 text-slate-400 ml-1 transition-colors">/mo</span>
                         </div>
                       </div>
-                      <Link
-                        to={`/services/${service.id}`}
-                        className="text-xs font-bold text-brand-gold hover:text-amber-600 flex items-center gap-1 transition-colors"
-                      >
-                        Details <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                      <span className="text-xs font-bold text-brand-gold flex items-center gap-1 transition-colors group-hover:text-amber-600">
+                        Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -251,7 +249,6 @@ const ServicesPage = () => {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

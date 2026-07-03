@@ -289,7 +289,6 @@ const AboutUsPage = () => {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

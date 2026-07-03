@@ -22,16 +22,8 @@ export const Hero = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => {
-      const newData = { ...prev, [name]: value };
-      updatePartialLeadData({
-        name: newData.name,
-        phone: newData.phone,
-        service: newData.service,
-        location: newData.location
-      });
-      return newData;
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
+    updatePartialLeadData({ [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -39,18 +31,23 @@ export const Hero = () => {
     if (formData.phone.length < 10 || isSubmitting) return;
 
     setIsSubmitting(true);
-    await submitLead({
-      name: formData.name,
-      phone: formData.phone,
-      service: formData.service || 'Not specified',
-      location: formData.location,
-      type: 'full',
-      source: 'Hero Form'
-    });
+    try {
+      await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        service: formData.service || 'Not specified',
+        location: formData.location || 'Not specified',
+        type: 'full',
+        source: 'Hero Form'
+      });
 
-    markFormSubmitted();
-    setSubmitted(true);
-    setIsSubmitting(false);
+      markFormSubmitted();
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Form submission failed", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

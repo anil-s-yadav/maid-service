@@ -24,6 +24,11 @@ import CallRedirect from "./pages/CallRedirect";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import { ThemeProvider } from "./contexts/ThemeProvider";
+import { LiveNotifications } from "./components/LiveNotifications";
+import { CookieConsent } from "./components/CookieConsent";
+
+import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -33,27 +38,29 @@ const App = () => (
         <TooltipProvider>
       <Toaster />
       <Sonner />
-      <MobileCTA />
-      <LeadPopup />
       <BrowserRouter>
+        <MobileCTA />
+        <LeadPopup />
+        <FloatingWhatsApp />
+        <LiveNotifications />
+        <CookieConsent />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/price" element={<OurPrice />} />
-          <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<ServiceDetail />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/our-price" element={<OurPrice />} />
+          <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/maid-form" element={<MaidForm />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/services/:id" element={<ServiceDetail />} />
-          <Route path="/call/:phone" element={<CallRedirect />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/tel:*" element={<CallRedirect />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -87,6 +87,9 @@ module.exports = {
         'marquee': {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' },
+        },
+        'shimmer': {
+          '100%': { transform: 'translateX(200%)' }
         }
       },
       animation: {
@@ -95,6 +98,7 @@ module.exports = {
         'float': 'float 3s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'marquee': 'marquee 120s linear infinite',
+        'shimmer': 'shimmer 2s infinite',
       }
     }
   },

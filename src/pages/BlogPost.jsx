@@ -41,7 +41,7 @@ const BlogPost = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await submitLead(formData);
+      await submitLead({ ...formData, type: 'full' });
       markFormSubmitted();
       setIsSuccess(true);
     } catch (error) {

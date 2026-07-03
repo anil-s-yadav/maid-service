@@ -12,7 +12,6 @@ const OurPricePage = () => {
         <SalaryCalculator />
       </div>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };
