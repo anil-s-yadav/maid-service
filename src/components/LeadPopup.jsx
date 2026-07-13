@@ -3,6 +3,7 @@ import { X, Sparkles, CheckCircle2 } from 'lucide-react';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
 import { SERVICES, AREAS_SERVED } from '../utils/constants';
+import { LocationSearch } from './LocationSearch';
 
 export const LeadPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -122,18 +123,14 @@ export const LeadPopup = () => {
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <select
+                <LocationSearch
+                  name="location"
                   required
                   value={formData.location}
                   onChange={e => handleChange('location', e.target.value)}
-                  className="w-full dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold appearance-none text-slate-700 transition-colors"
-                >
-                  <option value="" disabled>Location (Mumbai)</option>
-                  {AREAS_SERVED.map(area => (
-                    <option key={area} value={area}>{area}</option>
-                  ))}
-                  <option value="Other">Other Mumbai Area</option>
-                </select>
+                  placeholder="Location (Mumbai)"
+                  className="w-full dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors"
+                />
 
                 <select
                   required

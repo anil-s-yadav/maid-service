@@ -4,6 +4,7 @@ import { submitLead } from "../utils/leadCapture";
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted, resetPartialLead } from "../utils/partialLead";
 import { CheckCircle2, Globe, Send } from "lucide-react";
 import { AREAS_SERVED, SERVICES } from "../utils/constants";
+import { LocationSearch } from "./LocationSearch";
 
 export const MaidForm = () => {
   const [lang, setLang] = useState('en');
@@ -129,13 +130,14 @@ export const MaidForm = () => {
 
             <div className="space-y-1.5">
               <label className="text-xs md:text-sm font-semibold dark:text-slate-300 text-slate-700 transition-colors">Location (Mumbai) *</label>
-              <select name="location" required value={formData.location} onChange={handleChange} className="w-full text-sm dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-gold appearance-none text-slate-700 transition-colors">
-                <option value="" disabled>Select your nearest area</option>
-                {AREAS_SERVED.map(area => (
-                  <option key={area} value={area}>{area}</option>
-                ))}
-                <option value="Other">Other Area in Mumbai</option>
-              </select>
+              <LocationSearch 
+                name="location" 
+                required 
+                value={formData.location} 
+                onChange={handleChange} 
+                placeholder="Select your nearest area"
+                className="w-full text-sm dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-gold transition-colors"
+              />
             </div>
 
             <div className="space-y-1.5">

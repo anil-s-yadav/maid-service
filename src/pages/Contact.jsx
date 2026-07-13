@@ -6,6 +6,7 @@ import { Phone, Mail, MapPin, Clock, ChevronDown, CheckCircle2, MessageSquare, S
 import { AREAS_SERVED } from "@/utils/constants";
 import { submitLead } from "@/utils/leadCapture";
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from "@/utils/partialLead";
+import { LocationSearch } from "@/components/LocationSearch";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -164,23 +165,14 @@ const Contact = () => {
                     <div className="space-y-1.5">
                       <label htmlFor="location" className="text-xs font-semibold dark:text-slate-300 text-slate-700 transition-colors">Location <span className="text-red-500">*</span></label>
                       <div className="relative">
-                        <select
-                          id="location"
+                        <LocationSearch 
                           name="location"
                           required
                           value={formData.location}
                           onChange={handleInputChange}
+                          placeholder="Select Location (Mumbai)"
                           className="w-full appearance-none dark:bg-[#1e293b] dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all text-slate-700"
-                        >
-                          <option value="" disabled>Select Location (Mumbai)</option>
-                          {AREAS_SERVED.map(area => (
-                            <option key={area} value={area}>{area}</option>
-                          ))}
-                          <option value="Other">Other Mumbai Area</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                          <ChevronDown className="h-5 w-5 text-slate-400" />
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>

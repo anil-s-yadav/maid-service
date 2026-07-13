@@ -9,6 +9,7 @@ import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { getWhatsAppLink } from '../utils/constants';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
+import { LocationSearch } from '../components/LocationSearch';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 
 const ServiceDetail = () => {
@@ -192,18 +193,14 @@ const ServiceDetail = () => {
                         />
                       </div>
                       <div>
-                        <select 
+                        <LocationSearch 
+                          name="location"
                           required 
                           value={formData.location}
                           onChange={(e) => handleChange('location', e.target.value)}
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold appearance-none"
-                        >
-                          <option value="" disabled className="text-slate-800">Select Location</option>
-                          {AREAS_SERVED.map(area => (
-                            <option key={area} value={area} className="text-slate-800">{area}</option>
-                          ))}
-                          <option value="Other" className="text-slate-800">Other Mumbai Area</option>
-                        </select>
+                          placeholder="Select Location"
+                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold"
+                        />
                       </div>
                       <div>
                         <select 

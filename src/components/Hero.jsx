@@ -6,6 +6,7 @@ import { useInView, animations } from "../hooks/useInView";
 import { submitLead } from '../utils/leadCapture';
 import { BadgeCheck } from "lucide-react";
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted, resetPartialLead } from '../utils/partialLead';
+import { LocationSearch } from "./LocationSearch";
 
 export const Hero = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", service: "", location: "" });
@@ -167,22 +168,15 @@ export const Hero = () => {
 
                   {/* Location */}
                   <div className="relative">
-                    <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
-                    <select
+                    <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-slate-400 z-10 pointer-events-none" />
+                    <LocationSearch 
                       name="location"
                       value={formData.location}
                       onChange={handleChange}
-                      className="w-full dark:bg-slate-900/50 bg-slate-50 border dark:border-white/5 border-slate-300 dark:text-white text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 appearance-none focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors dark:[&>option]:bg-slate-900 [&>option]:bg-white"
-                    >
-                      <option value="" disabled>Select Location (Mumbai)</option>
-                      {AREAS_SERVED.map(area => (
-                        <option key={area} value={area}>{area}</option>
-                      ))}
-                      <option value="Other">Other Mumbai Area</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                      <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      required={true}
+                      placeholder="Select Location (Mumbai)"
+                      className="w-full dark:bg-slate-900/50 bg-slate-50 border dark:border-white/5 border-slate-300 dark:text-white text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors placeholder:text-slate-500"
+                    />
                   </div>
 
                   {/* Service Selection */}

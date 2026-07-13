@@ -4,6 +4,7 @@ import { SERVICES, EXPERIENCE_LEVELS, EDUCATION_LEVELS, LANGUAGES, AREAS_SERVED 
 import { calculateSalaryEstimate, formatRupees } from '../utils/salaryData';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
+import { LocationSearch } from './LocationSearch';
 
 export const SalaryCalculator = () => {
   const [formData, setFormData] = useState({
@@ -221,19 +222,14 @@ export const SalaryCalculator = () => {
                     <MapPin className="w-3.5 h-3.5 text-brand-gold" />
                     Location in Mumbai
                   </label>
-                  <select 
+                  <LocationSearch 
                     name="location" 
                     required
                     value={formData.location} 
                     onChange={handleChange}
-                    className="w-full text-sm appearance-none dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
-                  >
-                    <option value="" disabled className="dark:bg-slate-800 dark:text-white">Select area</option>
-                    {AREAS_SERVED.map(area => (
-                      <option key={area} value={area} className="dark:bg-slate-800 dark:text-white">{area}</option>
-                    ))}
-                    <option value="Other" className="dark:bg-slate-800 dark:text-white">Other</option>
-                  </select>
+                    placeholder="Select area"
+                    className="w-full text-sm dark:bg-white/5 dark:border-white/10 dark:text-white bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand-gold transition-colors text-slate-700"
+                  />
                 </div>
               </div>
 

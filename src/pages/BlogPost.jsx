@@ -8,6 +8,7 @@ import { Calendar, Clock, ChevronLeft, CheckCircle2 } from 'lucide-react';
 import { LeadPopup } from '../components/LeadPopup';
 import { submitLead } from '../utils/leadCapture';
 import { initPartialLeadCapture, updatePartialLeadData, markFormSubmitted } from '../utils/partialLead';
+import { LocationSearch } from '../components/LocationSearch';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -175,13 +176,14 @@ const BlogPost = () => {
                           </select>
                         </div>
                         <div>
-                          <select name="location" value={formData.location} onChange={handleChange} required className="w-full text-sm px-4 py-3 rounded-xl bg-[#1e293b] border border-white/10 text-white focus:outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/50 transition-all appearance-none shadow-inner">
-                            <option value="" disabled>Location (Mumbai) *</option>
-                            {AREAS_SERVED.map(area => (
-                              <option key={area} value={area}>{area}</option>
-                            ))}
-                            <option value="Other">Other Area in Mumbai</option>
-                          </select>
+                          <LocationSearch 
+                            name="location" 
+                            value={formData.location} 
+                            onChange={handleChange} 
+                            required 
+                            placeholder="Location (Mumbai) *"
+                            className="w-full text-sm px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/50 transition-all shadow-inner"
+                          />
                         </div>
                         <button type="submit" disabled={isSubmitting} className="w-full bg-brand-gold text-brand-navy text-sm font-extrabold py-3.5 rounded-xl hover:bg-amber-500 transition-colors shadow-[0_0_15px_rgba(252,191,73,0.3)] hover:shadow-[0_0_25px_rgba(252,191,73,0.5)] mt-2 disabled:opacity-70 disabled:cursor-not-allowed">
                           {isSubmitting ? 'Sending...' : 'Request Call Back'}

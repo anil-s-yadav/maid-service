@@ -157,7 +157,6 @@ const ServicesPage = () => {
               );
             })}
           </div>
-
           <div className="mt-8 max-w-4xl mx-auto text-center px-4">
             <p className="text-[11px] text-slate-400 italic">
               *Prices shown are estimated starting base rates for standard 8-hour shifts. Actual salaries may vary significantly based on your exact location within Mumbai, the candidate's years of experience, specific skillset, working hours, and scope of work. Final pricing is agreed upon mutually between the employer and the candidate during the interview process.

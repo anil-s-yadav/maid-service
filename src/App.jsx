@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { HelmetProvider } from 'react-helmet-async';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
@@ -31,6 +31,30 @@ import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 
 const queryClient = new QueryClient();
 
+const GlobalOverlays = () => {
+  const location = useLocation();
+  const isCustomerPortal = location.pathname.startsWith('/dashboard') || location.pathname.startsWith('/login');
+
+  if (isCustomerPortal) {
+    return (
+      <>
+        <FloatingWhatsApp />
+        <CookieConsent />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <MobileCTA />
+      <LeadPopup />
+      <FloatingWhatsApp />
+      <LiveNotifications />
+      <CookieConsent />
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -39,11 +63,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <MobileCTA />
-        <LeadPopup />
-        <FloatingWhatsApp />
-        <LiveNotifications />
-        <CookieConsent />
+        <GlobalOverlays />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />

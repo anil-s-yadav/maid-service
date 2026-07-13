@@ -75,25 +75,19 @@ export const AvailableStaff = () => {
         </div>
 
         <div className="relative">
-          {/* Edge Gradients for smooth fade effect */}
-          <div className="absolute top-0 bottom-0 left-0 w-12 bg-gradient-to-r from-slate-50 dark:from-[#0a0f1e] to-transparent z-10 pointer-events-none transition-colors duration-500 hidden md:block"></div>
-          <div className="absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-slate-50 dark:from-[#0a0f1e] to-transparent z-10 pointer-events-none transition-colors duration-500 hidden md:block"></div>
 
           <div className="embla overflow-hidden" ref={emblaRef}>
             <div className="embla__container flex touch-pan-y -ml-3 md:-ml-4">
               {STAFF_PROFILES.map((staff, idx) => (
                 <div key={idx} className="embla__slide flex-none pl-3 md:pl-4 min-w-[260px] w-full sm:w-[280px] md:w-[320px] lg:w-[350px]">
                   <div className="bg-white dark:bg-[#1e293b] rounded-2xl p-4 md:p-5 shadow-lg border border-slate-100 dark:border-white/5 transition-colors h-full flex flex-col group relative overflow-hidden">
-                    
-                    {/* Background Glow */}
-                    <div className="absolute -right-10 -top-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-3xl group-hover:bg-brand-gold/20 transition-all"></div>
 
                     <div className="flex gap-3 mb-4 relative z-10">
                       <div className="relative">
                         <img 
                           src={staff.image} 
                           alt="Verified Staff" 
-                          className="w-16 h-16 rounded-xl object-cover filter blur-[2px] shadow-sm group-hover:blur-none transition-all duration-300"
+                          className="w-16 h-16 rounded-xl object-cover shadow-sm transition-all duration-300"
                         />
                         <div className="absolute -bottom-1.5 -right-1.5 bg-blue-500 text-white rounded-full p-1 shadow-sm border-2 border-white dark:border-[#1e293b]">
                           <ShieldCheck className="w-2.5 h-2.5" />
