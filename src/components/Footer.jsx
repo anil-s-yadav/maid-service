@@ -103,7 +103,7 @@ export const Footer = () => {
           <p>© {BRAND.foundedYear} {BRAND.name}. All rights reserved.</p>
           <div className="flex gap-5">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
