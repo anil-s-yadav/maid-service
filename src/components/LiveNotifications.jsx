@@ -11,7 +11,7 @@ export const LiveNotifications = () => {
   useEffect(() => {
     let timeoutId;
     let count = 0;
-    const MAX_NOTIFICATIONS = 3;
+    const MAX_NOTIFICATIONS = 2; // Reduced frequency
     
     const triggerNotification = () => {
       if (count >= MAX_NOTIFICATIONS) return;
@@ -32,23 +32,22 @@ export const LiveNotifications = () => {
       
       setIsVisible(true);
 
-      // Hide after 8 seconds to give users enough time to read
+      // Hide after 6 seconds to not be intrusive
       setTimeout(() => {
         setIsVisible(false);
         
         // Only schedule the next one if we haven't hit the cap
         if (count < MAX_NOTIFICATIONS) {
-          // Delay: 15s for the 2nd popup, 25s for the 3rd popup
-          const nextDelay = count === 1 ? 15000 : 25000;
-          timeoutId = setTimeout(triggerNotification, nextDelay);
+          // Increase delay significantly to 45 seconds between popups
+          timeoutId = setTimeout(triggerNotification, 45000);
         }
-      }, 8000);
+      }, 6000);
     };
 
-    // Wait an initial 10 seconds before showing the very first popup
+    // Wait an initial 25 seconds before showing the very first popup
     timeoutId = setTimeout(() => {
       triggerNotification();
-    }, 10000);
+    }, 25000);
 
     return () => clearTimeout(timeoutId);
   }, []);

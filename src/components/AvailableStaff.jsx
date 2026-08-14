@@ -79,7 +79,7 @@ export const AvailableStaff = () => {
           <div className="embla overflow-hidden" ref={emblaRef}>
             <div className="embla__container flex touch-pan-y -ml-3 md:-ml-4">
               {STAFF_PROFILES.map((staff, idx) => (
-                <div key={idx} className="embla__slide flex-none pl-3 md:pl-4 min-w-[260px] w-full sm:w-[280px] md:w-[320px] lg:w-[350px]">
+                <div key={idx} className="embla__slide flex-none pl-3 md:pl-4 w-[85vw] sm:w-[280px] md:w-[320px] lg:w-[350px]">
                   <div className="bg-white dark:bg-[#1e293b] rounded-2xl p-4 md:p-5 shadow-lg border border-slate-100 dark:border-white/5 transition-colors h-full flex flex-col group relative overflow-hidden">
 
                     <div className="flex gap-3 mb-4 relative z-10">

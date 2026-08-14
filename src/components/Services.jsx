@@ -79,9 +79,9 @@ export const Services = () => {
                       <h3 className="text-sm md:text-base font-bold dark:text-white text-brand-navy font-heading leading-tight transition-colors">
                         {service.name}
                       </h3>
-                      <div className="flex items-baseline gap-1 mt-0.5">
-                        <span className="text-[9px] md:text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wide">Starts</span>
-                        <p className={`text-[11px] md:text-xs font-bold ${style.accent} ${style.darkAccent}`}>
+                      <div className="flex flex-col mt-0.5">
+                        <span className="text-[9px] md:text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wide leading-none mb-0.5">Starts</span>
+                        <p className={`text-xs md:text-sm font-extrabold ${style.accent} ${style.darkAccent} leading-none`}>
                           ₹{service.baseRate.toLocaleString()}*/mo
                         </p>
                       </div>
